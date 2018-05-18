@@ -15,8 +15,6 @@ public class Player {
 	 * 	-bag
 	 * 	-money
 	 * 	-experience 
-	 * 	-health points
-	 * 	-mana points
 	 */
 	
 	//TODO change all of sting arrays to item arrays
@@ -47,14 +45,6 @@ public class Player {
 	//Name player stuff
 	public String getPlayerName() {
 		return Name;
-	}
-	
-	//Level player stuff
-	public int getPlayerLevel() {
-		return Level;
-	}
-	public void gainLevel(int gainedLevel) {
-		Level += gainedLevel;
 	}
 	
 	//Magic level player stuff
