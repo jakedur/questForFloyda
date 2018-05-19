@@ -1,4 +1,4 @@
-package questForFloyda;
+package com.mygdx.game;
 
 /**
  * 

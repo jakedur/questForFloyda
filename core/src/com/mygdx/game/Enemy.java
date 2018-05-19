@@ -1,4 +1,4 @@
-package questForFloyda;
+package com.mygdx.game;
 /**
 *
 * Me trying to see if I can set up a basic outline for an enemy object
