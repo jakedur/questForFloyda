@@ -25,6 +25,18 @@ public class Knight extends Player{
 		Level = level;
 	}
 
+	//level up stuff
+
+	//Level player stuff
+	public int getPlayerLevel() {
+		return Level;
+	}
+	public void gainLevel(int gainedLevel) {
+		Level += gainedLevel;
+		LvLupHPGain();
+		LvLupManaGain();
+	}
+	
 	/**
 	 * TODO 
 	 * implement a level scaling system
@@ -36,16 +48,6 @@ public class Knight extends Player{
 	 *  
 	 *  this will give you about your level time 10 and sometimes more or less
 	 */
-	//level up stuff
-
-	//Level player stuff
-	public int getPlayerLevel() {
-		return Level;
-	}
-	public void gainLevel(int gainedLevel) {
-		Level += gainedLevel;
-		LvLupHPGain();
-	}
 	public void LvLupHPGain() {
 		double RNG = Math.random();
 		if(0 <= RNG && RNG < 0.2) {
@@ -56,10 +58,30 @@ public class Knight extends Player{
 			MaxHP += 12;
 		}
 	}
+	
 	/**
 	 * TODO
 	 * implement a MP gainning system for when the knight levels up
+	 * 
+	 *  I am thinking for every level gain 10-15 hp
+	 *  60% chance for a plus 10
+	 *  20% chance for a plus 7
+	 *  20% chance for a plus 12
+	 *  
+	 *  this will give you about your level time 10 and sometimes more or less
 	 */
+	public void LvLupManaGain() {
+        for(int level = 2; level <= 100; level++){
+            double RNG = Math.random();
+            if(0 <= RNG && RNG < 0.2) {
+                MaxMP += 3;
+            }else if(0.2 <= RNG && RNG <= 0.8) {
+                MaxMP += 5;
+            }else if(0.8 < RNG && RNG <= 1.0) {
+                MaxMP += 7;
+            }
+        }
+	}
 	
 	/**
 	 * TODO
