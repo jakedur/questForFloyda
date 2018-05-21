@@ -6,6 +6,7 @@ package com.mygdx.game;
 * @author Ryan Adelman-Drummond
 * @version 1.0
 * @date May 18th, 2018
+* @updated May 21st, 2018
 *
 */
 public class Enemy {
@@ -16,16 +17,11 @@ public class Enemy {
 	 * 
 	 */
 	private String Name;
-	private int Level;
 	
-	public Enemy(String name, int level) {
+	public Enemy(String name) {
 		Name = name;
-		Level = level;
 	}
 	public String getEnemyName() {
 		return Name;
-	}
-	public int getEnemyLevel() {
-		return Level;
 	}
 }

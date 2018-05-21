@@ -5,6 +5,7 @@ package com.mygdx.game;
  * @author Ryan Adelman-Drummond
  * @version 1.0
  * @date May 18th, 2018 
+ * @updated May 21st, 2018
  *
  */
 
@@ -87,6 +88,7 @@ public class Knight extends Player{
 	 * TODO
 	 * figure out exp scaling to know when you level up
 	 */
+	
 	//HP PLayer stuff
 	public int getHP() {
 		return curHP;
