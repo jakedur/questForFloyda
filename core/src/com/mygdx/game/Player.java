@@ -21,13 +21,13 @@ public class Player {
 	//items are objects that need to make
 	private String Name;
 	private int Level;
-	private String[] Bag;
-	private String[] Equipment;
+	private Item[] Bag;
+	private Item[] Equipment;
 	private int Money;
 	private int Exp;
 	private int MagicLevel;
 	
-	public Player(String name, int level, String[] bag, String[] equipment, int money, int exp) {
+	public Player(String name, int level, Item[] bag, Item[] equipment, int money, int exp) {
 		Name = name;
 		Level = level;
 		copyArray(Bag, bag);
@@ -37,7 +37,7 @@ public class Player {
 		MagicLevel = 0;
 	}
 	//copy the array to the other array
-	public void copyArray(String[] CopyTo, String[] CopyThis) {
+	public void copyArray(Item[] CopyTo, Item[] CopyThis) {
 		for(int pos = 0; pos < CopyThis.length; pos++) {
 			CopyTo[pos] = CopyThis[pos];
 		}

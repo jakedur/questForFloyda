@@ -18,7 +18,7 @@ public class Knight extends Player{
 	private int MaxMP;
 	private int curMP;
 	private int Level;
-	public Knight(String name, int level, String[] bag, String[] equipment, int money, int exp) {
+	public Knight(String name, int level, Item[] bag, Item[] equipment, int money, int exp) {
 		super(name, level, bag, equipment, money, exp);
 		MaxHP = 20;
 		MaxMP = 10;
