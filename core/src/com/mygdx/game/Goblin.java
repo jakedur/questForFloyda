@@ -17,12 +17,14 @@ public class Goblin extends Enemy{
 	private int curHP;
 	private int attack;
 	private int defense;
+	private int expGiven;
 	public Goblin(String name) {
 		super(name);
 		MaxHP = 10;
 		curHP = MaxHP;
 		attack = 3;
 		defense = 2;
+		expGiven = 5;
 	}
 	
 	//attack stuff
@@ -33,6 +35,11 @@ public class Goblin extends Enemy{
 	//defense stuff
 	public int getDefense() {
 		return defense;
+	}
+	
+	//exp stuff
+	public int getExp() {
+		return expGiven;
 	}
 	
 	//health stuff
