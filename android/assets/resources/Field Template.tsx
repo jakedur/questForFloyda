@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="NES - Final Fantasy 1 - Cresent Lake" tilewidth="8" tileheight="8" tilecount="9744" columns="112">
+<tileset name="Field Template" tilewidth="16" tileheight="16" tilecount="2408" columns="56">
  <image source="Field Template.png" width="900" height="700"/>
 </tileset>

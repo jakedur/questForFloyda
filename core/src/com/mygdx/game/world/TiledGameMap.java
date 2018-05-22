@@ -2,6 +2,9 @@ package com.mygdx.game.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
@@ -11,7 +14,7 @@ public class TiledGameMap extends GameMap {
 	OrthogonalTiledMapRenderer tiledMapRenderer;
 	
 	public TiledGameMap() {
-		tiledMap = new TmxMapLoader().load("Demo Map.tmx");
+		tiledMap = new TmxMapLoader().load("Demo Map Large.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 	}
 	
@@ -23,38 +26,44 @@ public class TiledGameMap extends GameMap {
 
 	@Override
 	public void update(float delta) {
-		// TODO Auto-generated method stub
+		super.update(delta);
 		
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		super.update(delta);
 		
 	}
 
 	@Override
 	public TileType getTileTypeByCoordinate(int layer, int col, int row) {
-		// TODO Auto-generated method stub
+		Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row);
+		
+		if (cell != null) {
+			TiledMapTile tile = cell.getTile();
+			
+			if (tile != null) {
+				int id = tile.getId();
+				return TileType.getTileTypeById(id);
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((TiledMapTileLayer) tiledMap.getLayers().get(0)).getWidth();
 	}
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((TiledMapTileLayer) tiledMap.getLayers().get(0)).getHeight();
 	}
 
 	@Override
 	public int getLayers() {
-		// TODO Auto-generated method stub
-		return 0;
+		return tiledMap.getLayers().getCount();
 	}
 
 }
