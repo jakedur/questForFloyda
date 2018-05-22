@@ -12,16 +12,16 @@ public class Item {
 	 * 	-name
 	 * 	-cost
 	 */
-	private String ItemName;
-	private int ItemCost;
+	private String Name;
+	private int Cost;
 	public Item(String name, int cost) {
-		ItemName = name;
-		ItemCost = cost;
+		Name = name;
+		Cost = cost;
 	}
 	public String getItemName() {
-		return ItemName;
+		return Name;
 	}
 	public int getItemCost() {
-		return ItemCost;
+		return Cost;
 	}
 }
