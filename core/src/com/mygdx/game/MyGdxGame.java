@@ -37,12 +37,16 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		if (Gdx.input.isTouched()) {
+			cam.translate(Gdx.input.getDeltaX(), Gdx.input.getDeltaY()); //switch this to match character loc
+		}
+		
 		gameMap.render(cam);
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+		//img.dispose();
 	}
 }
