@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Backend;
 /**
 *
 * Me trying to see if I can set up a basic outline for an enemy object
