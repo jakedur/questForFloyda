@@ -11,8 +11,8 @@ public abstract class GameMap {
 		/**
 		 *Gets a tile by pixel position within the world
 		 */
-		public TileType getTileByLocation(int layer, float x, float y) {
-			return this.getTileByLocation(layer, (int) (x / TileType.TILE_SIZE), (int) (y / TileType.TILE_SIZE));
+		public TileType getTileTypeByLocation(int layer, float x, float y) {
+			return this.getTileTypeByCoordinate(layer, (int) (x / TileType.TILE_SIZE), (int) (y / TileType.TILE_SIZE));
 		}
 		
 		/**

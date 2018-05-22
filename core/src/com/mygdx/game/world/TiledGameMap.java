@@ -26,18 +26,17 @@ public class TiledGameMap extends GameMap {
 
 	@Override
 	public void update(float delta) {
-		super.update(delta);
 		
 	}
 
 	@Override
 	public void dispose() {
-		super.update(delta);
+		tiledMap.dispose();
 		
 	}
 
 	@Override
-	public TileType getTileTypeByCoordinate(int layer, int col, int row) {
+	public TileType getTileTypeByCoordinate (int layer, int col, int row) {
 		Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row);
 		
 		if (cell != null) {

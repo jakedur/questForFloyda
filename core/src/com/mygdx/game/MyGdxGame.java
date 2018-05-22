@@ -24,6 +24,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		//label.setEllipsis(false);
+		
 		batch = new SpriteBatch();
 		//img = new Texture(randomImg());
 		
@@ -46,9 +48,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		
 		if (Gdx.input.justTouched()) {
 			Vector3 pos = cam.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-			TileType type = gameMap.getTileByLocation(1, pos.x, pos.y);
+			TileType type = gameMap.getTileTypeByLocation(1, pos.x, pos.y);
 			if (type != null) {
-				System.out.println("id: " + type.getId() + " name: " + type.getName() + " collidable: " + type.isCollidable() + " damage: " + type.getDamage());
+				//System.out.println("id: " + type.getId() + " name: " + type.getName() + " collidable: " + type.isCollidable() + " damage: " + type.getDamage());
 			}
 		}
 		
