@@ -38,10 +38,8 @@ public class TiledGameMap extends GameMap {
 	@Override
 	public TileType getTileTypeByCoordinate (int layer, int col, int row) {
 		Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col, row);
-		
 		if (cell != null) {
 			TiledMapTile tile = cell.getTile();
-			
 			if (tile != null) {
 				int id = tile.getId();
 				return TileType.getTileTypeById(id);
