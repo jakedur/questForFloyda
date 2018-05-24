@@ -50,11 +50,11 @@ public abstract class Entity {
 	}
 	
 	public int getWidth() {
-		return type.getWidth();
+		return type.getWidth()-3;
 	}
 	
 	public int getHeight() {
-		return type.getHeight();
+		return type.getHeight()-3;
 	}
 	
 }
