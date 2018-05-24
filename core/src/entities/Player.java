@@ -8,7 +8,7 @@ import com.mygdx.game.world.GameMap;
 
 public class Player extends Entity {
 	
-	private static final int SPEED = 60;
+	private static final int SPEED = 200;
 	
 	Texture image;
 	

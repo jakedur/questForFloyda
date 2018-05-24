@@ -14,7 +14,7 @@ public abstract class GameMap {
 	
 	public GameMap() {
 		entities = new ArrayList<Entity>();
-		entities.add(new Player(200, 30, this));
+		entities.add(new Player(200, 50, this));
 	}
 
 
@@ -26,9 +26,7 @@ public abstract class GameMap {
 	}
 
 	public void update(float delta) {
-		System.out.println("used");
 		for(Entity entity : entities ) {
-
 			entity.update(delta);
 		}
 	}

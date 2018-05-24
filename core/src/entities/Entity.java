@@ -17,7 +17,6 @@ public abstract class Entity {
 	}
 
 	public void update(float deltaTime) {
-		System.out.println("used");
 	}
 	
 	public abstract void render(SpriteBatch batch);
