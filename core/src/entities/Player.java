@@ -25,7 +25,6 @@ public class Player extends Entity {
 		if(Gdx.input.isKeyPressed(Keys.A)) {
 			moveX(-SPEED * deltaTime);
 		}
-			
 		if(Gdx.input.isKeyPressed(Keys.D))
 			moveX(SPEED * deltaTime);
 		if(Gdx.input.isKeyPressed(Keys.S))
