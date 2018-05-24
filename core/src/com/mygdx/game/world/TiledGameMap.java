@@ -15,7 +15,7 @@ public class TiledGameMap extends GameMap {
 	OrthogonalTiledMapRenderer tiledMapRenderer;
 	
 	public TiledGameMap() {
-		tiledMap = new TmxMapLoader().load("Demo Map Large.tmx");
+		tiledMap = new TmxMapLoader().load("Town Mapu.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 	}
 	
@@ -30,7 +30,7 @@ public class TiledGameMap extends GameMap {
 	}
 
 	@Override
-	public void update(float delta, SpriteBatch batch) {
+	public void update(float delta) {
 		
 	}
 

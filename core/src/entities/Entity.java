@@ -15,19 +15,23 @@ public abstract class Entity {
 		this.type = type;
 		this.map = map;
 	}
-	
+
 	public void update(float deltaTime) {
-		
+		System.out.println("used");
 	}
 	
 	public abstract void render(SpriteBatch batch);
 
 	protected void moveX(float amount) {
-		
+		float newX = pos.x + amount;
+		if (!map.doesRectCollideWithMap(newX, pos.y, getWidth(), getHeight()))
+			this.pos.x = newX;
 	}
 	
 	protected void moveY(float amount) {
-		
+		float newY = pos.y + amount;
+		if (!map.doesRectCollideWithMap(pos.x, newY, getWidth(), getHeight()))
+			this.pos.y = newY;
 	}
 	
 	public Vector2 getPos() {
