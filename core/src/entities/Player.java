@@ -22,7 +22,7 @@ public class Player extends Entity {
 	public void update(float deltaTime) {
 		super.update(deltaTime);
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
-			time = 100;
+			time = 75;
 		}
 		if(Gdx.input.isKeyPressed(Keys.A)) {
 			moveXLeft(-SPEED * deltaTime);
@@ -40,7 +40,7 @@ public class Player extends Entity {
 			moveYUp(SPEED * deltaTime);
 			sleep();
 		}
-		time = 200;
+		time = 100;
 	}
 	
 	public void sleep() {
