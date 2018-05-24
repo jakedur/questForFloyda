@@ -46,13 +46,13 @@ public class MyGdxGame extends ApplicationAdapter {
 			//cam.update();
 		//}
 		
-		//if (Gdx.input.justTouched()) {
-			//Vector3 pos = cam.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-			//TileType type = gameMap.getTileTypeByLocation(0, pos.x, pos.y);
-			//if (type != null) {
-				//System.out.println("id: " + type.getId() + " name: " + type.getName() + " collidable: " + type.isCollidable() + " damage: " + type.getDamage());
-			//}
-		//}
+		if (Gdx.input.justTouched()) {
+			Vector3 pos = cam.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+			TileType type = gameMap.getTileTypeByLocation(0, pos.x, pos.y);
+			if (type != null) {
+				System.out.println("id: " + type.getId() + " name: " + type.getName() + " collidable: " + type.isCollidable() + " damage: " + type.getDamage());
+			}
+		}
 		
 		cam.update();
 		gameMap.update(Gdx.graphics.getDeltaTime());
