@@ -54,7 +54,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			}
 		}
 		
-		gameMap.render(cam);
+		gameMap.render(cam, batch);
 	}
 	
 	@Override
