@@ -22,15 +22,14 @@ public class Player extends Entity {
 	public void update(float deltaTime) {
 		
 		super.update(deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.A)) {
-			moveX(-SPEED * deltaTime);
-		}
+		if(Gdx.input.isKeyPressed(Keys.A)) 
+			moveXLeft(-SPEED * deltaTime);
 		if(Gdx.input.isKeyPressed(Keys.D))
-			moveX(SPEED * deltaTime);
+			moveXRight(SPEED * deltaTime);
 		if(Gdx.input.isKeyPressed(Keys.S))
-			moveY(-SPEED * deltaTime);
+			moveYDown(-SPEED * deltaTime);
 		if(Gdx.input.isKeyPressed(Keys.W))
-			moveY(SPEED * deltaTime);
+			moveYUp(SPEED * deltaTime);
 	}
 	
 	@Override
