@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.concurrent.TimeUnit;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,7 +11,7 @@ import com.mygdx.game.world.GameMap;
 public class Player extends Entity {
 	
 	private static final int SPEED = 100;
-	
+	int time;
 	Texture image;
 	
 	public Player(float x, float y, GameMap map) {
@@ -20,16 +22,35 @@ public class Player extends Entity {
 	
 	@Override
 	public void update(float deltaTime) {
-		
 		super.update(deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.A)) 
+		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
+			time = 100;
+		}
+		if(Gdx.input.isKeyPressed(Keys.A)) {
 			moveXLeft(-SPEED * deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.D))
+			sleep();
+		}
+		if(Gdx.input.isKeyPressed(Keys.D)) {
 			moveXRight(SPEED * deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.S))
+			sleep();
+		}
+		if(Gdx.input.isKeyPressed(Keys.S)) {
 			moveYDown(-SPEED * deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.W))
+			sleep();
+		}
+		if(Gdx.input.isKeyPressed(Keys.W)) {
 			moveYUp(SPEED * deltaTime);
+			sleep();
+		}
+		time = 200;
+	}
+	
+	public void sleep() {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
