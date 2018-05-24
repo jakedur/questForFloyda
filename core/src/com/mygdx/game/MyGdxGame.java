@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,15 +20,14 @@ public class MyGdxGame extends ApplicationAdapter {
 	OrthographicCamera cam;
 	
 	public String randomImg() {
-		return "/memes/" + ( (int) (Math.random() * 10) + 1) + ".jpg";
+		return "memes/" + ( (int) (Math.random() * 10) + 1) + ".jpg";
 	}
 	
 	@Override
 	public void create () {
-		//label.setEllipsis(false);
 		
 		batch = new SpriteBatch();
-		//img = new Texture(randomImg());
+		img = new Texture(randomImg());
 		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());;
@@ -46,17 +46,28 @@ public class MyGdxGame extends ApplicationAdapter {
 			//cam.update();
 		//}
 		
-		if (Gdx.input.justTouched()) {
-			Vector3 pos = cam.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-			TileType type = gameMap.getTileTypeByLocation(0, pos.x, pos.y);
-			if (type != null) {
-				System.out.println("id: " + type.getId() + " name: " + type.getName() + " collidable: " + type.isCollidable() + " damage: " + type.getDamage());
-			}
-		}
-		
+		//if (Gdx.input.justTouched()) {
+			//Vector3 pos = cam.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+			//TileType type = gameMap.getTileTypeByLocation(0, pos.x, pos.y);
+			//if (type != null) {
+				//System.out.println("id: " + type.getId() + " name: " + type.getName() + " collidable: " + type.isCollidable() + " damage: " + type.getDamage());
+			//}
+		//}
+
 		cam.update();
 		gameMap.update(Gdx.graphics.getDeltaTime());
 		gameMap.render(cam, batch);
+		if(Gdx.input.isKeyJustPressed(Keys.M)) {
+			batch.begin();
+			batch.draw(img, 0, 0);
+			img = new Texture(randomImg());
+			batch.end();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	@Override
