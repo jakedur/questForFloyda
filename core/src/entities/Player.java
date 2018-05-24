@@ -8,7 +8,7 @@ import com.mygdx.game.world.GameMap;
 
 public class Player extends Entity {
 	
-	private static final int SPEED = 200;
+	private static final int SPEED = 100;
 	
 	Texture image;
 	
@@ -22,15 +22,15 @@ public class Player extends Entity {
 	public void update(float deltaTime) {
 		
 		super.update(deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+		if(Gdx.input.isKeyPressed(Keys.A)) {
 			moveX(-SPEED * deltaTime);
 		}
 			
-		if(Gdx.input.isKeyPressed(Keys.RIGHT))
+		if(Gdx.input.isKeyPressed(Keys.D))
 			moveX(SPEED * deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.DOWN))
+		if(Gdx.input.isKeyPressed(Keys.S))
 			moveY(-SPEED * deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.UP))
+		if(Gdx.input.isKeyPressed(Keys.W))
 			moveY(SPEED * deltaTime);
 	}
 	
