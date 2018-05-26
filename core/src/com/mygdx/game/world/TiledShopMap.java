@@ -9,13 +9,13 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-public class TiledGameMap extends GameMap {
+public class TiledShopMap extends GameMap {
 
 	TiledMap tiledMap;
 	OrthogonalTiledMapRenderer tiledMapRenderer;
 	
-	public TiledGameMap() {
-		tiledMap = new TmxMapLoader().load("Town Mapu 2.0.tmx");
+	public TiledShopMap() {
+		tiledMap = new TmxMapLoader().load("Shop Insides.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 	}
 	
@@ -52,10 +52,12 @@ public class TiledGameMap extends GameMap {
 		}
 		return null;
 	}
+	
 	@Override 
 	public boolean getDoorCollision(TileType type) {
 		return false;
 	}
+	
 	@Override
 	public int getWidth() {
 		return ((TiledMapTileLayer) tiledMap.getLayers().get(0)).getWidth();

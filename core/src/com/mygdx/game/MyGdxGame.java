@@ -11,12 +11,14 @@ import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.world.GameMap;
 import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
+import com.mygdx.game.world.TiledShopMap;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	
 	GameMap gameMap;
+	GameMap shopMap;
 	OrthographicCamera cam;
 	
 	public String randomImg() {
@@ -34,6 +36,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		cam.update();
 		
 		gameMap = new TiledGameMap();
+		shopMap = new TiledShopMap();
 	}
 
 	@Override

@@ -43,7 +43,12 @@ public abstract class GameMap {
 	 * Gets a tile at its coordinate within the map
 	 */
 	public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
-
+	
+	/**
+	 * 	if the TileType is A door than render a new map.
+	 */
+	public abstract boolean getDoorCollision(TileType type);
+	
 	public boolean doesRectCollideWithMap(float x, float y, int width, int height) {
 		if (x < 0 || y < 0 || x + width > getPixelWidth() || y + height > getPixelHeight())
 			return true;
