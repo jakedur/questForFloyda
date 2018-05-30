@@ -1,4 +1,7 @@
-package com.mygdx.game.Backend;
+package classes;
+
+import items.Item;
+
 /**
  * 
  * @author Ryan Adelman-Drummond
@@ -6,7 +9,7 @@ package com.mygdx.game.Backend;
  * @date May 18th, 2018
  *
  */
-public class Player {
+public class Classes {
 	/**
 	 * what does every player need to have?
 	 * 	-name
@@ -27,7 +30,7 @@ public class Player {
 	private int Exp;
 	private int MagicLevel;
 	
-	public Player(String name, int level, Item[] bag, Item[] equipment, int money, int exp) {
+	public Classes(String name, int level, Item[] bag, Item[] equipment, int money, int exp) {
 		Name = name;
 		Level = level;
 		copyArray(Bag, bag);

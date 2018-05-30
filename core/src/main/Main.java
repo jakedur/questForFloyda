@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mygdx.game.Backend;
+package main;
 
 /**
  * @author Ryan Adelman-Drummond

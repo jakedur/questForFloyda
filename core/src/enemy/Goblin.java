@@ -1,4 +1,4 @@
-package com.mygdx.game.Backend;
+package enemy;
 
 /**
  * 
@@ -18,8 +18,7 @@ public class Goblin extends Enemy{
 	private int attack;
 	private int defense;
 	private int expGiven;
-	public Goblin(String name) {
-		super(name);
+	public Goblin() {
 		MaxHP = 10;
 		curHP = MaxHP;
 		attack = 3;
@@ -28,33 +27,41 @@ public class Goblin extends Enemy{
 	}
 	
 	//attack stuff
+	@Override
 	public int getAttack() {
 		return attack;
 	}
 	
 	//defense stuff
+	@Override
 	public int getDefense() {
 		return defense;
 	}
 	
 	//exp stuff
+	@Override
 	public int getExp() {
 		return expGiven;
 	}
 	
 	//health stuff
+	@Override
 	public int getHP() {
 		return curHP;
 	}
+	@Override
 	public void loseHP(int damage) {
 		curHP -= damage;
 	}
+	@Override
 	public void gainHP(int heal) {
 		curHP += heal;
 	}
+	@Override
 	public void FullHP() {
 		curHP = MaxHP;
 	}
+	@Override
 	public boolean death(int damage) {
 		if(curHP - damage < 0) {
 			return true;

@@ -1,4 +1,6 @@
-package com.mygdx.game.Backend;
+package classes;
+
+import items.Item;
 
 /**
  * 
