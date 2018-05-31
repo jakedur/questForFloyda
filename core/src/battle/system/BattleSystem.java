@@ -27,7 +27,7 @@ public class BattleSystem {
             return "Bat";
         }
     }
-    public void attack(Enemy attacker, Enemy defender){
+    public Enemy attackEnemy(Enemy attacker, Enemy defender){
         int attack = attacker.getAttack();
         int defense = defender.getDefense();
         int damage = attack - defense;
@@ -40,7 +40,9 @@ public class BattleSystem {
             System.out.println();
         }else if(killed == true){
             System.out.println(name + " was killed");
+            defender.setAlive(false);
         }
+        return defender;
     }
     /**
      * A rough battle system that works between 2 enemies
@@ -48,69 +50,20 @@ public class BattleSystem {
      * need to try and get player to work with it
      */
     public void main(){
-        BattleSystem battle = new BattleSystem();
-        while(bat.getAlive() == true && goblin.getAlive() == true){
-            String Initiative = battle.getInitiative();
-            if(Initiative.equals("Goblin")){
-                int attack = goblin.getAttack();
-                int defense = bat.getDefense();
-                int damage = attack - defense;
-                boolean killed = bat.death(damage);
-                String name = bat.getName();
-                if(killed == false){
-                    bat.loseHP(damage);
-                    int hp = bat.getHP();
-                    System.out.println(name + " lost " + damage + ". HP:" + hp);
-
-                    attack = bat.getAttack();
-                    defense = goblin.getDefense();
-                    damage = attack - defense;
-                    killed = goblin.death(damage);
-                    name = goblin.getName();
-                    if(killed == false){
-                        goblin.loseHP(damage);
-                        hp = goblin.getHP();
-                        System.out.println(name + " lost " + damage + ". HP:" + hp);
-                        System.out.println();
-                    }else if(killed == true){
-                        System.out.println(name + " was killed");
-                        goblin.setAlive(false);
-                    }
-                }else if(killed == true){
-                    System.out.println(name + " was killed");
-                    bat.setAlive(false);
-                }
-
-            }else if(Initiative.equals("Bat")){
-                int attack = bat.getAttack();
-                int defense = goblin.getDefense();
-                int damage = attack - defense;
-                boolean killed = goblin.death(damage);
-                String name = goblin.getName();
-                if(killed == false){
-                    goblin.loseHP(damage);
-                    int hp = goblin.getHP();
-                    System.out.println(name + " lost " + damage + ". HP:" + hp);
-
-                    attack = goblin.getAttack();
-                    defense = bat.getDefense();
-                    damage = attack - defense;
-                    killed = bat.death(damage);
-                    name = bat.getName();
-                    if(killed == false){
-                        bat.loseHP(damage);
-                        hp = bat.getHP();
-                        System.out.println(name + " lost " + damage + ". HP:" + hp);
-                        System.out.println();
-                    }else if(killed == true){
-                        System.out.println(name + " was killed");
-                        goblin.setAlive(false);
-                    }
-                }else if(killed == true){
-                    System.out.println(name + " was killed");
-                    goblin.setAlive(false);
-                }
-            }
-        }
+    	 BattleSystem battle = new BattleSystem();
+         while(bat.getAlive() == true && goblin.getAlive() == true){
+             String Initiative = battle.getInitiative();
+             if(Initiative.equals("Goblin")){
+                 bat = battle.attackEnemy(goblin, bat);
+                 if(bat.getAlive() == true){
+                     goblin = battle.attackEnemy(bat,goblin);
+                 }
+             }else if(Initiative.equals("Bat")){
+                 goblin = battle.attackEnemy(bat,goblin);
+                 if(goblin.getAlive() == true){
+                     bat = battle.attackEnemy(goblin, bat);
+                 }
+             }
+         }
     }
 }
