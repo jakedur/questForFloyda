@@ -1,14 +1,14 @@
 package enemy;
 /**
-*
-* Me trying to see if I can set up a basic outline for an enemy object
-*
-* @author Ryan Adelman-Drummond
-* @version 1.0
-* @date May 18th, 2018
-* @updated May 21st, 2018
-*
-*/
+ *
+ * Me trying to see if I can set up a basic outline for an enemy object
+ *
+ * @author Ryan Adelman-Drummond
+ * @version 1.0
+ * @date May 18th, 2018
+ * @updated May 21st, 2018
+ *
+ */
 public class Enemy {
 	/**
 	 * what does a every enemy need to have?
@@ -16,33 +16,35 @@ public class Enemy {
 	 * 	-level
 	 * 
 	 */
-	private String Name;
+
+	private String name;
 	private int MaxHP;
 	private int curHP;
 	private int attack;
 	private int defense;
 	private int expGiven;
+	private boolean alive;
 	public Enemy() {
+		alive = true;
 	}
-	public String getEnemyName() {
-		return Name;
+	public String getName(){
+		return name;
 	}
-	//attack stuff
+	public void setAlive(boolean Alive){
+		alive = Alive;
+	}
+	public boolean getAlive(){
+		return alive;
+	}
 	public int getAttack() {
 		return attack;
 	}
-	
-	//defense stuff
 	public int getDefense() {
 		return defense;
 	}
-	
-	//exp stuff
 	public int getExp() {
 		return expGiven;
 	}
-	
-	//health stuff
 	public int getHP() {
 		return curHP;
 	}
@@ -56,9 +58,8 @@ public class Enemy {
 		curHP = MaxHP;
 	}
 	public boolean death(int damage) {
-		if(curHP - damage < 0) {
+		if(curHP - damage < 1) 
 			return true;
-		}
 		return false;
 	}
 }

@@ -12,60 +12,66 @@ public class Goblin extends Enemy{
 	/**
 	 * what does a goblin need to have stats wise
 	 */
-	
-	private int MaxHP;
+	private String name;
+    private int MaxHP;
 	private int curHP;
 	private int attack;
 	private int defense;
 	private int expGiven;
+	private boolean alive;
 	public Goblin() {
-		MaxHP = 10;
+		name = "Goblin";
+	    MaxHP = 10;
 		curHP = MaxHP;
 		attack = 3;
-		defense = 2;
+		defense = 3;
 		expGiven = 5;
-	}
-	
-	//attack stuff
-	@Override
-	public int getAttack() {
-		return attack;
-	}
-	
-	//defense stuff
-	@Override
-	public int getDefense() {
-		return defense;
-	}
-	
-	//exp stuff
-	@Override
-	public int getExp() {
-		return expGiven;
-	}
-	
-	//health stuff
-	@Override
-	public int getHP() {
-		return curHP;
+		alive = true;
 	}
 	@Override
-	public void loseHP(int damage) {
-		curHP -= damage;
-	}
-	@Override
-	public void gainHP(int heal) {
-		curHP += heal;
-	}
-	@Override
-	public void FullHP() {
-		curHP = MaxHP;
-	}
-	@Override
-	public boolean death(int damage) {
-		if(curHP - damage < 0) {
-			return true;
-		}
+	public String getName(){
+        return name;
+    }
+    @Override
+    public void setAlive(boolean Alive){
+        alive = Alive;
+    }
+    @Override
+    public boolean getAlive(){
+       return alive;
+    }
+    @Override
+    public int getAttack() {
+        return attack;
+    }
+    @Override
+    public int getDefense() {
+        return defense;
+    }
+    @Override
+    public int getExp() {
+        return expGiven;
+    }
+    @Override
+    public int getHP() {
+        return curHP;
+    }
+    @Override
+    public void loseHP(int damage) {
+        curHP -= damage;
+    }
+    @Override
+    public void gainHP(int heal) {
+        curHP += heal;
+    }
+    @Override
+    public void FullHP() {
+        curHP = MaxHP;
+    }
+    @Override
+    public boolean death(int damage) {
+        if(curHP - damage < 1) 
+            return true;
 		return false;
 	}
 }
