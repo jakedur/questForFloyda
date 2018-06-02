@@ -1,25 +1,24 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.Quest;
 
 import controller.TitleController;
 
 public class TitleScreen extends AbstractScreen{
-	TitleController titleController;
-	Image image;
-	Texture img;
-	Sprite backgroundSprite;
-	private SpriteBatch spriteBatch;
+	private TitleController titleController;
+	private Texture img;
+	private SpriteBatch batch;
+	Quest Quest = new Quest();
 	public TitleScreen(Quest app) {
 		super(app);
 		titleController = new TitleController();
 		img = new Texture("Screens/Title Screen.png");
-        backgroundSprite = new Sprite(img);
+		batch = new SpriteBatch();
+        //backgroundSprite = new Sprite(img);
 	}
 
 	@Override
@@ -27,15 +26,17 @@ public class TitleScreen extends AbstractScreen{
 		Gdx.input.setInputProcessor(titleController);
 	}
 
-	public void renderBackground() {
-		backgroundSprite.draw(spriteBatch);
-	}
+	//public void renderBackground() {
+		//backgroundSprite.draw(spriteBatch);
+	//}
 
 	@Override
 	public void render(float delta) {
-		spriteBatch.begin();
-		renderBackground(); //In first place!!!!
-		spriteBatch.end();
+		batch.begin();
+		batch.draw(img, 0, 0); 
+		batch.end();
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
+			getApp().setScreen(Quest.getGameStart());
 	}
 
 	@Override

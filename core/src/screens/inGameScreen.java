@@ -27,7 +27,7 @@ public class inGameScreen extends AbstractScreen {
 	
 	public inGameScreen(Quest app) {
 		super(app);
-		
+		System.out.println("used");
 		TiledGMap = new TiledGameMap();
 		batch = new SpriteBatch();
 		cam = new OrthographicCamera();
@@ -78,6 +78,7 @@ public class inGameScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
+		System.out.println("dasdas");
 		TiledGMap.getTiledGMapRender().render();
 		TiledGMap.getTiledGMapRender().setView(cam);;
 		cam.position.set(player.getX(), player.getY(), 0);

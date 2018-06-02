@@ -2,12 +2,14 @@ package controller;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.mygdx.game.Quest;
 
 public class TitleController extends InputAdapter{
-	com.mygdx.game.Quest Quest = new com.mygdx.game.Quest();
+	Quest Quest = new Quest();
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.ENTER) {
-			Quest.setScreen(Quest.getScreen("Game Start"));
+			System.out.println("dasd");
+			Quest.setCurrentScreen("Game Start");
 		}
 		return false;
 	}
