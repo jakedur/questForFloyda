@@ -4,6 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.mygdx.game.Quest;
 
+
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
@@ -12,5 +13,6 @@ public class DesktopLauncher {
 		config.title = "( ͡° ͜ʖ ͡°)       ¯\\_(ツ)_/¯";
 		config.vSyncEnabled = true;
 		new LwjglApplication(new Quest(), config);
+		Quest.setScreen(Quest.titleScreen);
 	}
 }
