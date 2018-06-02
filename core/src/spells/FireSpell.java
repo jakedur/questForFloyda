@@ -1,4 +1,4 @@
-package com.mygdx.game.Backend;
+package spells;
 
 /** 
  * 

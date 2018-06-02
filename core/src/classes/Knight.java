@@ -1,4 +1,6 @@
-package com.mygdx.game.Backend;
+package classes;
+
+import items.Item;
 
 /**
  * 
@@ -131,3 +133,4 @@ public class Knight extends Player{
 		return true;
 	}
 }
+

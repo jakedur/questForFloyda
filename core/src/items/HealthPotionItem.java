@@ -1,4 +1,5 @@
-package com.mygdx.game.Backend;
+package items;
+
 /**
  * 
  * @author Ryan Adelman-Drummond

@@ -1,46 +1,50 @@
-package com.mygdx.game.Backend;
-
+package enemy;
 /**
- * 
- * @author Ryan Adelmna-Drummond 
+ *
+ * Me trying to see if I can set up a basic outline for an enemy object
+ *
+ * @author Ryan Adelman-Drummond
  * @version 1.0
- * @date May 21st, 2018
+ * @date May 18th, 2018
  * @updated May 21st, 2018
+ *
  */
-public class Bat extends Enemy{
+public class Enemy {
 	/**
-	 * The bat is a low level cave enemy that has low health and medium attack 
+	 * what does a every enemy need to have?
+	 * 	-name
+	 * 	-level
+	 * 
 	 */
+
+	private String name;
 	private int MaxHP;
 	private int curHP;
 	private int attack;
 	private int defense;
 	private int expGiven;
-	public Bat(String name) {
-		super(name);
-		MaxHP = 7;
-		curHP = MaxHP;
-		attack = 4;
-		defense = 2;
-		expGiven = 6;
+	private boolean alive;
+	public Enemy() {
+		alive = true;
 	}
-	
-	//attack stuff
+	public String getName(){
+		return name;
+	}
+	public void setAlive(boolean Alive){
+		alive = Alive;
+	}
+	public boolean getAlive(){
+		return alive;
+	}
 	public int getAttack() {
 		return attack;
 	}
-	
-	//defense stuff
 	public int getDefense() {
 		return defense;
 	}
-	
-	//exp stuff
 	public int getExp() {
 		return expGiven;
 	}
-	
-	//health stuff
 	public int getHP() {
 		return curHP;
 	}
@@ -54,10 +58,8 @@ public class Bat extends Enemy{
 		curHP = MaxHP;
 	}
 	public boolean death(int damage) {
-		if(curHP - damage < 0) {
+		if(curHP - damage < 1) 
 			return true;
-		}
 		return false;
 	}
-
 }
