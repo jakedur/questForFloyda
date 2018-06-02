@@ -7,11 +7,13 @@ import com.mygdx.game.Quest;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
+		Quest quest = new Quest();
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 400;
 		config.height = 300;
 		config.title = "( ͡° ͜ʖ ͡°)       ¯\\_(ツ)_/¯";
 		config.vSyncEnabled = true;
-		new LwjglApplication(new Quest(), config);
+		new LwjglApplication(quest, config);
+		quest.start();
 	}
 }

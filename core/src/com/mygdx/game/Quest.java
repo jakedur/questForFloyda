@@ -7,31 +7,34 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import screens.AbstractScreen;
 import screens.TitleScreen;
 import screens.inGameScreen;
 
 public class Quest extends Game {
+	private Quest game;
+	
 	SpriteBatch batch;
 	Texture img;
 
 	public int tracker = 0;
 	
 	public inGameScreen gameStart;
-
-
 	public TitleScreen titleScreen;
 	public Screen currentScreen;
+	
+	public Quest() {
+		game = this;
+		gameStart = new inGameScreen(game);
+		titleScreen = new TitleScreen(game);
+	}
+	
 	public String randomImg() {
 		return "memes/" + ((int) (Math.random() * 10) + 1) + ".jpg";
 	}
 
 	@Override
 	public void create() {
-		gameStart = new inGameScreen(this);
-		titleScreen = new TitleScreen(this);
 		img = new Texture(randomImg());
-		setCurrentScreen("Title Screen");
 	}
 
 	@Override
@@ -45,13 +48,13 @@ public class Quest extends Game {
 	}
 	
 	public void setCurrentScreen(String whatScreen) {
-		
 		if (whatScreen.equals("Title Screen")) {
-			this.setScreen(titleScreen);
+			System.out.println("Title");
+			this.setScreen(new TitleScreen(game));
 			tracker = 1;
 		}
 		if(whatScreen.equals("Game Start")) {
-			this.setScreen(gameStart);
+			this.setScreen(new inGameScreen(game));
 			tracker = 2;
 		}
 	}
@@ -60,7 +63,11 @@ public class Quest extends Game {
 		return tracker;
 	}
 	
-	public inGameScreen getGameStart() {
+	public Screen getGameStart() {
 		return gameStart;
+	}
+	
+	public void start() {
+		this.setScreen(new TitleScreen(game));
 	}
 }

@@ -1,7 +1,6 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Quest;
@@ -35,8 +34,6 @@ public class TitleScreen extends AbstractScreen{
 		batch.begin();
 		batch.draw(img, 0, 0); 
 		batch.end();
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
-			getApp().setScreen(Quest.getGameStart());
 	}
 
 	@Override
