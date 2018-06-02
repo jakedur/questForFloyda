@@ -9,7 +9,7 @@ import items.Item;
  * @date May 21st, 2018
  */
 
-public class Wizard extends Player{
+public class Wizard extends Classes{
 	private int MaxHP;
 	private int curHP;
 	private int MaxMP;

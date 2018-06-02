@@ -15,7 +15,7 @@ import items.Item;
  * what makes the knight a knight?
  * have a decent amount of health points and mama points
  */
-public class Knight extends Player{
+public class Knight extends Classes{
 	private int MaxHP;
 	private int curHP;
 	private int MaxMP;
