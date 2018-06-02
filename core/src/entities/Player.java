@@ -1,54 +1,19 @@
 package entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.world.GameMap;
+
+import screens.inGameScreen;
 
 public class Player extends Entity {
 	
-	private static final int SPEED = 100;
 	int time;
 	Texture image;
 	
-	public Player(float x, float y, GameMap map) {
+	public Player(float x, float y, inGameScreen map) {
 		super(x, y, EntityType.PLAYER, map);
 		image = new Texture("wizard.png");
 		
-	}
-	
-	@Override
-	public void update(float deltaTime) {
-		super.update(deltaTime);
-		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
-			time = 75;
-		}
-		if(Gdx.input.isKeyPressed(Keys.A)) {
-			moveXLeft(-SPEED * deltaTime);
-			sleep();
-		}
-		if(Gdx.input.isKeyPressed(Keys.D)) {
-			moveXRight(SPEED * deltaTime);
-			sleep();
-		}
-		if(Gdx.input.isKeyPressed(Keys.S)) {
-			moveYDown(-SPEED * deltaTime);
-			sleep();
-		}
-		if(Gdx.input.isKeyPressed(Keys.W)) {
-			moveYUp(SPEED * deltaTime);
-			sleep();
-		}
-		time = 100;
-	}
-	
-	public void sleep() {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
