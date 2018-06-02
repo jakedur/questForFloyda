@@ -10,7 +10,6 @@ import com.mygdx.game.Quest;
 import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
 
-import controller.Camera;
 import controller.PlayerController;
 import entities.Entity;
 import entities.Player;
@@ -25,7 +24,6 @@ public class inGameScreen extends AbstractScreen {
 	
 	OrthographicCamera cam;
 	Texture image;
-	Camera camera;
 	
 	public inGameScreen(Quest app) {
 		super(app);
@@ -80,15 +78,13 @@ public class inGameScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
-		camera.update(player.getX()+0.5f, player.getY()+0.5f);
-		
 		TiledGMap.getTiledGMapRender().render();
 		TiledGMap.getTiledGMapRender().setView(cam);;
+		cam.position.set(player.getX(), player.getY(), 0);
+		cam.update();
 		batch.setProjectionMatrix(cam.combined);
 		
 		batch.begin();
-		float worldStartX = Gdx.graphics.getWidth()/2 - camera.getCameraX()*TileType.TILE_SIZE;
-		float worldStartY = Gdx.graphics.getHeight()/2 - camera.getCameraY()*TileType.TILE_SIZE;
 		for(Entity entity : entities) {
 			entity.setSPEED(200 * delta);
 			entity.render(batch);
