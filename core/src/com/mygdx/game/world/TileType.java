@@ -1,7 +1,6 @@
 package com.mygdx.game.world;
 
 import java.util.HashMap;
-import com.mygdx.game.world.TiledGameMap;
 
 public enum TileType {
 	

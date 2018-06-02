@@ -15,9 +15,13 @@ public class Quest extends Game {
 	Texture img;
 
 	
+<<<<<<< HEAD
 	public inGameScreen gameStart;
 	public TitleScreen titleScreen;
 	public AbstractScreen currentScreen;
+=======
+	private inGameScreen gameStart;
+>>>>>>> 8f8552c0cc27bca6265732d54c891ca694ca2479
 
 	public String randomImg() {
 		return "memes/" + ((int) (Math.random() * 10) + 1) + ".jpg";
@@ -26,11 +30,18 @@ public class Quest extends Game {
 	@Override
 	public void create() {
 		gameStart = new inGameScreen(this);
+<<<<<<< HEAD
 		titleScreen = new TitleScreen(this);
 		
 		img = new Texture(randomImg());
 
 		this.setScreen(currentScreen);
+=======
+		
+		img = new Texture(randomImg());
+
+		this.setScreen(gameStart);
+>>>>>>> 8f8552c0cc27bca6265732d54c891ca694ca2479
 	}
 
 	@Override
