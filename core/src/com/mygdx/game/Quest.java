@@ -13,7 +13,7 @@ import screens.inGameScreen;
 public class Quest extends Game {
 	private Quest game;
 	
-	SpriteBatch batch;
+	public SpriteBatch batch;
 	Texture img;
 
 	public int tracker = 0;
@@ -24,8 +24,6 @@ public class Quest extends Game {
 	
 	public Quest() {
 		game = this;
-		gameStart = new inGameScreen(game);
-		titleScreen = new TitleScreen(game);
 	}
 	
 	public String randomImg() {
@@ -34,7 +32,10 @@ public class Quest extends Game {
 
 	@Override
 	public void create() {
-		img = new Texture(randomImg());
+		//img = new Texture(randomImg());
+		batch = new SpriteBatch();
+		game.setScreen(new TitleScreen(game));
+		super.render();
 	}
 
 	@Override
@@ -51,10 +52,12 @@ public class Quest extends Game {
 		if (whatScreen.equals("Title Screen")) {
 			System.out.println("Title");
 			this.setScreen(new TitleScreen(game));
+			super.render();
 			tracker = 1;
 		}
 		if(whatScreen.equals("Game Start")) {
 			this.setScreen(new inGameScreen(game));
+			super.render();
 			tracker = 2;
 		}
 	}
@@ -69,5 +72,6 @@ public class Quest extends Game {
 	
 	public void start() {
 		this.setScreen(new TitleScreen(game));
+		super.render();
 	}
 }

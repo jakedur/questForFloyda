@@ -14,6 +14,5 @@ public class DesktopLauncher {
 		config.title = "( ͡° ͜ʖ ͡°)       ¯\\_(ツ)_/¯";
 		config.vSyncEnabled = true;
 		new LwjglApplication(quest, config);
-		quest.start();
 	}
 }

@@ -11,12 +11,12 @@ public class TitleScreen extends AbstractScreen{
 	private TitleController titleController;
 	private Texture img;
 	private SpriteBatch batch;
-	Quest Quest = new Quest();
+	
 	public TitleScreen(Quest app) {
 		super(app);
 		titleController = new TitleController();
 		img = new Texture("Screens/Title Screen.png");
-		batch = new SpriteBatch();
+		batch = app.batch;
         //backgroundSprite = new Sprite(img);
 	}
 
@@ -38,7 +38,7 @@ public class TitleScreen extends AbstractScreen{
 
 	@Override
 	public void resize(int width, int height) {
-
+		
 	}
 
 	@Override
@@ -53,12 +53,12 @@ public class TitleScreen extends AbstractScreen{
 
 	@Override
 	public void hide() {
-
+		Gdx.input.setInputProcessor(null);
 	}
 
 	@Override
 	public void dispose() {
-
+		
 	}
 
 }

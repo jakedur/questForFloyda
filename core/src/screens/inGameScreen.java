@@ -29,7 +29,7 @@ public class inGameScreen extends AbstractScreen {
 		super(app);
 		System.out.println("used");
 		TiledGMap = new TiledGameMap();
-		batch = new SpriteBatch();
+		batch = app.batch;
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
@@ -72,7 +72,7 @@ public class inGameScreen extends AbstractScreen {
 
 	@Override
 	public void hide() {
-		
+		Gdx.input.setInputProcessor(null);
 	}
 
 
