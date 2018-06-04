@@ -78,7 +78,6 @@ public class inGameScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
-		System.out.println("dasdas");
 		TiledGMap.getTiledGMapRender().render();
 		TiledGMap.getTiledGMapRender().setView(cam);;
 		cam.position.set(player.getX(), player.getY(), 0);

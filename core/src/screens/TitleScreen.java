@@ -1,6 +1,7 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Quest;
@@ -11,9 +12,11 @@ public class TitleScreen extends AbstractScreen{
 	private TitleController titleController;
 	private Texture img;
 	private SpriteBatch batch;
+	private Quest apps;
 	
 	public TitleScreen(Quest app) {
 		super(app);
+		apps = app;
 		titleController = new TitleController();
 		img = new Texture("Screens/Title Screen.png");
 		batch = app.batch;
@@ -34,6 +37,8 @@ public class TitleScreen extends AbstractScreen{
 		batch.begin();
 		batch.draw(img, 0, 0); 
 		batch.end();
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
+			apps.setCurrentScreen("Game Start");
 	}
 
 	@Override

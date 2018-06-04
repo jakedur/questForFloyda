@@ -50,7 +50,6 @@ public class Quest extends Game {
 	
 	public void setCurrentScreen(String whatScreen) {
 		if (whatScreen.equals("Title Screen")) {
-			System.out.println("Title");
 			this.setScreen(new TitleScreen(game));
 			super.render();
 			tracker = 1;
