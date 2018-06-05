@@ -12,8 +12,6 @@ public abstract class Entity {
 	protected CommonMapFunctions map;
 	
 	private float worldX, worldY;
-	
-	private float SPEED;
 	private float srcX, srcY;
 	private float destX, destY;
 	private float animTimer;
@@ -55,14 +53,13 @@ public abstract class Entity {
 	}
 
 	public abstract void render(SpriteBatch batch);
-
+	
 	public void moveOnX(float amount) {
-		
 		float newX = pos.x + amount;
 		if (!map.doesRectCollideWithMap(newX, pos.y, getWidth(), getHeight()) ) {
-			//initializeMove(pos.x, pos.y, newX, pos.y);
+			initializeMove(pos.x, pos.y, newX, pos.y);
 			this.pos.x = newX;
-			//finishMove();
+			finishMove();
 		}
 	}
 	public void moveOnY(float amount) {
@@ -110,13 +107,4 @@ public abstract class Entity {
 	public int getHeight() {
 		return type.getHeight()-2;
 	}
-
-	public float getSPEED() {
-		return SPEED;
-	}
-
-	public void setSPEED(float sPEED) {
-		SPEED = sPEED;
-	}
-	
 }

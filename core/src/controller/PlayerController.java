@@ -16,16 +16,16 @@ public class PlayerController extends InputAdapter {
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.W) {
-			player.moveOnY(player.getSPEED());
+			player.moveOnY(16);
 		}
 		if (keycode == Keys.S) {
-			player.moveOnY(-player.getSPEED());
+			player.moveOnY(-16);
 		}
 		if (keycode == Keys.D) {
-			player.moveOnX(player.getSPEED());
+			player.moveOnX(16);
 		}
 		if (keycode == Keys.A) {
-			player.moveOnX(-player.getSPEED());
+			player.moveOnX(-16);
 		}
 		return false;
 	}

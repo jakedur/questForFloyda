@@ -87,7 +87,7 @@ public class inGameScreen extends AbstractScreen {
 		
 		batch.begin();
 		for(Entity entity : entities) {
-			entity.setSPEED(200 * delta);
+			entity.update(delta);
 			entity.render(batch);
 		}
 		batch.end();
