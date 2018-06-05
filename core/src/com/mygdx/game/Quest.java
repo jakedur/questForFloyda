@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import screens.ShopScreen;
 import screens.TitleScreen;
 import screens.inGameScreen;
 
@@ -59,6 +60,11 @@ public class Quest extends Game {
 			super.render();
 			tracker = 2;
 		}
+		if(whatScreen.equals("Shop Screen")) {
+			this.setScreen(new ShopScreen(game));
+			super.render();
+			tracker = 3;
+		}
 	}
 	
 	public int getTracker() {
@@ -67,10 +73,5 @@ public class Quest extends Game {
 	
 	public Screen getGameStart() {
 		return gameStart;
-	}
-	
-	public void start() {
-		this.setScreen(new TitleScreen(game));
-		super.render();
 	}
 }
