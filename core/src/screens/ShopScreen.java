@@ -25,12 +25,16 @@ public class ShopScreen extends AbstractScreen{
 	private SpriteBatch batch;
 	private TiledShopMap TiledSMap;
 	private Quest apps;
+	private float X;
+	private float Y;
 	
 	OrthographicCamera cam;
 	
-	public ShopScreen(Quest app) {
+	public ShopScreen(Quest app, float x , float y) {
 		super(app);
 		apps = app;
+		X = x;
+		Y = y;
 		TiledSMap = new TiledShopMap();
 		batch = app.batch;
 		cam = new OrthographicCamera();
@@ -54,7 +58,7 @@ public class ShopScreen extends AbstractScreen{
 	@Override
 	public void render(float delta) {
 		if(player.getX() == 112 && player.getY() == 0) {
-			apps.setCurrentScreen("Game Start");
+			apps.setCurrentScreen("Game Start", X , Y);
 		}
 		TiledSMap.getTiledGMapRender().render();
 		TiledSMap.getTiledGMapRender().setView(cam);

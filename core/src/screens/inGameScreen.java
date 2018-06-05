@@ -23,13 +23,17 @@ public class inGameScreen extends AbstractScreen {
 	private SpriteBatch batch;
 	private TiledGameMap TiledGMap;
 	private Quest apps;
+	private float X;
+	private float Y;
 
 	OrthographicCamera cam;
 	Texture image;
 
-	public inGameScreen(Quest app) {
+	public inGameScreen(Quest app, float x, float y) {
 		super(app);
 		apps = app;
+		X = x;
+		Y = y;
 		TiledGMap = new TiledGameMap();
 		CommonMapFunctions mapFunctions = new CommonMapFunctions(TiledGMap.getMap());
 		batch = app.batch;
@@ -40,7 +44,7 @@ public class inGameScreen extends AbstractScreen {
 		image = new Texture("wizard.png");
 
 		entities = new ArrayList<Entity>();
-		player = new Player(304, 16, mapFunctions);
+		player = new Player(x, y, mapFunctions);
 		entities.add(player);
 		controller = new PlayerController(player);
 	}
@@ -83,31 +87,31 @@ public class inGameScreen extends AbstractScreen {
 	public void render(float delta) {
 		//black heart
 		if(player.getX() == 176 && player.getY() == 272) {
-			apps.setCurrentScreen("Shop Screen");
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		//potion
 		else if(player.getX() == 448 && player.getY() == 272) {
-			apps.setCurrentScreen("Shop Screen");
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		//black magic
 		else if(player.getX() == 368 && player.getY() == 400) {
-			apps.setCurrentScreen("Shop Screen");
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		//white magic
 		else if(player.getX() == 464 && player.getY() == 400) {
-			apps.setCurrentScreen("Shop Screen");
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		//inn
 		else if(player.getX() == 192 && player.getY() == 96) {
-			apps.setCurrentScreen("Shop Screen");
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		//shield one
 		else if(player.getX() == 96 && player.getY() == 384) {
-			apps.setCurrentScreen("Shop Screen");
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		//no label
-		else if(player.getX() == 206 && player.getY() == 384) {
-			apps.setCurrentScreen("Shop Screen");
+		else if(player.getX() == 208 && player.getY() == 384) {
+			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
 		TiledGMap.getTiledGMapRender().render();
 		TiledGMap.getTiledGMapRender().setView(cam);
@@ -121,10 +125,5 @@ public class inGameScreen extends AbstractScreen {
 			entity.render(batch);
 		}
 		batch.end();
-	}
-	public void checkDoor() {
-		if(player.getX() == 112 && player.getY() == 0) {
-			apps.setCurrentScreen("Game Start");
-		}
 	}
 }

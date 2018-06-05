@@ -49,19 +49,19 @@ public class Quest extends Game {
 		super.render();
 	}
 	
-	public void setCurrentScreen(String whatScreen) {
+	public void setCurrentScreen(String whatScreen , float x , float y) {
 		if (whatScreen.equals("Title Screen")) {
 			this.setScreen(new TitleScreen(game));
 			super.render();
 			tracker = 1;
 		}
 		if(whatScreen.equals("Game Start")) {
-			this.setScreen(new inGameScreen(game));
+			this.setScreen(new inGameScreen(game, x, y));
 			super.render();
 			tracker = 2;
 		}
 		if(whatScreen.equals("Shop Screen")) {
-			this.setScreen(new ShopScreen(game));
+			this.setScreen(new ShopScreen(game, x , y));
 			super.render();
 			tracker = 3;
 		}
