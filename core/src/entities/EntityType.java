@@ -2,7 +2,8 @@ package entities;
 
 public enum EntityType {
 
-	PLAYER("player", 16, 16);
+	PLAYER("player", 16, 16),
+	NPC("NPC", 20, 25);
 	
 	private String id;
 	private int width, height;
