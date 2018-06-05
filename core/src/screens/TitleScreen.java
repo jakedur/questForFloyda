@@ -35,7 +35,7 @@ public class TitleScreen extends AbstractScreen{
 	@Override
 	public void render(float delta) {
 		batch.begin();
-		batch.draw(img, 0, 0); 
+		batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); 
 		batch.end();
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
 			apps.setCurrentScreen("Game Start");

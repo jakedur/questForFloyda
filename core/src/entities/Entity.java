@@ -3,14 +3,13 @@ package entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-
-import screens.inGameScreen;
+import com.mygdx.game.world.CommonMapFunctions;
 
 public abstract class Entity {
 	
 	protected Vector2 pos;
 	protected EntityType type;
-	protected inGameScreen map;
+	protected CommonMapFunctions map;
 	
 	private float worldX, worldY;
 	
@@ -22,10 +21,10 @@ public abstract class Entity {
 	
 	private ACTOR_STATE state;
 	
-	public Entity(float x, float y, EntityType type, inGameScreen map) {
+	public Entity(float x, float y, EntityType type, CommonMapFunctions map2) {
 		this.pos = new Vector2(x, y);
 		this.type = type;
-		this.map = map;
+		this.map = map2;
 		this.worldX = x;
 		this.worldY = y;
 		this.state = ACTOR_STATE.STANDING;

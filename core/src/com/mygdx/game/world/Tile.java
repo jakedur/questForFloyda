@@ -5,7 +5,6 @@ import entities.Entity;
 public class Tile {
 
 	private TileType tiles;
-	
 	private Entity entity;
 	
 	public Tile(TileType tiles) {
