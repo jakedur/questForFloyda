@@ -23,8 +23,6 @@ public class inGameScreen extends AbstractScreen {
 	private SpriteBatch batch;
 	private TiledGameMap TiledGMap;
 	private Quest apps;
-	private float X;
-	private float Y;
 
 	OrthographicCamera cam;
 	Texture image;
@@ -32,8 +30,7 @@ public class inGameScreen extends AbstractScreen {
 	public inGameScreen(Quest app, float x, float y) {
 		super(app);
 		apps = app;
-		X = x;
-		Y = y;
+	
 		TiledGMap = new TiledGameMap();
 		CommonMapFunctions mapFunctions = new CommonMapFunctions(TiledGMap.getMap());
 		batch = app.batch;
