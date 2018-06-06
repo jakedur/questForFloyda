@@ -8,6 +8,7 @@ import entities.Player;
 public class PlayerController extends InputAdapter {
 	
 	private Player player;
+	private boolean moveRight, moveLeft, moveUp, moveDown;
 	
 	public PlayerController (Player p) {
 		this.player = p;
@@ -16,18 +17,49 @@ public class PlayerController extends InputAdapter {
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.W) {
-			player.moveOnY(16);
+			moveUp = true;
 		}
 		if (keycode == Keys.S) {
-			player.moveOnY(-16);
+			moveDown = true;
 		}
 		if (keycode == Keys.D) {
-			player.moveOnX(16);
+			moveRight = true;
 		}
 		if (keycode == Keys.A) {
-			player.moveOnX(-16);
+			moveLeft = true;
 		}
 		return false;
+	}
+	
+	public boolean keyUp(int keycode) {
+		if (keycode == Keys.W) {
+			moveUp = false;
+		}
+		if (keycode == Keys.S) {
+			moveDown = false;
+		}
+		if (keycode == Keys.D) {
+			moveRight = false;
+		}
+		if (keycode == Keys.A) {
+			moveLeft = false;
+		}
+		return false;
+	}
+	
+	public void update(float delta) {
+		if (moveUp == true) {
+			player.moveOnY(16);
+		}
+		if (moveDown == true) {
+			player.moveOnY(-16);
+		}
+		if (moveRight == true) {
+			player.moveOnX(16);
+		}
+		if (moveLeft == true) {
+			player.moveOnX(-16);
+		}
 	}
 	
 }

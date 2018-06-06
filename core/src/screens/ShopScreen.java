@@ -60,10 +60,10 @@ public class ShopScreen extends AbstractScreen{
 		if(player.getX() == 112 && player.getY() == 0) {
 			apps.setCurrentScreen("Game Start", X , Y);
 		}
-		TiledSMap.getTiledGMapRender().render();
-		TiledSMap.getTiledGMapRender().setView(cam);
 		cam.position.set(player.getX(), player.getY(), 0);
 		cam.update();
+		TiledSMap.getTiledGMapRender().setView(cam);
+		TiledSMap.getTiledGMapRender().render();
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		for(Entity entity : entities) {
