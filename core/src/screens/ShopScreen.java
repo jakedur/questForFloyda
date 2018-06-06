@@ -111,6 +111,8 @@ public class ShopScreen extends AbstractScreen{
 		TiledSMap.getTiledGMapRender().setView(cam);
 		cam.position.set(player.getX(), player.getY(), 0);
 		cam.update();
+		TiledSMap.getTiledGMapRender().setView(cam);
+		TiledSMap.getTiledGMapRender().render();
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		for(Entity entity : entities) {
