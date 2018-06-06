@@ -40,7 +40,7 @@ public class TitleScreen extends AbstractScreen{
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
 			apps.setCurrentScreen("Game Start", 304, 16);
 	}
-
+	
 	@Override
 	public void resize(int width, int height) {
 		

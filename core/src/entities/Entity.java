@@ -12,8 +12,8 @@ public abstract class Entity {
 	protected CommonMapFunctions map;
 	
 	private float worldX, worldY;
-	private float srcX, srcY;
-	private float destX, destY;
+	private int srcX, srcY;
+	private int destX, destY;
 	private float animTimer;
 	private float ANIM_TIME = 0.5f;
 	
@@ -23,8 +23,6 @@ public abstract class Entity {
 		this.pos = new Vector2(x, y);
 		this.type = type;
 		this.map = map2;
-		this.worldX = x;
-		this.worldY = y;
 		this.state = ACTOR_STATE.STANDING;
 	}
 	
@@ -37,13 +35,13 @@ public abstract class Entity {
 	public void update(float deltaTime) {
 		if (state == ACTOR_STATE.WALKING) {
 			animTimer += deltaTime;
-			worldX = Interpolation.linear.apply(srcX, destX, animTimer/ANIM_TIME);
-			worldY = Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME);		
+			pos.x = Interpolation.linear.apply(srcX, destX, animTimer/ANIM_TIME);
+			pos.y = Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME);
 			if (animTimer > ANIM_TIME)
 				finishMove();
 		}
 	}
-	
+
 	public float getWorldX() {
 		return worldX;
 	}
@@ -54,28 +52,26 @@ public abstract class Entity {
 
 	public abstract void render(SpriteBatch batch);
 	
-	public void moveOnX(float amount) {
+	public void moveOnX(int amount) {
 		float newX = pos.x + amount;
-		if (!map.doesRectCollideWithMap(newX, pos.y, getWidth(), getHeight()) ) {
-			initializeMove(pos.x, pos.y, newX, pos.y);
-			this.pos.x = newX;
-			finishMove();
+		if (!map.doesRectCollideWithMap(newX, pos.y, getWidth(), getHeight()) && state == ACTOR_STATE.STANDING) {
+			initializeMove((int) pos.x, (int) pos.y, amount, 0);
 		}
 	}
-	public void moveOnY(float amount) {
+	public void moveOnY(int amount) {
 		float newY = pos.y + amount;
-		if (!map.doesRectCollideWithMap(pos.x, newY, getWidth(), getHeight())) {
-			this.pos.y = newY;
+		if (!map.doesRectCollideWithMap(pos.x, newY, getWidth(), getHeight()) && state == ACTOR_STATE.STANDING) {
+			initializeMove((int) pos.x, (int) pos.y, 0, amount);
 		}
 	}
 	
-	public void initializeMove(float x, float y, float newX, float y2) {
-		this.srcX = x;
-		this.srcY = y;
-		this.destX = x + newX;
-		this.destY = y + y2;
-		this.worldX = x;
-		this.worldY = y;
+	public void initializeMove(int oldX, int oldY, int newX, int newY) {
+		this.srcX = oldX;
+		this.srcY = oldY;
+		this.destX = oldX + newX;
+		this.destY = oldY + newY;
+		this.worldX = oldX;
+		this.worldY = oldY;
 		animTimer = 0f;
 		state = ACTOR_STATE.WALKING;
 	}
@@ -105,6 +101,6 @@ public abstract class Entity {
 	}
 	
 	public int getHeight() {
-		return type.getHeight()-2;
+		return type.getHeight()-1;
 	}
 }

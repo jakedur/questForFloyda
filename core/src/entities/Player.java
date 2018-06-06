@@ -6,7 +6,6 @@ import com.mygdx.game.world.CommonMapFunctions;
 
 public class Player extends Entity {
 	
-	int time;
 	Texture image;
 	
 	public Player(float x, float y, CommonMapFunctions mapFunctions) {
@@ -17,7 +16,7 @@ public class Player extends Entity {
 	
 	@Override
 	public void render(SpriteBatch batch) {
-		batch.draw(image, pos.x , pos.y, getWidth(), getHeight());
+		batch.draw(image, pos.x, pos.y, getWidth(), getHeight());
 	}
 
 }
