@@ -16,6 +16,7 @@ public enum TileType {
 	STONEWALLLEFTWALL(48, true, "Stone Wall"),
 	STONEWALL(63, true, "Stone Wall"),
 	FENCE(4, true, "Fence"),
+	DOORDUP(15, false, "Door Dup"),
 	TREE(5, true, "Tree"),
 	DOUBLETREE(20, true, "Tree"),
 	WATER(6, true, "Water"),

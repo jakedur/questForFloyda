@@ -19,6 +19,7 @@ import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
 import com.mygdx.game.world.TiledShopMap;
 
+import controller.OptionBoxController;
 import controller.PlayerController;
 import entities.Entity;
 import entities.Player;
@@ -27,25 +28,32 @@ import ui.OptionBox;
 
 public class ShopScreen extends AbstractScreen{
 	private ArrayList<Entity>entities;
+	
 	private PlayerController controller;
 	private Player player;
+	
 	private ShopKeeperNPC NPC;
+	
 	private SpriteBatch batch;
 	private TiledShopMap TiledSMap;
+	
 	private Quest apps;
+	
 	private float X;
 	private float Y;
-	
+
 	private Viewport gameViewport;
-	
+
 	private Table root;
 	private Stage uiStage;
-	private OptionBox optionBox;
 	private int uiScale = 2;
+	
+	private OptionBox optionBox;
+	private OptionBoxController optionController;
 
-	
+
 	OrthographicCamera cam;
-	
+
 	public ShopScreen(Quest app, float x , float y) {
 		super(app);
 		gameViewport = new ScreenViewport();
@@ -58,12 +66,12 @@ public class ShopScreen extends AbstractScreen{
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
 		CommonMapFunctions mapFunctions = new CommonMapFunctions(TiledSMap.getMap());
-		
+
 		initUI();
-		
+
 		entities = new ArrayList<Entity>();
 		NPC = new ShopKeeperNPC(112, 128 , mapFunctions);
-		player = new Player(112, 16, mapFunctions );
+		player = new Player(112, 30, mapFunctions );
 		entities.add(player);
 		entities.add(NPC);
 		controller = new PlayerController(player);
@@ -73,20 +81,22 @@ public class ShopScreen extends AbstractScreen{
 		uiStage = new Stage(new ScreenViewport());
 		uiStage.getViewport().update(Gdx.graphics.getWidth()/uiScale, Gdx.graphics.getHeight()/uiScale, true);
 		//uiStage.setDebugAll(true);
-		
+
 		root = new Table();
 		root.setFillParent(true);
 		uiStage.addActor(root);
-		
+
 		optionBox = new OptionBox(getApp().getSkin());
 		optionBox.setVisible(false);
 		optionBox.addOption("Item 1");
 		optionBox.addOption("Item 2");
 		optionBox.addOption("Item 3");
 		
+		optionController = new OptionBoxController(optionBox);
+		
 		Table dialogTable = new Table();
 		dialogTable.add(optionBox).expand().align(Align.right).space(8f).row();
-		
+
 		root.add(dialogTable).expand().align(Align.bottom);
 	}
 
@@ -97,29 +107,28 @@ public class ShopScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta) {
-		if(player.getX() == 112 && player.getY() == 0) {
-			apps.setCurrentScreen("Game Start", X , Y);
-		}
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-			if(player.getX() == 112 && player.getY() == 96) {
-				//add option box to render here
-				System.out.println("Option Box Please Pop up");
-				optionBox.setVisible(true);
-			}
-		}
+		talkShopkeeper();
+		MapTansition();
+		
 		TiledSMap.getTiledGMapRender().render();
 		TiledSMap.getTiledGMapRender().setView(cam);
+		
 		cam.position.set(player.getX(), player.getY(), 0);
 		cam.update();
+		
 		TiledSMap.getTiledGMapRender().setView(cam);
 		TiledSMap.getTiledGMapRender().render();
+		
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
+		
 		for(Entity entity : entities) {
 			entity.update(delta);
 			entity.render(batch);
 		}
+		
 		batch.end();
+		
 		uiStage.draw();
 	}
 
@@ -132,12 +141,12 @@ public class ShopScreen extends AbstractScreen{
 
 	@Override
 	public void pause() {
-		
+
 	}
 
 	@Override
 	public void resume() {
-		
+
 	}
 
 	@Override
@@ -147,7 +156,22 @@ public class ShopScreen extends AbstractScreen{
 
 	@Override
 	public void dispose() {
-		
+
+	}
+	public void talkShopkeeper() {
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+			if(player.getX() == 112 && player.getY() == 96) {
+				//add option box to render here
+				System.out.println("Option Box Please Pop up");
+				optionBox.setVisible(true);
+				Gdx.input.setInputProcessor(optionController);
+			}
+		}
+	}
+	public void MapTansition() {
+		if(player.getX() == 112 && player.getY() == 0) {
+			apps.setCurrentScreen("Game Start", X , Y);
+		}
 	}
 
 }

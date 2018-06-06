@@ -18,15 +18,19 @@ public class PlayerController extends InputAdapter {
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.W) {
 			moveUp = true;
+			player.moveOnY(2);
 		}
 		if (keycode == Keys.S) {
 			moveDown = true;
+			player.moveOnY(-2);
 		}
 		if (keycode == Keys.D) {
 			moveRight = true;
+			player.moveOnX(2);
 		}
 		if (keycode == Keys.A) {
 			moveLeft = true;
+			player.moveOnX(-2);
 		}
 		return false;
 	}
@@ -59,7 +63,6 @@ public class PlayerController extends InputAdapter {
 		}
 		if (moveLeft == true) {
 			player.moveOnX(-2);
-			System.out.println("help");
 		}
 	}
 	
