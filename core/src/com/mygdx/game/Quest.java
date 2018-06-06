@@ -3,7 +3,9 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,6 +33,14 @@ public class Quest extends Game {
 	public TitleScreen titleScreen;
 	public Screen currentScreen;
 	
+	public static final AssetDescriptor<TextureAtlas> ATLAS = 
+		new AssetDescriptor<TextureAtlas>("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class);
+
+	//A skin does require additional parameters.
+	public static final AssetDescriptor<Skin> SKIN = 
+		new AssetDescriptor<Skin>("assets/ui/neon/skin/neon-ui.json", Skin.class, 
+		new SkinLoader.SkinParameter("assets/ui/neon/skin/neon-ui.atlas"));
+	
 	public Quest() {
 		game = this;
 	}
@@ -45,13 +55,11 @@ public class Quest extends Game {
 		batch = new SpriteBatch();
 		
 		assetManager = new AssetManager();
-		
-		assetManager.load("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class);
-		
-		
 		skin = new Skin();
+		
+		assetManager.load("assets/ui/neon/skin/neon-ui.json", Skin.class, new SkinLoader.SkinParameter("assets/ui/neon/skin/neon-ui.atlas"));
+
 		//skin.addRegions(this.assests.get("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class));
-		skin.load(Gdx.files.internal("ui/neon/skin/neon-ui.atlas"));
 		
 		game.setScreen(new TitleScreen(game));
 		super.render();
