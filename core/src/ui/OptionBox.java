@@ -20,7 +20,7 @@ public class OptionBox extends Table{
 	
 	public OptionBox(Skin skin) {
 		super(skin);
-		//this.setBackground(background); add in a background
+		this.setBackground("optionbox");
 		uiContainer = new Table();
 		this.add(uiContainer).pad(5f);
 	}

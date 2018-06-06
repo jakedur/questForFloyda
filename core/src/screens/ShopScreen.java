@@ -24,6 +24,7 @@ import controller.PlayerController;
 import entities.Entity;
 import entities.Player;
 import entities.ShopKeeperNPC;
+import ui.DialogueBox;
 import ui.OptionBox;
 
 public class ShopScreen extends AbstractScreen{
@@ -51,6 +52,7 @@ public class ShopScreen extends AbstractScreen{
 	private OptionBox optionBox;
 	private OptionBoxController optionController;
 
+	private DialogueBox dialogueBox;
 
 	OrthographicCamera cam;
 
@@ -85,7 +87,10 @@ public class ShopScreen extends AbstractScreen{
 		root = new Table();
 		root.setFillParent(true);
 		uiStage.addActor(root);
-
+		
+		dialogueBox = new DialogueBox(getApp().getSkin());
+		dialogueBox.setVisible(false);
+		
 		optionBox = new OptionBox(getApp().getSkin());
 		optionBox.setVisible(false);
 		optionBox.addOption("Item 1");
@@ -96,7 +101,8 @@ public class ShopScreen extends AbstractScreen{
 		
 		Table dialogTable = new Table();
 		dialogTable.add(optionBox).expand().align(Align.right).space(8f).row();
-
+		
+		root.add(dialogueBox).expand().align(Align.bottom);
 		root.add(dialogTable).expand().align(Align.bottom);
 	}
 
@@ -107,7 +113,7 @@ public class ShopScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta) {
-		talkShopkeeper();
+		talkShopkeeper(delta);
 		MapTansition();
 		
 		TiledSMap.getTiledGMapRender().render();
@@ -115,7 +121,7 @@ public class ShopScreen extends AbstractScreen{
 		
 		cam.position.set(player.getX(), player.getY(), 0);
 		cam.update();
-		
+		checkInputProcessor();
 		TiledSMap.getTiledGMapRender().setView(cam);
 		TiledSMap.getTiledGMapRender().render();
 		
@@ -130,6 +136,7 @@ public class ShopScreen extends AbstractScreen{
 		batch.end();
 		
 		uiStage.draw();
+		dialogueBox.act(delta);
 	}
 
 	@Override
@@ -158,11 +165,12 @@ public class ShopScreen extends AbstractScreen{
 	public void dispose() {
 
 	}
-	public void talkShopkeeper() {
+	public void talkShopkeeper(float delta) {
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-			if(player.getX() == 112 && player.getY() == 96) {
-				//add option box to render here
-				System.out.println("Option Box Please Pop up");
+			if(player.getX() == 112 && player.getY() == 96) {	
+				dialogueBox.animateText("What would you like to \nbuy from me?");
+				dialogueBox.setVisible(true);
+				
 				optionBox.setVisible(true);
 				Gdx.input.setInputProcessor(optionController);
 			}
@@ -171,6 +179,14 @@ public class ShopScreen extends AbstractScreen{
 	public void MapTansition() {
 		if(player.getX() == 112 && player.getY() == 0) {
 			apps.setCurrentScreen("Game Start", X , Y);
+		}
+	}
+	public void checkInputProcessor() {
+		if(optionController.CloseOptionBox() == true) {
+			dialogueBox.setVisible(false);
+			optionBox.setVisible(false);
+			Gdx.input.setInputProcessor(controller);
+			optionController.setCloseOPtionBox(false);
 		}
 	}
 
