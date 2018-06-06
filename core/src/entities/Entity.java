@@ -35,8 +35,12 @@ public abstract class Entity {
 	public void update(float deltaTime) {
 		if (state == ACTOR_STATE.WALKING) {
 			animTimer += deltaTime;
-			pos.x = Interpolation.linear.apply(srcX, destX, animTimer/ANIM_TIME);
-			pos.y = Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME);
+			if (animTimer > 1)
+				animTimer = 1;
+			if (animTimer < 0) 
+				animTimer = 0;
+			pos.x = Math.round(Interpolation.linear.apply(srcX, destX, animTimer/ANIM_TIME));
+			pos.y = Math.round(Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME));
 			if (animTimer > ANIM_TIME)
 				finishMove();
 		}
@@ -78,6 +82,7 @@ public abstract class Entity {
 	
 	public void finishMove() {
 		state = ACTOR_STATE.STANDING;
+		animTimer = 0;
 	}
 	
 	public Vector2 getPos() {
