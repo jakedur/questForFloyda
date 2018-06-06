@@ -3,13 +3,17 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import screens.ShopScreen;
 import screens.TitleScreen;
 import screens.inGameScreen;
+import util.SkinGenerator;
 
 public class Quest extends Game {
 	private Quest game;
@@ -18,6 +22,10 @@ public class Quest extends Game {
 	Texture img;
 
 	public int tracker = 0;
+	
+	private AssetManager assetManager;
+	
+	private Skin skin;
 	
 	public inGameScreen gameStart;
 	public TitleScreen titleScreen;
@@ -35,6 +43,16 @@ public class Quest extends Game {
 	public void create() {
 		//img = new Texture(randomImg());
 		batch = new SpriteBatch();
+		
+		assetManager = new AssetManager();
+		
+		assetManager.load("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class);
+		
+		
+		skin = new Skin();
+		//skin.addRegions(this.assests.get("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class));
+		skin.load(Gdx.files.internal("ui/neon/skin/neon-ui.atlas"));
+		
 		game.setScreen(new TitleScreen(game));
 		super.render();
 	}
@@ -73,5 +91,8 @@ public class Quest extends Game {
 	
 	public Screen getGameStart() {
 		return gameStart;
+	}
+	public Skin getSkin() {
+		return skin;
 	}
 }
