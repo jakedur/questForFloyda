@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -33,6 +34,18 @@ public class Quest extends Game {
 	public TitleScreen titleScreen;
 	public Screen currentScreen;
 	
+<<<<<<< HEAD
+=======
+	/*
+	public static final AssetDescriptor<TextureAtlas> ATLAS = 
+		new AssetDescriptor<TextureAtlas>("assets/graphic_packed/ui/skin/neon-ui.atlas", TextureAtlas.class);
+
+	//A skin does require additional parameters.
+	public static final AssetDescriptor<Skin> SKIN = 
+		new AssetDescriptor<Skin>("assets/ui/neon/skin/neon-ui.json", Skin.class, 
+		new SkinLoader.SkinParameter("assets/ui/neon/skin/neon-ui.atlas"));
+	*/
+>>>>>>> e2f3f0072d28d08313a82c39e695110f1970e85e
 	public Quest() {
 		game = this;
 	}
@@ -49,11 +62,22 @@ public class Quest extends Game {
 		assetManager = new AssetManager();
 		skin = new Skin();
 		
+<<<<<<< HEAD
 		assetManager.load("graphics_packed/ui/uipack.atlas", TextureAtlas.class);
 		assetManager.finishLoading();
+=======
+		//assetManager.load("assets/ui/neon/skin/neon-ui.json", Skin.class, new SkinLoader.SkinParameter("assets/ui/neon/skin/neon-ui.atlas"));
+>>>>>>> e2f3f0072d28d08313a82c39e695110f1970e85e
 
 		
 		//skin.addRegions(this.assests.get("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class));
+		
+		assetManager.load("graphics_packed/ui/uipack.atlas", TextureAtlas.class);
+		assetManager.load("font/small_letters_font.fnt", BitmapFont.class);
+		
+		assetManager.finishLoading();
+		
+		skin = SkinGenerator.generateSkin(assetManager);
 		
 		game.setScreen(new TitleScreen(game));
 		super.render();
