@@ -33,14 +33,6 @@ public class Quest extends Game {
 	public TitleScreen titleScreen;
 	public Screen currentScreen;
 	
-	public static final AssetDescriptor<TextureAtlas> ATLAS = 
-		new AssetDescriptor<TextureAtlas>("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class);
-
-	//A skin does require additional parameters.
-	public static final AssetDescriptor<Skin> SKIN = 
-		new AssetDescriptor<Skin>("assets/ui/neon/skin/neon-ui.json", Skin.class, 
-		new SkinLoader.SkinParameter("assets/ui/neon/skin/neon-ui.atlas"));
-	
 	public Quest() {
 		game = this;
 	}
@@ -57,8 +49,10 @@ public class Quest extends Game {
 		assetManager = new AssetManager();
 		skin = new Skin();
 		
-		assetManager.load("assets/ui/neon/skin/neon-ui.json", Skin.class, new SkinLoader.SkinParameter("assets/ui/neon/skin/neon-ui.atlas"));
+		assetManager.load("graphics_packed/ui/uipack.atlas", TextureAtlas.class);
+		assetManager.finishLoading();
 
+		
 		//skin.addRegions(this.assests.get("assets/ui/neon/skin/neon-ui.atlas", TextureAtlas.class));
 		
 		game.setScreen(new TitleScreen(game));

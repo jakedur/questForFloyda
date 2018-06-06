@@ -59,13 +59,15 @@ public abstract class Entity {
 	public void moveOnX(int amount) {
 		float newX = pos.x + amount;
 		if (!map.doesRectCollideWithMap(newX, pos.y, getWidth(), getHeight()) && state == ACTOR_STATE.STANDING) {
-			initializeMove((int) pos.x, (int) pos.y, amount, 0);
+			//initializeMove((int) pos.x, (int) pos.y, amount, 0);
+			pos.x = newX;
 		}
 	}
 	public void moveOnY(int amount) {
 		float newY = pos.y + amount;
 		if (!map.doesRectCollideWithMap(pos.x, newY, getWidth(), getHeight()) && state == ACTOR_STATE.STANDING) {
-			initializeMove((int) pos.x, (int) pos.y, 0, amount);
+			//initializeMove((int) pos.x, (int) pos.y, 0, amount);
+			pos.y = newY;
 		}
 	}
 	

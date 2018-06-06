@@ -49,16 +49,16 @@ public class PlayerController extends InputAdapter {
 	
 	public void update(float delta) {
 		if (moveUp == true) {
-			player.moveOnY(16);
+			player.moveOnY(2);
 		}
 		if (moveDown == true) {
-			player.moveOnY(-16);
+			player.moveOnY(-2);
 		}
 		if (moveRight == true) {
-			player.moveOnX(16);
+			player.moveOnX(2);
 		}
 		if (moveLeft == true) {
-			player.moveOnX(-16);
+			player.moveOnX(-2);
 		}
 	}
 	
