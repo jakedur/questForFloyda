@@ -59,6 +59,7 @@ public class PlayerController extends InputAdapter {
 		}
 		if (moveLeft == true) {
 			player.moveOnX(-2);
+			System.out.println("help");
 		}
 	}
 	
