@@ -28,10 +28,6 @@ public class TitleScreen extends AbstractScreen{
 		Gdx.input.setInputProcessor(titleController);
 	}
 
-	//public void renderBackground() {
-		//backgroundSprite.draw(spriteBatch);
-	//}
-
 	@Override
 	public void render(float delta) {
 		batch.begin();
