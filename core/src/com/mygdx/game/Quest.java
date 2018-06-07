@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import screens.BattleScreen;
 import screens.ClassSelectScreen;
 import screens.ShopScreen;
 import screens.TitleScreen;
@@ -101,8 +102,7 @@ public class Quest extends Game {
 			tracker = 5;
 		}
 		if(whatScreen.equals("Battle Screen")) {
-			//add in the set screen to the battle screen
-			System.out.println("Go to the battle Screen");
+			this.setScreen(new BattleScreen(game));
 			super.render();
 			tracker = 6;
 		}

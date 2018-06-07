@@ -1,30 +1,26 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Quest;
 
-import controller.TitleController;
+public class BattleScreen extends AbstractScreen{
 
-public class TitleScreen extends AbstractScreen{
-	private TitleController titleController;
 	private Texture img;
 	private SpriteBatch batch;
 	private Quest apps;
 	
-	public TitleScreen(Quest app) {
+	public BattleScreen(Quest app) {
 		super(app);
 		apps = app;
-		titleController = new TitleController();
-		img = new Texture("Screens/Title Screen.png");
+		img = new Texture("Screens/Battle Screen.png");
 		batch = app.batch;
 	}
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(titleController);
+		
 	}
 
 	@Override
@@ -32,12 +28,8 @@ public class TitleScreen extends AbstractScreen{
 		batch.begin();
 		batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); 
 		batch.end();
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
-//			Class Select Screen
-//			Battle Screen
-			apps.setCurrentScreen("Class Select Screen", 304, 16);
 	}
-	
+
 	@Override
 	public void resize(int width, int height) {
 		
@@ -45,17 +37,17 @@ public class TitleScreen extends AbstractScreen{
 
 	@Override
 	public void pause() {
-
+		
 	}
 
 	@Override
 	public void resume() {
-
+		
 	}
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		
 	}
 
 	@Override
