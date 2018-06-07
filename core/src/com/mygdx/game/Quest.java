@@ -36,6 +36,8 @@ public class Quest extends Game {
 	public TitleScreen titleScreen;
 	public Screen currentScreen;
 
+	public double RNG;
+	
 	public Quest() {
 		game = this;
 	}
