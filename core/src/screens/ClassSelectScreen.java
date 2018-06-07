@@ -31,7 +31,6 @@ public class ClassSelectScreen extends AbstractScreen{
 	private DialogueBox dialogueBox;
 	private DialogueBox dialogueBox2;
 	
-	private Texture img;
 	private Texture Knight;
 	private Texture Wizard;
 	private SpriteBatch batch;

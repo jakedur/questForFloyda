@@ -1,6 +1,5 @@
 package battle.system;
 
-import classes.Classes;
 import enemy.Bat;
 import enemy.Enemy;
 import enemy.Goblin;

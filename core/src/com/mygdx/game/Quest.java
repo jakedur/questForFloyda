@@ -3,9 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import screens.BattleScreen;
 import screens.ClassSelectScreen;
+import screens.OutsideMapScreen;
 import screens.ShopScreen;
 import screens.TitleScreen;
 import screens.inGameScreen;
@@ -96,8 +95,7 @@ public class Quest extends Game {
 			tracker = 4;
 		}
 		if(whatScreen.equals("Outside Map")) {
-			//thins to set the screent to the otuside map screen when we make and have one
-			System.out.println("Go to outside Map");
+			this.setScreen(new OutsideMapScreen(game));
 			super.render();
 			tracker = 5;
 		}

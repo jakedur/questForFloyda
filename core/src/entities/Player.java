@@ -2,10 +2,7 @@ package entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Quest;
 import com.mygdx.game.world.CommonMapFunctions;
-
-import screens.ClassSelectScreen;
 
 public class Player extends Entity {
 	

@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Quest;
 import com.mygdx.game.world.CommonMapFunctions;
-import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
 
 import controller.PlayerController;
@@ -25,7 +23,6 @@ public class inGameScreen extends AbstractScreen {
 	private Quest apps;
 
 	OrthographicCamera cam;
-	Texture image;
 
 	public inGameScreen(Quest app, float x, float y) {
 		super(app);
@@ -37,8 +34,6 @@ public class inGameScreen extends AbstractScreen {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
-
-		image = new Texture("wizard.png");
 
 		entities = new ArrayList<Entity>();
 		player = new Player(x, y, mapFunctions, apps.ClassSelect);
@@ -100,6 +95,8 @@ public class inGameScreen extends AbstractScreen {
 	
 	public void MapTransition() {
 		//black heart
+		System.out.println("X: " + player.getX());
+		System.out.println("Y: " + player.getY());
 		if(player.getX() == 176 && player.getY() == 272) {
 			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}
@@ -126,6 +123,22 @@ public class inGameScreen extends AbstractScreen {
 		//no label
 		else if(player.getX() == 208 && player.getY() == 384) {
 			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
+		}
+		//bottom of the map exit
+		else if(player.getX() == 304 && player.getY() == 0) {
+			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+		}
+		//the left side
+		else if(player.getX() == 32 && player.getY() == 240) {
+			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+		}
+		//the top side
+		else if(player.getX() == 304 && player.getY() == 464) {
+			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+		}
+		//the right side
+		else if(player.getX() == 592 && player.getY() == 240) {
+			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
 		}
 	}
 }
