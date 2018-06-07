@@ -72,8 +72,8 @@ public class ShopScreen extends AbstractScreen{
 		initUI();
 
 		entities = new ArrayList<Entity>();
-		NPC = new ShopKeeperNPC(112, 128 , mapFunctions);
-		player = new Player(112, 30, mapFunctions );
+		NPC = new ShopKeeperNPC(112, 128 , mapFunctions, apps.ClassSelect);
+		player = new Player(112, 30, mapFunctions, apps.ClassSelect);
 		entities.add(player);
 		entities.add(NPC);
 		controller = new PlayerController(player);
@@ -113,6 +113,8 @@ public class ShopScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta) {
+		controller.update(delta);
+		
 		talkShopkeeper(delta);
 		MapTansition();
 		

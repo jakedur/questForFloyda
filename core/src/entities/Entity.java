@@ -14,16 +14,18 @@ public abstract class Entity {
 	private float worldX, worldY;
 	private int srcX, srcY;
 	private int destX, destY;
+	private int ClassNum;
 	private float animTimer;
 	private float ANIM_TIME = 0.5f;
 	
 	private ACTOR_STATE state;
 	
-	public Entity(float x, float y, EntityType type, CommonMapFunctions map2) {
+	public Entity(float x, float y, EntityType type, CommonMapFunctions map2, int classNum) {
 		this.pos = new Vector2(x, y);
 		this.type = type;
 		this.map = map2;
 		this.state = ACTOR_STATE.STANDING;
+		this.ClassNum = classNum;
 	}
 	
 	public enum ACTOR_STATE {

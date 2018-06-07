@@ -41,7 +41,7 @@ public class inGameScreen extends AbstractScreen {
 		image = new Texture("wizard.png");
 
 		entities = new ArrayList<Entity>();
-		player = new Player(x, y, mapFunctions);
+		player = new Player(x, y, mapFunctions, apps.ClassSelect);
 		entities.add(player);
 		controller = new PlayerController(player);
 	}

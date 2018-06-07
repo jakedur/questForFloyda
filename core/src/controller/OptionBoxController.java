@@ -12,9 +12,12 @@ public class OptionBoxController extends InputAdapter {
 	
 	public boolean closeOptionBox;
 	
+	public boolean enter;
+	
 	public OptionBoxController(OptionBox options) {
 		optionBox = options;
 		closeOptionBox = false;
+		enter = false;
 	}
 	
 	@Override
@@ -28,6 +31,9 @@ public class OptionBoxController extends InputAdapter {
 		if (keycode == Keys.ESCAPE) {
 			closeOptionBox = true;
 		}
+		if(keycode == Keys.ENTER) {
+			enter = true;
+		}
 		return false;
 	}
 	
@@ -37,5 +43,9 @@ public class OptionBoxController extends InputAdapter {
 	
 	public void setCloseOPtionBox(boolean set) {
 		closeOptionBox = set;
+	}
+	
+	public boolean getEnterStatus() {
+		return enter;
 	}
 }

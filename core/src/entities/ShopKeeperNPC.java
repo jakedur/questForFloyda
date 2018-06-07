@@ -7,8 +7,8 @@ import com.mygdx.game.world.CommonMapFunctions;
 public class ShopKeeperNPC extends Entity {
 	int time;
 	Texture image;
-	public ShopKeeperNPC(float x, float y, CommonMapFunctions mapFunctions) {
-		super(x, y, EntityType.NPC, mapFunctions);
+	public ShopKeeperNPC(float x, float y, CommonMapFunctions mapFunctions, int classNum) {
+		super(x, y, EntityType.NPC, mapFunctions, classNum);
 		image = new Texture("Shop keeper.png");
 		
 	}

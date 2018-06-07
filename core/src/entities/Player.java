@@ -2,15 +2,23 @@ package entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Quest;
 import com.mygdx.game.world.CommonMapFunctions;
+
+import screens.ClassSelectScreen;
 
 public class Player extends Entity {
 	
 	Texture image;
 	
-	public Player(float x, float y, CommonMapFunctions mapFunctions) {
-		super(x, y, EntityType.PLAYER, mapFunctions);
-		image = new Texture("wizard.png");
+	public Player(float x, float y, CommonMapFunctions mapFunctions, int classNum) {
+		super(x, y, EntityType.PLAYER, mapFunctions, classNum);
+		if(classNum == 0) {
+			image = new Texture("wizard.png");
+		}
+		if(classNum == 1) {
+			image = new Texture("knight.png");
+		}
 		
 	}
 	
