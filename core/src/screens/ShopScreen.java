@@ -70,6 +70,29 @@ public class ShopScreen extends AbstractScreen{
 	private OptionBoxController InnOptionController1;
 	private OptionBoxController InnOptionController2;
 
+
+	//armor shop
+	private DialogueBox ArmorDialogueBox1;
+	private DialogueBox ArmorDialogueBox2;
+	private DialogueBox ArmorDialogueBox3;
+	private DialogueBox ArmorDialogueBox4;
+	private DialogueBox ArmorDialogueBox5;
+	private DialogueBox ArmorDialogueBox6;
+
+	private OptionBox ArmorOptionBox1;
+	private OptionBox ArmorOptionBox2;
+	private OptionBox ArmorOptionBox3;
+	private OptionBox ArmorOptionBox4;
+	private OptionBox ArmorOptionBox5;
+	private OptionBox ArmorOptionBox6;
+
+	private OptionBoxController ArmorOptionController1;
+	private OptionBoxController ArmorOptionController2;
+	private OptionBoxController ArmorOptionController3;
+	private OptionBoxController ArmorOptionController4;
+	private OptionBoxController ArmorOptionController5;
+	private OptionBoxController ArmorOptionController6;
+
 	//not enough mula cost
 	private DialogueBox NotEnoughdialogueBox;
 
@@ -193,6 +216,84 @@ public class ShopScreen extends AbstractScreen{
 			root.add(dialogTable).expand().align(Align.bottom);
 		}
 
+		//armor shop stuff
+		ArmorDialogueBox1 = new DialogueBox(getApp().getSkin());
+		ArmorDialogueBox1.animateText("What would you like to \nbuy from me?");
+		ArmorDialogueBox1.setVisible(false);
+
+		ArmorOptionBox1 = new OptionBox(getApp().getSkin());
+		ArmorOptionBox1.setVisible(false);
+		ArmorOptionBox1.addOption("Shield");
+		ArmorOptionBox1.addOption("Hat");
+		ArmorOptionBox1.addOption("Chest");
+		ArmorOptionBox1.addOption("Boots");
+		ArmorOptionBox1.addOption("Amulet");
+		ArmorOptionBox1.addOption("Back");
+
+		ArmorOptionController1 = new OptionBoxController(ArmorOptionBox1);
+
+		ArmorDialogueBox2 = new DialogueBox(getApp().getSkin());
+		ArmorDialogueBox2.animateText("Would you like to buy a \nshield for 300?");
+		ArmorDialogueBox2.setVisible(false);
+
+		ArmorOptionBox2 = new OptionBox(getApp().getSkin());
+		ArmorOptionBox2.addOption("Yes");
+		ArmorOptionBox2.addOption("No");
+		ArmorOptionBox2.setVisible(false);
+
+		ArmorOptionController2 = new OptionBoxController(ArmorOptionBox2);
+
+		ArmorDialogueBox3 = new DialogueBox(getApp().getSkin());
+		ArmorDialogueBox3.animateText("Would you like to buy a \nhat for 200?");
+		ArmorDialogueBox3.setVisible(false);
+
+		ArmorOptionBox3 = new OptionBox(getApp().getSkin());
+		ArmorOptionBox3.addOption("Yes");
+		ArmorOptionBox3.addOption("No");
+		ArmorOptionBox3.setVisible(false);
+
+		ArmorOptionController3 = new OptionBoxController(ArmorOptionBox3);
+
+		ArmorDialogueBox4 = new DialogueBox(getApp().getSkin());
+		ArmorDialogueBox4.animateText("Would you like to buy a \nchest for 300?");
+		ArmorDialogueBox4.setVisible(false);
+
+		ArmorOptionBox4 = new OptionBox(getApp().getSkin());
+		ArmorOptionBox4.addOption("Yes");
+		ArmorOptionBox4.addOption("No");
+		ArmorOptionBox4.setVisible(false);
+
+		ArmorOptionController4 = new OptionBoxController(ArmorOptionBox4);
+
+		ArmorDialogueBox5 = new DialogueBox(getApp().getSkin());
+		ArmorDialogueBox5.animateText("Would you like to buy a \nboots for 200?");
+		ArmorDialogueBox5.setVisible(false);
+
+		ArmorOptionBox5 = new OptionBox(getApp().getSkin());
+		ArmorOptionBox5.addOption("Yes");
+		ArmorOptionBox5.addOption("No");
+		ArmorOptionBox5.setVisible(false);
+
+		ArmorOptionController5 = new OptionBoxController(ArmorOptionBox5);
+
+		ArmorDialogueBox6 = new DialogueBox(getApp().getSkin());
+		ArmorDialogueBox6.animateText("Would you like to buy a \namulet for 200?");
+		ArmorDialogueBox6.setVisible(false);
+
+		ArmorOptionBox6 = new OptionBox(getApp().getSkin());
+		ArmorOptionBox6.addOption("Yes");
+		ArmorOptionBox6.addOption("No");
+		ArmorOptionBox6.setVisible(false);
+
+		ArmorOptionController6 = new OptionBoxController(ArmorOptionBox6);
+
+		if(X == 96 && Y+16 == 384) {
+			dialogTable.add(ArmorOptionBox1).expand().align(Align.right).space(8f).row();
+
+			root.add(ArmorDialogueBox1).expand().align(Align.bottom);
+			root.add(dialogTable).expand().align(Align.bottom);
+		}
+
 		//not enough mula 
 		NotEnoughdialogueBox = new DialogueBox(getApp().getSkin());
 		NotEnoughdialogueBox.setVisible(false);
@@ -237,6 +338,13 @@ public class ShopScreen extends AbstractScreen{
 		//Inn
 		InnDialogueBox1.act(delta);
 		InnDialogueBox2.act(delta);
+		//Armor shop
+		ArmorDialogueBox1.act(delta);
+		ArmorDialogueBox2.act(delta);
+		ArmorDialogueBox3.act(delta);
+		ArmorDialogueBox4.act(delta);
+		ArmorDialogueBox5.act(delta);
+		ArmorDialogueBox6.act(delta);
 	}
 
 	@Override
@@ -283,8 +391,8 @@ public class ShopScreen extends AbstractScreen{
 					InnOptions1();
 				}
 				//Armor Shop
-				else if(X == 96 && Y == 384) {
-					//					ArmorOptions();
+				else if(X == 96 && Y+16 == 384) {
+					ArmorOptions1();
 				}
 
 			}
@@ -306,18 +414,18 @@ public class ShopScreen extends AbstractScreen{
 
 				root.removeActor(dialogTable);
 				root.removeActor(InnDialogueBox1);
-				
+
 				dialogTable.add(InnOptionBox2).expand().align(Align.right).space(8f).row();
 
 				root.add(InnDialogueBox2).expand().align(Align.bottom);
 				root.add(dialogTable).expand().align(Align.bottom);
-				
+
 
 				Gdx.input.setInputProcessor(InnOptionController2);
-				
+
 				InnOptions2();
 			}
-			if(InnOptionBox1.getSelected() == 1) {
+			else if(InnOptionBox1.getSelected() == 1) {
 				InnDialogueBox1.setVisible(false);
 				InnOptionBox1.setVisible(false);
 
@@ -355,7 +463,7 @@ public class ShopScreen extends AbstractScreen{
 						apps.wizardPlayer.subtractMoeny(100);
 						apps.wizardPlayer.FullHP();
 						apps.wizardPlayer.FullMP();
-						
+
 						InnDialogueBox2.setVisible(false);
 						InnOptionBox2.setVisible(false);
 
@@ -388,7 +496,7 @@ public class ShopScreen extends AbstractScreen{
 						apps.knightPlayer.subtractMoeny(100);
 						apps.knightPlayer.FullHP();
 						apps.knightPlayer.FullMP();
-						
+
 						InnDialogueBox2.setVisible(false);
 						InnOptionBox2.setVisible(false);
 
@@ -641,8 +749,16 @@ public class ShopScreen extends AbstractScreen{
 			}
 			//picked no
 			else if(WeaponoptionBox2.getSelected() == 1) {
+				root.removeActor(dialogTable);
+				root.removeActor(WeapondialogueBox2);
+
+				//remove the weapon option box form the table
+				dialogTable.removeActor(WeaponoptionBox2);
 				WeaponoptionController.enter = false;
 				WeaponoptionController2.enter = false;
+				WeaponoptionController3.enter = false;
+				//set controller to the player
+				Gdx.input.setInputProcessor(controller);
 			}
 		}
 
@@ -760,12 +876,23 @@ public class ShopScreen extends AbstractScreen{
 						WeaponoptionController3.enter = false;
 
 						notEnoughMula();
-
 					}
 				}
+			}else if(WeaponoptionBox3.getSelected() == 1) {
+				root.removeActor(dialogTable);
+				root.removeActor(WeapondialogueBox3);
+
+				//remove the weapon option box form the table
+				dialogTable.removeActor(WeaponoptionBox3);
+				WeaponoptionController.enter = false;
+				WeaponoptionController2.enter = false;
+				WeaponoptionController3.enter = false;
+				//set controller to the player
+				Gdx.input.setInputProcessor(controller);
 			}
 		}
 	}
+
 
 	public void notEnoughMula() {
 		root.add(NotEnoughdialogueBox).expand().align(Align.bottom);
@@ -778,15 +905,586 @@ public class ShopScreen extends AbstractScreen{
 		}
 	}
 
-	//	public void ArmorOptions() {
-	//		dialogueBox.animateText("What would you like to \nbuy from me?");
-	//		optionBox.addOption("Shield");
-	//		optionBox.addOption("Hat");
-	//		optionBox.addOption("Chest");
-	//		optionBox.addOption("Boots");
-	//		optionBox.addOption("Amulet");
-	//		optionBox.addOption("Back");
-	//	}
+	public void ArmorOptions1() {
+		Gdx.input.setInputProcessor(ArmorOptionController1);
+
+		ArmorDialogueBox1.setVisible(true);
+		ArmorOptionBox1.setVisible(true);
+
+		if(ArmorOptionController1.getEnterStatus() == true) {
+			if(ArmorOptionBox1.getSelected() == 0) {
+				ArmorDialogueBox1.setVisible(false);
+				ArmorOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(ArmorOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox1);
+
+				dialogTable.add(ArmorOptionBox2).expand().align(Align.right).space(8f).row();
+
+				root.add(ArmorDialogueBox2).expand().align(Align.bottom);
+				root.add(dialogTable).expand().align(Align.bottom);
+
+
+				Gdx.input.setInputProcessor(ArmorOptionController2);
+				ArmorOption2();  
+			}else if(ArmorOptionBox1.getSelected() == 1) {
+				ArmorDialogueBox1.setVisible(false);
+				ArmorOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(ArmorOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox1);
+
+				dialogTable.add(ArmorOptionBox3).expand().align(Align.right).space(8f).row();
+
+				root.add(ArmorDialogueBox3).expand().align(Align.bottom);
+				root.add(dialogTable).expand().align(Align.bottom);
+
+
+				Gdx.input.setInputProcessor(ArmorOptionController3);
+				ArmorOption3();
+			}else if(ArmorOptionBox1.getSelected() == 2) {
+				ArmorDialogueBox1.setVisible(false);
+				ArmorOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(ArmorOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox1);
+
+				dialogTable.add(ArmorOptionBox4).expand().align(Align.right).space(8f).row();
+
+				root.add(ArmorDialogueBox4).expand().align(Align.bottom);
+				root.add(dialogTable).expand().align(Align.bottom);
+
+				Gdx.input.setInputProcessor(ArmorOptionController4);
+				ArmorOption4();
+			}else if(ArmorOptionBox1.getSelected() == 3) {
+				ArmorDialogueBox1.setVisible(false);
+				ArmorOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(ArmorOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox1);
+
+				dialogTable.add(ArmorOptionBox5).expand().align(Align.right).space(8f).row();
+
+				root.add(ArmorDialogueBox5).expand().align(Align.bottom);
+				root.add(dialogTable).expand().align(Align.bottom);
+
+
+				Gdx.input.setInputProcessor(ArmorOptionController5);
+				ArmorOption5();
+			}else if(ArmorOptionBox1.getSelected() == 4) {
+				ArmorDialogueBox1.setVisible(false);
+				ArmorOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(ArmorOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox1);
+
+				dialogTable.add(ArmorOptionBox6).expand().align(Align.right).space(8f).row();
+
+				root.add(ArmorDialogueBox6).expand().align(Align.bottom);
+				root.add(dialogTable).expand().align(Align.bottom);
+
+
+				Gdx.input.setInputProcessor(ArmorOptionController6);
+				ArmorOption6();
+			}else if(ArmorOptionBox1.getSelected() == 5) {
+				ArmorDialogueBox1.setVisible(false);
+				ArmorOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(ArmorOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox1);
+
+				ArmorOptionController1.enter = false;
+
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+	}
+
+	public void ArmorOption2() {
+		ArmorDialogueBox2.setVisible(true);
+		ArmorOptionBox2.setVisible(true);
+		if(ArmorOptionController2.getEnterStatus() == true) {
+			if(ArmorOptionBox2.getSelected() == 0) {
+				if(apps.ClassSelect == 0) {
+					if(apps.wizardPlayer.checkEnough(300)) {
+						apps.wizardPlayer.subtractMoeny(300);
+						apps.wizardPlayer.addItem(Staff);
+
+						ArmorDialogueBox2.setVisible(false);
+						ArmorOptionBox2.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox2);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox2);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox2.setVisible(false);
+						ArmorOptionBox2.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox2);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox2);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+				else if(apps.ClassSelect == 1) {
+					if(apps.knightPlayer.checkEnough(300)) {
+						apps.knightPlayer.subtractMoeny(300);
+						apps.knightPlayer.addItem(Staff);
+
+						ArmorDialogueBox2.setVisible(false);
+						ArmorOptionBox2.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox2);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox2);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox2.setVisible(false);
+						ArmorOptionBox2.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox2);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox2);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+			}else if (ArmorOptionBox2.getSelected() == 1) {
+				ArmorDialogueBox2.setVisible(false);
+				ArmorOptionBox2.setVisible(false);
+				dialogTable.removeActor(ArmorOptionBox2);
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox2);
+
+				ArmorOptionController1.enter = false;
+				ArmorOptionController2.enter = false;
+				ArmorOptionController3.enter = false;
+				ArmorOptionController4.enter = false;
+				ArmorOptionController5.enter = false;
+				ArmorOptionController6.enter = false;
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+	}
+	public void ArmorOption3() {
+		ArmorDialogueBox3.setVisible(true);
+		ArmorOptionBox3.setVisible(true);
+		if(ArmorOptionController3.getEnterStatus() == true) {
+			if(ArmorOptionBox3.getSelected() == 0) {
+				if(apps.ClassSelect == 0) {
+					if(apps.wizardPlayer.checkEnough(300)) {
+						apps.wizardPlayer.subtractMoeny(300);
+						apps.wizardPlayer.addItem(Staff);
+
+						ArmorDialogueBox3.setVisible(false);
+						ArmorOptionBox3.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox3);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox3);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox3.setVisible(false);
+						ArmorOptionBox3.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox3);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox3);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+				else if(apps.ClassSelect == 1) {
+					if(apps.knightPlayer.checkEnough(300)) {
+						apps.knightPlayer.subtractMoeny(300);
+						apps.knightPlayer.addItem(Staff);
+
+						ArmorDialogueBox3.setVisible(false);
+						ArmorOptionBox3.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox3);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox3);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox3.setVisible(false);
+						ArmorOptionBox3.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox3);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox3);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+			}else if (ArmorOptionBox3.getSelected() == 1) {
+				ArmorDialogueBox3.setVisible(false);
+				ArmorOptionBox3.setVisible(false);
+				dialogTable.removeActor(ArmorOptionBox3);
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox3);
+
+				ArmorOptionController1.enter = false;
+				ArmorOptionController2.enter = false;
+				ArmorOptionController3.enter = false;
+				ArmorOptionController4.enter = false;
+				ArmorOptionController5.enter = false;
+				ArmorOptionController6.enter = false;
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+	}
+	
+	public void ArmorOption4() {
+		ArmorDialogueBox4.setVisible(true);
+		ArmorOptionBox4.setVisible(true);
+		if(ArmorOptionController4.getEnterStatus() == true) {
+			if(ArmorOptionBox4.getSelected() == 0) {
+				if(apps.ClassSelect == 0) {
+					if(apps.wizardPlayer.checkEnough(300)) {
+						apps.wizardPlayer.subtractMoeny(300);
+						apps.wizardPlayer.addItem(Staff);
+
+						ArmorDialogueBox4.setVisible(false);
+						ArmorOptionBox4.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox4);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox4);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox4.setVisible(false);
+						ArmorOptionBox4.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox4);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox4);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+				else if(apps.ClassSelect == 1) {
+					if(apps.knightPlayer.checkEnough(300)) {
+						apps.knightPlayer.subtractMoeny(300);
+						apps.knightPlayer.addItem(Staff);
+
+						ArmorDialogueBox4.setVisible(false);
+						ArmorOptionBox4.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox4);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox4);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox4.setVisible(false);
+						ArmorOptionBox4.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox4);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox4);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+			}else if (ArmorOptionBox4.getSelected() == 1) {
+				ArmorDialogueBox4.setVisible(false);
+				ArmorOptionBox4.setVisible(false);
+				dialogTable.removeActor(ArmorOptionBox4);
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox4);
+
+				ArmorOptionController1.enter = false;
+				ArmorOptionController2.enter = false;
+				ArmorOptionController3.enter = false;
+				ArmorOptionController4.enter = false;
+				ArmorOptionController5.enter = false;
+				ArmorOptionController6.enter = false;
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+	}
+	public void ArmorOption5() {
+		ArmorDialogueBox5.setVisible(true);
+		ArmorOptionBox5.setVisible(true);
+		if(ArmorOptionController5.getEnterStatus() == true) {
+			if(ArmorOptionBox5.getSelected() == 0) {
+				if(apps.ClassSelect == 0) {
+					if(apps.wizardPlayer.checkEnough(300)) {
+						apps.wizardPlayer.subtractMoeny(300);
+						apps.wizardPlayer.addItem(Staff);
+
+						ArmorDialogueBox5.setVisible(false);
+						ArmorOptionBox5.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox5);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox5);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox5.setVisible(false);
+						ArmorOptionBox5.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox5);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox5);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+				else if(apps.ClassSelect == 1) {
+					if(apps.knightPlayer.checkEnough(300)) {
+						apps.knightPlayer.subtractMoeny(300);
+						apps.knightPlayer.addItem(Staff);
+
+						ArmorDialogueBox5.setVisible(false);
+						ArmorOptionBox5.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox5);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox5);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox5.setVisible(false);
+						ArmorOptionBox5.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox5);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox5);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+			}else if (ArmorOptionBox5.getSelected() == 1) {
+				ArmorDialogueBox5.setVisible(false);
+				ArmorOptionBox5.setVisible(false);
+				dialogTable.removeActor(ArmorOptionBox5);
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox5);
+
+				ArmorOptionController1.enter = false;
+				ArmorOptionController2.enter = false;
+				ArmorOptionController3.enter = false;
+				ArmorOptionController4.enter = false;
+				ArmorOptionController5.enter = false;
+				ArmorOptionController6.enter = false;
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+	}
+	
+	public void ArmorOption6() {
+		ArmorDialogueBox6.setVisible(true);
+		ArmorOptionBox6.setVisible(true);
+		if(ArmorOptionController6.getEnterStatus() == true) {
+			if(ArmorOptionBox6.getSelected() == 0) {
+				if(apps.ClassSelect == 0) {
+					if(apps.wizardPlayer.checkEnough(300)) {
+						apps.wizardPlayer.subtractMoeny(300);
+						apps.wizardPlayer.addItem(Staff);
+
+						ArmorDialogueBox6.setVisible(false);
+						ArmorOptionBox6.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox6);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox6);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox6.setVisible(false);
+						ArmorOptionBox6.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox6);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox6);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+				else if(apps.ClassSelect == 1) {
+					if(apps.knightPlayer.checkEnough(300)) {
+						apps.knightPlayer.subtractMoeny(300);
+						apps.knightPlayer.addItem(Staff);
+
+						ArmorDialogueBox6.setVisible(false);
+						ArmorOptionBox6.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox6);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox6);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+						Gdx.input.setInputProcessor(controller);
+					}
+					else {
+						ArmorDialogueBox6.setVisible(false);
+						ArmorOptionBox6.setVisible(false);
+						dialogTable.removeActor(ArmorOptionBox6);
+						root.removeActor(dialogTable);
+						root.removeActor(ArmorDialogueBox6);
+
+						ArmorOptionController1.enter = false;
+						ArmorOptionController2.enter = false;
+						ArmorOptionController3.enter = false;
+						ArmorOptionController4.enter = false;
+						ArmorOptionController5.enter = false;
+						ArmorOptionController6.enter = false;
+
+						notEnoughMula();
+					}
+				}
+			}else if (ArmorOptionBox6.getSelected() == 1) {
+				ArmorDialogueBox6.setVisible(false);
+				ArmorOptionBox6.setVisible(false);
+				dialogTable.removeActor(ArmorOptionBox6);
+				root.removeActor(dialogTable);
+				root.removeActor(ArmorDialogueBox6);
+
+				ArmorOptionController1.enter = false;
+				ArmorOptionController2.enter = false;
+				ArmorOptionController3.enter = false;
+				ArmorOptionController4.enter = false;
+				ArmorOptionController5.enter = false;
+				ArmorOptionController6.enter = false;
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+	}
+
 	//
 	//	public void PotionShopOptions() {
 	//		dialogueBox.animateText("What would you like to \nbuy from me?");
@@ -812,10 +1510,3 @@ public class ShopScreen extends AbstractScreen{
 		}
 	}
 }
-
-
-
-
-
-
-
