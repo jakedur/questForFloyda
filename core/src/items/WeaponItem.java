@@ -19,6 +19,7 @@ public class WeaponItem extends Item{
 		super(name, cost);
 		Attack = attack;
 	}
+	@Override
 	public int getWeaponAttack() {
 		return Attack;
 	}

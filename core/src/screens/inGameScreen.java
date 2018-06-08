@@ -45,7 +45,7 @@ public class inGameScreen extends AbstractScreen {
 
 	}
 
-
+	
 
 	public void show() {
 		Gdx.input.setInputProcessor(controller);
@@ -90,6 +90,7 @@ public class inGameScreen extends AbstractScreen {
 		}
 		batch.end();
 		MapTransition();
+		checkSpaceBar();
 	}
 	
 	public void MapTransition() {
@@ -138,6 +139,12 @@ public class inGameScreen extends AbstractScreen {
 		//the right side
 		else if(player.getX() == 592 && player.getY() == 240) {
 			apps.setCurrentScreen("Outside Map", 992, 1136);
+		}
+	}
+	public void checkSpaceBar() {
+		if(controller.getSpaceBar() == true) {
+			controller.setSpaceBar(false);
+			apps.setCurrentScreen("Item Manegment Screen", player.getX(), player.getY());
 		}
 	}
 }

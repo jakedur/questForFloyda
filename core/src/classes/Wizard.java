@@ -77,4 +77,62 @@ public class Wizard extends Classes{
             }
         }
 	}
+	
+	//HP PLayer stuff
+		@Override
+		public int getHP() {
+			return curHP;
+		}
+		@Override
+		public int getMaxHP() {
+			return MaxHP;
+		}
+		@Override
+		public void loseHP(int damage) {
+			curHP -= damage;
+		}
+		@Override
+		public void gainHP(int heal) {
+			curHP += heal;
+		}
+		@Override
+		public void FullHP() {
+			curHP = MaxHP;
+		}
+		@Override
+		public boolean death(int damage) {
+			if(curHP - damage < 0) {
+				return true;
+			}
+			return false;
+		}
+
+		//MP player stuff
+		@Override
+		public int getMP() {
+			return curMP;
+		}
+		@Override
+		public int getMaxMP() {
+			return MaxMP;
+		}
+		@Override
+		public void useMP(int MPcost) {
+			curMP -= MPcost;
+		}
+		@Override
+		public void gainMp(int MPgained) {
+			curMP += MPgained;
+		}
+		@Override
+		public void FullMP() {
+			curMP = MaxMP;
+		}
+		@Override
+		public boolean enoughMP(int MPcost) {
+			if(curMP - MPcost < 0) {
+				return false;
+			}
+			return true;
+		}
 }

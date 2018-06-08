@@ -2,10 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import items.ArmorItem;
 import items.Item;
-import items.WeaponItem;
 
 /**
  * 
@@ -44,6 +41,7 @@ public class Classes {
 	private int Chest = 3;
 	private int Boots = 4;
 	private int Amulet = 5;
+	private boolean alive;
 
 	/**
 	 * What does the Equipment contain in what position?
@@ -64,6 +62,7 @@ public class Classes {
 		MagicLevel = 0;
 		Bag = new ArrayList<Item>();
 		Equipment = new Item[6];
+		setAlive(true);
 	}
 
 	public int getPlayerLevel() {
@@ -75,7 +74,7 @@ public class Classes {
 		LvLupHPGain();
 		LvLupManaGain();
 	}
-
+	
 	public void LvLupHPGain() {
 	}
 
@@ -86,7 +85,11 @@ public class Classes {
 	public int getHP() {
 		return curHP;
 	}
-
+	
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	
 	public void loseHP(int damage) {
 		curHP -= damage;
 	}
@@ -109,6 +112,10 @@ public class Classes {
 	//MP player stuff
 	public int getMP() {
 		return curMP;
+	}
+	
+	public int getMaxMP() {
+		return MaxMP;
 	}
 	
 	public void useMP(int MPcost) {
@@ -189,34 +196,75 @@ public class Classes {
 		Bag.remove(item);
 	}
 	
-	//Equipment player stuff
-	public void EquipWeapon(WeaponItem weapon) {
-		addItem(Equipment[Weapon]);
-		Equipment[Weapon] = weapon;
+	public List<Item> getBag(){
+		return Bag;
 	}
 	
-	public void EquipShield(ArmorItem shield) {
+	//Equipment player stuff
+	public void EquipWeapon(Item item) {
+		addItem(Equipment[Weapon]);
+		Equipment[Weapon] = item;
+	}
+	
+	public void EquipShield(Item shield) {
 		addItem(Equipment[Shield]);
 		Equipment[Shield] = shield;
 	}
 	
-	public void EquipHat(ArmorItem hat) {
+	public void EquipHat(Item hat) {
 		addItem(Equipment[Hat]);
 		Equipment[Hat] = hat;
 	}
 	
-	public void EquipChest(ArmorItem chest) {
+	public void EquipChest(Item chest) {
 		addItem(Equipment[Chest]);
 		Equipment[Chest] = chest;
 	}
 	
-	public void EquipBoots(ArmorItem boots) {
+	public void EquipBoots(Item boots) {
 		addItem(Equipment[Boots]);
 		Equipment[Boots] = boots;
 	}
 	
-	public void EquipAmulet(ArmorItem amulet) {
+	public void EquipAmulet(Item amulet) {
 		addItem(Equipment[Amulet]);
 		Equipment[Amulet] = amulet;
+	}
+	public Item[] getEqupiment() {
+		return Equipment;
+	}
+	
+	public int getAttack() {
+		if(Equipment[Weapon] != null) {
+			return Equipment[Weapon].getWeaponAttack();
+		}
+		return 0;
+	}
+	public int getDefense() {
+		int sum = 0;
+		if(Equipment[Shield] != null) {
+			sum += Equipment[Shield].getArmorDefense();
+		}
+		if(Equipment[Hat] != null) {
+			sum += Equipment[Hat].getArmorDefense();
+		}
+		if(Equipment[Chest] != null) {
+			sum += Equipment[Chest].getArmorDefense();
+		}
+		if(Equipment[Boots] != null) {
+			sum += Equipment[Boots].getArmorDefense();
+		}
+		if(Equipment[Amulet] != null) {
+			sum += Equipment[Amulet].getArmorDefense();
+		}
+		return sum;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 }
