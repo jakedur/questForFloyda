@@ -17,6 +17,7 @@ import classes.Knight;
 import classes.Wizard;
 import screens.BattleScreen;
 import screens.ClassSelectScreen;
+import screens.ItemManegementScreen;
 import screens.OutsideMapScreen;
 import screens.ShopScreen;
 import screens.TitleScreen;
@@ -117,6 +118,11 @@ public class Quest extends Game {
 			this.setScreen(new BattleScreen(game, x, y));
 			super.render();
 			tracker = 6;
+		}
+		if(whatScreen.equals("Item Manegment Screen")) {
+			this.setScreen(new ItemManegementScreen(game, x, y));
+			super.render();
+			tracker = 7;
 		}
 	}
 
