@@ -60,6 +60,8 @@ public class BattleScreen extends AbstractScreen{
 		
 		Bat = new Texture("Bat.png");
 		Goblin = new Texture("Goblin.png");
+		
+		//WHEN YOU END THE BATTLE AND SWITCH SCREENS, RIGHT BEFORE ADD mus.dispose();
 	}
 
 	@Override
