@@ -54,6 +54,7 @@ public class TitleScreen extends AbstractScreen{
 		music = assetload.get("music/Last Stand.wav", Music.class);
 		bling = assetload.get("music/Menu.wav", Music.class);
 		
+		music.setLooping(true);
 		music.setVolume(40);
 		music.play();
 		
