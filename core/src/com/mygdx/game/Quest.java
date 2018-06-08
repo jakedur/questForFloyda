@@ -104,7 +104,7 @@ public class Quest extends Game {
 			tracker = 4;
 		}
 		if(whatScreen.equals("Outside Map")) {
-			this.setScreen(new OutsideMapScreen(game));
+			this.setScreen(new OutsideMapScreen(game, x, y));
 			super.render();
 			tracker = 5;
 		}

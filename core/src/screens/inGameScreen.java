@@ -27,7 +27,7 @@ public class inGameScreen extends AbstractScreen {
 	public inGameScreen(Quest app, float x, float y) {
 		super(app);
 		apps = app;
-	
+
 		TiledGMap = new TiledGameMap();
 		CommonMapFunctions mapFunctions = new CommonMapFunctions(TiledGMap.getMap());
 		batch = app.batch;
@@ -125,19 +125,19 @@ public class inGameScreen extends AbstractScreen {
 		}
 		//bottom of the map exit
 		else if(player.getX() == 304 && player.getY() == 0) {
-			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+			apps.setCurrentScreen("Outside Map", 864, 1024);
 		}
 		//the left side
 		else if(player.getX() == 32 && player.getY() == 240) {
-			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+			apps.setCurrentScreen("Outside Map", 736, 1136);
 		}
 		//the top side
 		else if(player.getX() == 304 && player.getY() == 464) {
-			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+			apps.setCurrentScreen("Outside Map", 864, 1280);
 		}
 		//the right side
 		else if(player.getX() == 592 && player.getY() == 240) {
-			apps.setCurrentScreen("Outside Map", player.getX(), player.getY());
+			apps.setCurrentScreen("Outside Map", 992, 1136);
 		}
 	}
 }
