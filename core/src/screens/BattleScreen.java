@@ -1,11 +1,15 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Quest;
 
 import classes.Classes;
@@ -17,6 +21,10 @@ public class BattleScreen extends AbstractScreen{
 	private SpriteBatch batch;
 	private Quest apps;
 	private OrthographicCamera cam;
+	
+	private Stage uiStage;
+	private Table root;
+	private Viewport gameViewport;
 
 	private Texture Knight;
 	private Texture Wizard;
@@ -35,6 +43,8 @@ public class BattleScreen extends AbstractScreen{
 
 	private Texture Bat;
 	private Texture Goblin;
+	
+//	.animateText("Gold: " + gold +"\nHP: " + curHp + "\\" + maxHp);
 
 	public BattleScreen(Quest app, float x, float y) {
 		super(app);
@@ -92,6 +102,36 @@ public class BattleScreen extends AbstractScreen{
 		drawEnemy();
 
 		batch.end();
+		
+		if(apps.wizardPlayer.isAlive() == false || apps.knightPlayer.isAlive() == false
+				|| bat.getAlive() == false || goblin.getAlive() == false) {
+			if(apps.ClassSelect == 0) {
+				if(goblin.getAlive() == false) {
+					apps.wizardPlayer.addMoney(goblin.getGoldGiven());
+					apps.wizardPlayer.gainExp(goblin.getExp());
+				}
+				if(bat.getAlive() == false) {
+					apps.wizardPlayer.addMoney(bat.getGoldGiven());
+					apps.wizardPlayer.gainExp(bat.getExp());
+				}
+			}
+			if(apps.ClassSelect == 1) {
+				if(goblin.getAlive() == false) {
+					apps.knightPlayer.addMoney(goblin.getGoldGiven());
+					apps.knightPlayer.gainExp(goblin.getExp());
+					}
+					if(bat.getAlive() == false) {
+						apps.knightPlayer.addMoney(bat.getGoldGiven());
+						apps.knightPlayer.gainExp(bat.getExp());
+					}
+			}
+			MapTransition();
+		}else {
+			Fight();
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			MapTransition();
+		}
 	}
 
 	public void MapTransition() {
@@ -115,25 +155,21 @@ public class BattleScreen extends AbstractScreen{
 		int defense = defender.getDefense();
 		int damage = attack - defense;
 		boolean killed = defender.death(damage);
-		String name = defender.getName();
 		if(killed == false){
 			defender.loseHP(damage);
-			int hp = defender.getHP();
 		}else if(killed == true){
 			defender.setAlive(false);
 		}
 		return defender;
 	}
-	
+
 	public enemy.Goblin attackGoblin(Classes attacker, enemy.Goblin defender){
 		int attack = attacker.getAttack();
 		int defense = defender.getDefense();
 		int damage = attack - defense;
 		boolean killed = defender.death(damage);
-		String name = defender.getName();
 		if(killed == false){
 			defender.loseHP(damage);
-			int hp = defender.getHP();
 		}else if(killed == true){
 			defender.setAlive(false);
 		}
@@ -145,10 +181,8 @@ public class BattleScreen extends AbstractScreen{
 		int defense = defender.getDefense();
 		int damage = attack - defense;
 		boolean killed = defender.death(damage);
-		String name = defender.getPlayerName();
 		if(killed == false){
 			defender.loseHP(damage);
-			int hp = defender.getHP();
 		}else if(killed == true){
 			defender.setAlive(false);
 		}
@@ -160,10 +194,8 @@ public class BattleScreen extends AbstractScreen{
 		int defense = defender.getDefense();
 		int damage = attack - defense;
 		boolean killed = defender.death(damage);
-		String name = defender.getPlayerName();
 		if(killed == false){
 			defender.loseHP(damage);
-			int hp = defender.getHP();
 		}else if(killed == true){
 			defender.setAlive(false);
 		}

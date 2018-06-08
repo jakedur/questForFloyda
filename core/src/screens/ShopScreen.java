@@ -224,7 +224,7 @@ public class ShopScreen extends AbstractScreen{
 		InnOptionController1 = new OptionBoxController(InnOptionBox1);
 
 		InnDialogueBox2 = new DialogueBox(getApp().getSkin());
-		InnDialogueBox2.animateText("Sleep here for 100?");
+		InnDialogueBox2.animateText("Sleep here for 50?");
 		InnDialogueBox2.setVisible(false);
 
 		InnOptionBox2 = new OptionBox(getApp().getSkin());
@@ -483,8 +483,8 @@ public class ShopScreen extends AbstractScreen{
 				InnOptionController2.enter = false;
 
 				if(apps.ClassSelect == 0) {
-					if(apps.wizardPlayer.checkEnough(100)) {
-						apps.wizardPlayer.subtractMoeny(100);
+					if(apps.wizardPlayer.checkEnough(50)) {
+						apps.wizardPlayer.subtractMoeny(50);
 						apps.wizardPlayer.FullHP();
 						apps.wizardPlayer.FullMP();
 

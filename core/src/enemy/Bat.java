@@ -17,14 +17,16 @@ public class Bat extends Enemy{
 	private int attack;
 	private int defense;
 	private int expGiven;
+	private int goldGiven;
 	private boolean alive;
 	public Bat() {
 	    name = "Bat";
 		MaxHP = 6;
 		curHP = MaxHP;
-		attack = 5;
-		defense = 2;
+		attack = 3;
+		defense = 0;
 		expGiven = 6;
+		goldGiven = 10;
 		alive = true;
 	}
 	@Override
@@ -73,4 +75,8 @@ public class Bat extends Enemy{
             return true;
 		return false;
 	}
+    @Override
+    public int getGoldGiven() {
+    	return goldGiven;
+    }
 }

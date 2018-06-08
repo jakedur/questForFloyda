@@ -165,6 +165,14 @@ public class Classes {
 	
 	public void gainExp(int gainedExp) {
 		Exp += gainedExp;
+		CheckLvlUp();
+	}
+	
+	public void CheckLvlUp() {
+		if(Exp >= 10 * 1.5 * Level) {
+			gainLevel(1);
+			Exp = 0;
+		}
 	}
 
 	//Money player related stuff

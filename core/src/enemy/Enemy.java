@@ -23,6 +23,7 @@ public class Enemy {
 	private int attack;
 	private int defense;
 	private int expGiven;
+	private int goldGiven;
 	private boolean alive;
 	public Enemy() {
 		alive = true;
@@ -61,5 +62,8 @@ public class Enemy {
 		if(curHP - damage < 1) 
 			return true;
 		return false;
+	}
+	public int getGoldGiven() {
+		return goldGiven;
 	}
 }

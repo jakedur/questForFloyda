@@ -18,15 +18,17 @@ public class Goblin extends Enemy{
 	private int attack;
 	private int defense;
 	private int expGiven;
+	private int goldGiven;
 	private boolean alive;
 	public Goblin() {
 		name = "Goblin";
 	    MaxHP = 10;
 		curHP = MaxHP;
-		attack = 3;
-		defense = 3;
+		attack = 2;
+		defense = 1;
 		expGiven = 5;
 		alive = true;
+		goldGiven = 15;
 	}
 	@Override
 	public String getName(){
@@ -74,4 +76,8 @@ public class Goblin extends Enemy{
             return true;
 		return false;
 	}
+    @Override
+    public int getGoldGiven() {
+    	return goldGiven;
+    }
 }

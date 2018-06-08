@@ -79,6 +79,13 @@ public class ItemManegementScreen extends AbstractScreen{
 		rightSide.addOption("Stats");
 		rightSide.addOption("Back");
 
+		makeUIthings();
+		
+		rightDialogTable.add(rightSide).expand();
+		root.add(rightDialogTable).expand().align(Align.right).space(8f);
+
+	}
+	public void makeUIthings() {
 		if(apps.ClassSelect == 0) {
 			Bag = apps.wizardPlayer.getBag();
 			if(Bag != null) {
@@ -115,13 +122,11 @@ public class ItemManegementScreen extends AbstractScreen{
 				}
 			}
 			int gold = apps.knightPlayer.getPlayerMoney();
-			stats.animateText("Gold: " + gold);
+			int curHp = apps.knightPlayer.getHP();
+			int maxHp = apps.knightPlayer.getMaxHP();
+			stats.animateText("Gold: " + gold +"\nHP: " + curHp + "\\" + maxHp);
 		}
-		rightDialogTable.add(rightSide).expand();
-		root.add(rightDialogTable).expand().align(Align.right).space(8f);
-
 	}
-
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(rightSideController);
@@ -169,43 +174,59 @@ public class ItemManegementScreen extends AbstractScreen{
 				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
 						Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
 					apps.wizardPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
+					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Shield")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Shield")){
 					apps.wizardPlayer.EquipShield(Bag.get(leftSideBag.getSelected()));
+					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Hat")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Hat")){
 					apps.wizardPlayer.EquipHat(Bag.get(leftSideBag.getSelected()));
+					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Chest")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Chest")){
 					apps.wizardPlayer.EquipChest(Bag.get(leftSideBag.getSelected()));
+					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Boots")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Boots")){
 					apps.wizardPlayer.EquipBoots(Bag.get(leftSideBag.getSelected()));
+					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Amulet")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Amulet")){
 					apps.wizardPlayer.EquipAmulet(Bag.get(leftSideBag.getSelected()));
+					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
+				makeUIthings();
 			}
 			if(apps.ClassSelect == 1) {
 				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
 						Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
 					apps.knightPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
+					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Shield")){
-					apps.knightPlayer.EquipShield(Bag.get(leftSideBag.getSelected()));
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Shield")){
+					apps.knightPlayer.EquipShield(Bag.get(leftSideBag.getSelected()));					
+					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
+
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Hat")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Hat")){
 					apps.knightPlayer.EquipHat(Bag.get(leftSideBag.getSelected()));
+					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
+
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Chest")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Chest")){
 					apps.knightPlayer.EquipChest(Bag.get(leftSideBag.getSelected()));
+					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Boots")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Boots")){
 					apps.knightPlayer.EquipBoots(Bag.get(leftSideBag.getSelected()));
+					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
-				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Amulet")){
+				else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Amulet")){
 					apps.knightPlayer.EquipAmulet(Bag.get(leftSideBag.getSelected()));
+					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
+				makeUIthings();
 			}
 
 			leftDialogTable.removeActor(leftSideBag);
@@ -238,6 +259,7 @@ public class ItemManegementScreen extends AbstractScreen{
 			leftDialogTable.removeActor(stats);
 			root.removeActor(leftDialogTable);
 			Gdx.input.setInputProcessor(rightSideController);
+			apps.setCurrentScreen("Game Start", X, Y);
 		}
 	}
 	
