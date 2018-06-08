@@ -46,6 +46,7 @@ public class ShopScreen extends AbstractScreen{
 	private Stage uiStage;
 	private int uiScale = 2;
 
+	//weapon stuff
 	private OptionBox WeaponoptionBox;
 	private OptionBoxController WeaponoptionController;
 
@@ -58,7 +59,19 @@ public class ShopScreen extends AbstractScreen{
 	private DialogueBox WeapondialogueBox;
 	private DialogueBox WeapondialogueBox2;
 	private DialogueBox WeapondialogueBox3;
-	private DialogueBox WeaponNotEnoughdialogueBox;
+
+	//inn stuff
+	private DialogueBox InnDialogueBox1;
+	private DialogueBox InnDialogueBox2;
+
+	private OptionBox InnOptionBox1;
+	private OptionBox InnOptionBox2;
+
+	private OptionBoxController InnOptionController1;
+	private OptionBoxController InnOptionController2;
+
+	//not enough mula cost
+	private DialogueBox NotEnoughdialogueBox;
 
 	OrthographicCamera cam;
 
@@ -127,9 +140,6 @@ public class ShopScreen extends AbstractScreen{
 
 		WeaponoptionController3 = new OptionBoxController(WeaponoptionBox3);
 
-		WeaponNotEnoughdialogueBox = new DialogueBox(getApp().getSkin());
-		WeaponNotEnoughdialogueBox.setVisible(false);
-
 		WeapondialogueBox.animateText("What would you like to \nbuy from me?");
 		WeaponoptionBox.addOption("Sword");
 		WeaponoptionBox.addOption("Staff");
@@ -151,8 +161,42 @@ public class ShopScreen extends AbstractScreen{
 			root.add(WeapondialogueBox).expand().align(Align.bottom);
 			root.add(dialogTable).expand().align(Align.bottom);
 		}
-		
+
+
 		//Inn stuff
+		InnDialogueBox1 = new DialogueBox(getApp().getSkin());
+		InnDialogueBox1.animateText("Would you like to rest here?");
+		InnDialogueBox1.setVisible(false);
+
+		InnOptionBox1 = new OptionBox(getApp().getSkin());
+		InnOptionBox1.addOption("Yes");
+		InnOptionBox1.addOption("No");
+		InnOptionBox1.setVisible(false);
+
+		InnOptionController1 = new OptionBoxController(InnOptionBox1);
+
+		InnDialogueBox2 = new DialogueBox(getApp().getSkin());
+		InnDialogueBox2.animateText("Sleep here for 100?");
+		InnDialogueBox2.setVisible(false);
+
+		InnOptionBox2 = new OptionBox(getApp().getSkin());
+		InnOptionBox2.addOption("Yes");
+		InnOptionBox2.addOption("No");
+		InnOptionBox2.setVisible(false);
+
+		InnOptionController2 = new OptionBoxController(InnOptionBox2);
+
+		if(X == 192 && Y+16 == 96) {
+			dialogTable.add(InnOptionBox1).expand().align(Align.right).space(8f).row();
+
+			root.add(InnDialogueBox1).expand().align(Align.bottom);
+			root.add(dialogTable).expand().align(Align.bottom);
+		}
+
+		//not enough mula 
+		NotEnoughdialogueBox = new DialogueBox(getApp().getSkin());
+		NotEnoughdialogueBox.setVisible(false);
+		NotEnoughdialogueBox.animateText("You do not have\n enough mula");
 	}
 
 	@Override
@@ -186,9 +230,13 @@ public class ShopScreen extends AbstractScreen{
 		batch.end();
 
 		uiStage.draw();
+		//Weapon Shop
 		WeapondialogueBox.act(delta);
 		WeapondialogueBox2.act(delta);
 		WeapondialogueBox3.act(delta);
+		//Inn
+		InnDialogueBox1.act(delta);
+		InnDialogueBox2.act(delta);
 	}
 
 	@Override
@@ -231,8 +279,8 @@ public class ShopScreen extends AbstractScreen{
 					//					PotionShopOptions();
 				}
 				//Inn
-				else if(X == 192 && Y == 96) {
-					//					InnOptions();
+				else if(X == 192 && Y+16 == 96) {
+					InnOptions1();
 				}
 				//Armor Shop
 				else if(X == 96 && Y == 384) {
@@ -243,10 +291,151 @@ public class ShopScreen extends AbstractScreen{
 		}
 	}
 
-	public void InnOptions() {
-		//		dialogueBox.animateText("Would you like to\nrest here?");
-		//		optionBox.addOption("Yes");
-		//		optionBox.addOption("No");
+	public void InnOptions1() {
+		Gdx.input.setInputProcessor(InnOptionController1);
+
+		InnDialogueBox1.setVisible(true);
+		InnOptionBox1.setVisible(true);
+
+		if(InnOptionController1.getEnterStatus() == true) {
+			if(InnOptionBox1.getSelected() == 0) {
+				InnDialogueBox1.setVisible(false);
+				InnOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(InnOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(InnDialogueBox1);
+				
+				dialogTable.add(InnOptionBox2).expand().align(Align.right).space(8f).row();
+
+				root.add(InnDialogueBox2).expand().align(Align.bottom);
+				root.add(dialogTable).expand().align(Align.bottom);
+				
+
+				Gdx.input.setInputProcessor(InnOptionController2);
+				
+				InnOptions2();
+			}
+			if(InnOptionBox1.getSelected() == 1) {
+				InnDialogueBox1.setVisible(false);
+				InnOptionBox1.setVisible(false);
+
+				dialogTable.removeActor(InnOptionBox1);
+
+				root.removeActor(dialogTable);
+				root.removeActor(InnDialogueBox1);
+
+				InnOptionController1.enter = false;
+
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+
+	}
+	public void InnOptions2() {
+		InnDialogueBox2.setVisible(true);
+		InnOptionBox2.setVisible(true);
+
+		if(InnOptionController2.getEnterStatus() == true) {
+			if(InnOptionBox2.getSelected() == 0) {
+				InnDialogueBox2.setVisible(false);
+				InnOptionBox2.setVisible(false);
+
+				dialogTable.removeActor(InnOptionBox2);
+
+				root.removeActor(dialogTable);
+				root.removeActor(InnDialogueBox2);
+
+				InnOptionController1.enter = false;
+				InnOptionController2.enter = false;
+
+				if(apps.ClassSelect == 0) {
+					if(apps.wizardPlayer.checkEnough(100)) {
+						apps.wizardPlayer.subtractMoeny(100);
+						apps.wizardPlayer.FullHP();
+						apps.wizardPlayer.FullMP();
+						
+						InnDialogueBox2.setVisible(false);
+						InnOptionBox2.setVisible(false);
+
+						dialogTable.removeActor(InnOptionBox2);
+
+						root.removeActor(dialogTable);
+						root.removeActor(InnDialogueBox2);
+
+						InnOptionController1.enter = false;
+						InnOptionController2.enter = false;
+
+						Gdx.input.setInputProcessor(controller);
+					}else {
+						InnDialogueBox2.setVisible(false);
+						InnOptionBox2.setVisible(false);
+
+						dialogTable.removeActor(InnOptionBox2);
+
+						root.removeActor(dialogTable);
+						root.removeActor(InnDialogueBox2);
+
+						InnOptionController1.enter = false;
+						InnOptionController2.enter = false;
+
+						Gdx.input.setInputProcessor(controller);
+					}
+				}
+				if(apps.ClassSelect == 1) {
+					if(apps.knightPlayer.checkEnough(100)) {
+						apps.knightPlayer.subtractMoeny(100);
+						apps.knightPlayer.FullHP();
+						apps.knightPlayer.FullMP();
+						
+						InnDialogueBox2.setVisible(false);
+						InnOptionBox2.setVisible(false);
+
+						dialogTable.removeActor(InnOptionBox2);
+
+						root.removeActor(dialogTable);
+						root.removeActor(InnDialogueBox2);
+
+						InnOptionController1.enter = false;
+						InnOptionController2.enter = false;
+
+						Gdx.input.setInputProcessor(controller);
+					}else {
+						InnDialogueBox2.setVisible(false);
+						InnOptionBox2.setVisible(false);
+
+						dialogTable.removeActor(InnOptionBox2);
+
+						root.removeActor(dialogTable);
+						root.removeActor(InnDialogueBox2);
+
+						InnOptionController1.enter = false;
+						InnOptionController2.enter = false;
+
+						Gdx.input.setInputProcessor(controller);
+					}
+				}
+
+
+				Gdx.input.setInputProcessor(controller);
+			}
+			if(InnOptionBox2.getSelected() == 1) {
+				InnDialogueBox2.setVisible(false);
+				InnOptionBox2.setVisible(false);
+
+				dialogTable.removeActor(InnOptionBox2);
+
+				root.removeActor(dialogTable);
+				root.removeActor(InnDialogueBox2);
+
+				InnOptionController1.enter = false;
+				InnOptionController2.enter = false;
+
+				Gdx.input.setInputProcessor(controller);
+			}
+		}
+
 	}
 
 	public void WeaponOptions() {
@@ -376,7 +565,6 @@ public class ShopScreen extends AbstractScreen{
 					}
 					// if not enough money
 					else {
-						notEnoughMula();
 						//set the second set of boxes to not visible
 						WeapondialogueBox2.setVisible(false);
 						WeaponoptionBox2.setVisible(false);
@@ -393,8 +581,7 @@ public class ShopScreen extends AbstractScreen{
 						WeaponoptionController2.enter = false;
 						WeaponoptionController3.enter = false;
 
-						//set to player controller
-						Gdx.input.setInputProcessor(controller);
+						notEnoughMula();
 					}
 				}
 				//if you are a knight
@@ -432,7 +619,6 @@ public class ShopScreen extends AbstractScreen{
 					}
 					//if not enough mula
 					else {
-						notEnoughMula();
 						//set the second set of boxes to not visible
 						WeapondialogueBox2.setVisible(false);
 						WeaponoptionBox2.setVisible(false);
@@ -449,8 +635,7 @@ public class ShopScreen extends AbstractScreen{
 						WeaponoptionController2.enter = false;
 						WeaponoptionController3.enter = false;
 
-						//set to player controller
-						Gdx.input.setInputProcessor(controller);
+						notEnoughMula();
 					}
 				}
 			}
@@ -504,7 +689,6 @@ public class ShopScreen extends AbstractScreen{
 					}
 					// if not enough mula
 					else {
-						notEnoughMula();
 						//set the second set of boxes to not visible
 						WeapondialogueBox3.setVisible(false);
 						WeaponoptionBox3.setVisible(false);
@@ -519,9 +703,9 @@ public class ShopScreen extends AbstractScreen{
 						//set all the other controller's enter to false;
 						WeaponoptionController.enter = false;
 						WeaponoptionController2.enter = false;
-						WeaponoptionController3.enter = false;
-						//set to player controller
-						Gdx.input.setInputProcessor(controller);
+						WeaponoptionController3.enter = false;  
+
+						notEnoughMula();
 					}
 				}
 				//if you are a knight
@@ -559,7 +743,6 @@ public class ShopScreen extends AbstractScreen{
 					}
 					// if not enough mula
 					else {
-						notEnoughMula();
 						//set the second set of boxes to not visible
 						WeapondialogueBox3.setVisible(false);
 						WeaponoptionBox3.setVisible(false);
@@ -575,8 +758,9 @@ public class ShopScreen extends AbstractScreen{
 						WeaponoptionController.enter = false;
 						WeaponoptionController2.enter = false;
 						WeaponoptionController3.enter = false;
-						//set to player controller
-						Gdx.input.setInputProcessor(controller);
+
+						notEnoughMula();
+
 					}
 				}
 			}
@@ -584,7 +768,14 @@ public class ShopScreen extends AbstractScreen{
 	}
 
 	public void notEnoughMula() {
-
+		root.add(NotEnoughdialogueBox).expand().align(Align.bottom);
+		NotEnoughdialogueBox.setVisible(true);
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+			root.removeActor(NotEnoughdialogueBox);
+			NotEnoughdialogueBox.setVisible(false );
+			//set controller to the player
+			Gdx.input.setInputProcessor(controller);
+		}
 	}
 
 	//	public void ArmorOptions() {
