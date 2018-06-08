@@ -13,7 +13,7 @@ public enum EntityType {
 		this.width = width;
 		this.height = height;
 	}
-
+	
 	public String getId() {
 		return id;
 	}

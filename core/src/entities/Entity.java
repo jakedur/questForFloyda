@@ -17,6 +17,7 @@ public abstract class Entity {
 	private int ClassNum;
 	private float animTimer;
 	private float ANIM_TIME = 0.3f;
+	private boolean inMove;
 	
 	private ACTOR_STATE state;
 	
@@ -75,6 +76,7 @@ public abstract class Entity {
 		this.destY = oldY + newY;
 		animTimer = 0f;
 		state = ACTOR_STATE.WALKING;
+		
 	}
 	
 	public void finishMove() {
@@ -82,6 +84,15 @@ public abstract class Entity {
 		animTimer = 0;
 		pos.x = destX;
 		pos.y = destY;
+		inMove = true;
+	}
+	
+	public boolean firedMove() {
+		if (inMove == true) {
+			inMove = false;
+			return true;
+		}
+		return false;
 	}
 	
 	public Vector2 getPos() {

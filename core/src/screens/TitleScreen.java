@@ -52,7 +52,6 @@ public class TitleScreen extends AbstractScreen{
 		batch.begin();
 		batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); 
 		textureAnimate(delta);
-		//batch.draw(overlay, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
 		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
 			apps.setCurrentScreen("Class Select Screen", 304, 16);

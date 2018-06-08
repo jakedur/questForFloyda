@@ -1,6 +1,7 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Quest;
@@ -10,21 +11,31 @@ public class BattleScreen extends AbstractScreen{
 	private Texture img;
 	private SpriteBatch batch;
 	private Quest apps;
+	private OrthographicCamera cam;
 
 	private Texture Knight;
 	private Texture Wizard;
 
 	private double RNG;
 	
+	private float returnX, returnY;
+	
 	private Texture Bat;
 	private Texture Goblin;
 
-	public BattleScreen(Quest app) {
+	public BattleScreen(Quest app, float x, float y) {
 		super(app);
 		apps = app;
+		this.returnX = x;
+		this.returnY = y;
+		
 		img = new Texture("Screens/Battle Screen.png");
 		batch = app.batch;
 
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		cam.update();
+		
 		Knight = new Texture("Knight.png");
 		Wizard = new Texture("Wizard.png");
 
@@ -41,6 +52,10 @@ public class BattleScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta) {
+		batch.setProjectionMatrix(cam.combined);
+		cam.position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, 0);
+		cam.update();
+		
 		batch.begin();
 		batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); 
 		

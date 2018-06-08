@@ -109,7 +109,7 @@ public class Quest extends Game {
 			tracker = 5;
 		}
 		if(whatScreen.equals("Battle Screen")) {
-			this.setScreen(new BattleScreen(game));
+			this.setScreen(new BattleScreen(game, x, y));
 			super.render();
 			tracker = 6;
 		}
