@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -129,7 +131,13 @@ public class ShopScreen extends AbstractScreen{
 		entities.add(player);
 		entities.add(NPC);
 		controller = new PlayerController(player);
-
+		
+		AssetManager assetload = new AssetManager();
+		assetload.load("music/Simplistic Wonderland.wav", Music.class);
+		assetload.finishLoading();
+		Music music = assetload.get("music/Simplistic Wonderland.wav", Music.class);
+		music.play();
+		
 		Sword = new WeaponItem("Sword", 200, 3);
 		Staff = new WeaponItem("Staff", 200, 2);
 		
