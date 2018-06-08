@@ -53,8 +53,6 @@ public class OutsideMapScreen extends AbstractScreen{
 			townBox.add(new Coordinate(752, i));
 		for (int i = 1056; i < 1264; i += 16)
 			townBox.add(new Coordinate(976, i));
-		System.out.println(townBox.get(0).getX());
-		System.out.println(townBox.get(0).getY());
 	}
 
 	@Override

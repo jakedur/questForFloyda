@@ -46,8 +46,6 @@ public abstract class Entity {
 			pos.y = Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME);
 			if (animTimer > ANIM_TIME) {
 				finishMove();
-				System.out.println(pos.x);
-				System.out.println(pos.y);
 			}
 		}
 	}

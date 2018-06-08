@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -40,6 +42,8 @@ public class Quest extends Game {
 	public inGameScreen gameStart;
 	public TitleScreen titleScreen;
 	public Screen currentScreen;
+	
+	public Sound music;
 
 	public double RNG;
 	
@@ -57,6 +61,7 @@ public class Quest extends Game {
 	public void create() {
 		//img = new Texture(randomImg());
 		batch = new SpriteBatch();
+		
 
 		assetManager = new AssetManager();
 		skin = new Skin();

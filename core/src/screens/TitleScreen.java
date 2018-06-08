@@ -2,6 +2,11 @@ package screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.AssetLoader;
+import com.badlogic.gdx.assets.loaders.MusicLoader;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -26,6 +31,9 @@ public class TitleScreen extends AbstractScreen{
 	private BitmapFont enter;
 	private boolean fadeBool = false;
 	
+	private Music music;
+	private Music bling;
+	
 	public TitleScreen(Quest app) {
 		super(app);
 		apps = app;
@@ -38,7 +46,17 @@ public class TitleScreen extends AbstractScreen{
 		parameter.color = new Color(0f, 0f, 0f, 1f);
 		enter = generator.generateFont(parameter);
 		generator.dispose();
-
+		
+		AssetManager assetload = new AssetManager();
+		assetload.load("music/Last Stand.wav", Music.class);
+		assetload.load("music/Menu.wav", Music.class);
+		assetload.finishLoading();
+		music = assetload.get("music/Last Stand.wav", Music.class);
+		bling = assetload.get("music/Menu.wav", Music.class);
+		
+		music.setVolume(40);
+		music.play();
+		
 		batch = app.batch;
 	}
 
@@ -53,8 +71,12 @@ public class TitleScreen extends AbstractScreen{
 		batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); 
 		textureAnimate(delta);
 		batch.end();
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER))
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+			music.stop();
+			music.dispose();
+			bling.play();
 			apps.setCurrentScreen("Class Select Screen", 304, 16);
+		}
 	}
 	
 	private void textureAnimate(float delta) {
@@ -96,7 +118,7 @@ public class TitleScreen extends AbstractScreen{
 
 	@Override
 	public void dispose() {
-		
+
 	}
 
 }
