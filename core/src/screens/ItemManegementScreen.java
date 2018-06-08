@@ -82,7 +82,7 @@ public class ItemManegementScreen extends AbstractScreen{
 		makeUIthings();
 		
 		rightDialogTable.add(rightSide).expand();
-		root.add(rightDialogTable).expand().align(Align.right).space(8f);
+		root.add(rightDialogTable).expand().align(Align.left).space(8f);
 
 	}
 	public void makeUIthings() {
@@ -124,7 +124,12 @@ public class ItemManegementScreen extends AbstractScreen{
 			int gold = apps.knightPlayer.getPlayerMoney();
 			int curHp = apps.knightPlayer.getHP();
 			int maxHp = apps.knightPlayer.getMaxHP();
-			stats.animateText("Gold: " + gold +"\nHP: " + curHp + "\\" + maxHp);
+			int exp = apps.knightPlayer.getPlayerExp();
+			int level = apps.knightPlayer.getPlayerLevel();
+			stats.animateText("Gold: " + gold +
+					"\nHP: " + curHp + "\\" + maxHp +
+					"\nEXP: " + exp +"\\" + 100*1.5*level + 
+					"\nLevel: " + level);
 		}
 	}
 	@Override
@@ -145,20 +150,20 @@ public class ItemManegementScreen extends AbstractScreen{
 	public void rightSide() {
 		if(rightSideController.getEnterStatus() == true) {
 			if(rightSide.getSelected() == 0) {
-				root.add(leftDialogTable).expand().align(Align.left).space(8f);
-				leftDialogTable.add(leftSideBag).expand().align(Align.left).space(8f);
+				root.add(leftDialogTable).expand().align(Align.right).space(8f);
+				leftDialogTable.add(leftSideBag).expand().align(Align.right).space(8f);
 				Gdx.input.setInputProcessor(leftSideBagController);
 				leftSideBag();
 			}
 			if(rightSide.getSelected() == 1) {
-				root.add(leftDialogTable).expand().align(Align.left).space(8f);
-				leftDialogTable.add(leftSideEquip).expand().align(Align.left).space(8f);
+				root.add(leftDialogTable).expand().align(Align.right).space(8f);
+				leftDialogTable.add(leftSideEquip).expand().align(Align.right).space(8f);
 				Gdx.input.setInputProcessor(leftSideEquipController);
-				leftSideEquip();
+				leftSideEquip(); 
 			}
 			if(rightSide.getSelected() == 2) {
-				root.add(leftDialogTable).expand().align(Align.left).space(8f);
-				leftDialogTable.add(stats).expand().align(Align.left).space(8f);
+				root.add(leftDialogTable).expand().align(Align.right).space(8f);
+				leftDialogTable.add(stats).expand().align(Align.right).space(8f);
 				Gdx.input.setInputProcessor(null);
 				Stats();
 			}
@@ -172,7 +177,7 @@ public class ItemManegementScreen extends AbstractScreen{
 		if(leftSideBagController.getEnterStatus() == true) {
 			if(apps.ClassSelect == 0) {
 				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
-						Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
+				Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
 					apps.wizardPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
 					apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
@@ -200,7 +205,7 @@ public class ItemManegementScreen extends AbstractScreen{
 			}
 			if(apps.ClassSelect == 1) {
 				if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
-						Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
+				Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
 					apps.knightPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
 					apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 				}
@@ -229,15 +234,15 @@ public class ItemManegementScreen extends AbstractScreen{
 				makeUIthings();
 			}
 
-			leftDialogTable.removeActor(leftSideBag);
 			root.removeActor(leftDialogTable);
+			leftDialogTable.removeActor(leftSideBag);
 			Gdx.input.setInputProcessor(rightSideController);
 			rightSideController.enter = false;
 			leftSideBagController.enter = false;
 		}
 		if(leftSideBagController.CloseOptionBox() == true) {
-			leftDialogTable.removeActor(leftSideBag);
 			root.removeActor(leftDialogTable);
+			leftDialogTable.removeActor(leftSideBag); 
 			Gdx.input.setInputProcessor(rightSideController);
 			rightSideController.enter = false;
 			leftSideBagController.setCloseOPtionBox(false);
