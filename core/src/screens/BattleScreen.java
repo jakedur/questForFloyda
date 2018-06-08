@@ -1,6 +1,8 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,6 +19,8 @@ public class BattleScreen extends AbstractScreen{
 	private Texture Wizard;
 
 	private double RNG;
+	
+	private Music mus;
 	
 	private float returnX, returnY;
 	
@@ -35,6 +39,19 @@ public class BattleScreen extends AbstractScreen{
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
+		
+		AssetManager assetload = new AssetManager();
+		assetload.load("music/Chiptune Battle.wav", Music.class);
+		assetload.load("music/Battlecry.wav", Music.class);
+		assetload.finishLoading();
+		if (Math.random() > .5) {
+			mus = assetload.get("music/Chiptune Battle.wav", Music.class);
+		}
+		else {
+			mus = assetload.get("music/Battlecry.wav", Music.class);
+		}
+		mus.setLooping(true);
+		mus.play();
 		
 		Knight = new Texture("Knight.png");
 		Wizard = new Texture("Wizard.png");
