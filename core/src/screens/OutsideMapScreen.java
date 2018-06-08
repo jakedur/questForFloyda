@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Quest;
@@ -18,6 +20,8 @@ import util.Coordinate;
 public class OutsideMapScreen extends AbstractScreen{
 
 	private ArrayList<Entity>entities;
+
+	private Music mus;
 	private PlayerController controller;
 	private Player player;
 	private SpriteBatch batch;
@@ -41,6 +45,19 @@ public class OutsideMapScreen extends AbstractScreen{
 		entities = new ArrayList<Entity>();
 		player = new Player(x, y, mapFunctions, apps.ClassSelect);
 		entities.add(player);
+		
+		AssetManager assetload = new AssetManager();
+		assetload.load("music/Chiptune Battle.wav", Music.class);
+		assetload.load("music/Battlecry.wav", Music.class);
+		assetload.finishLoading();
+		if (Math.random() > .5) {
+			mus = assetload.get("music/Chiptune Battle.wav", Music.class);
+		}
+		else {
+			mus = assetload.get("music/Battlecry.wav", Music.class);
+		}
+		mus.setLooping(true);
+		mus.play();
 		
 		controller = new PlayerController(player);
 		townBox = new ArrayList<Coordinate>();
@@ -87,12 +104,17 @@ public class OutsideMapScreen extends AbstractScreen{
 	public void MapTransition() {
 		for(Coordinate cord : townBox)
 			if (cord.getX() == (int) player.getX())
-				if (cord.getY() == (int) player.getY())
+				if (cord.getY() == (int) player.getY()) {
+					mus.stop();
+					mus.dispose();
 					apps.setCurrentScreen("Game Start", 304, 16);
+				}
 	}
 
 	public void enmeyEncounter(double RNG) {
 		if(RNG <= 5) {
+			mus.stop();
+			mus.dispose();
 			apps.setCurrentScreen("Battle Screen", player.getX(), player.getY());
 		}
 	}

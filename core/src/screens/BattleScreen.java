@@ -31,7 +31,6 @@ public class BattleScreen extends AbstractScreen{
 
 	private double RNG;
 
-	private Music mus;
 
 	private float returnX, returnY;
 
@@ -59,18 +58,7 @@ public class BattleScreen extends AbstractScreen{
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
 
-		AssetManager assetload = new AssetManager();
-		assetload.load("music/Chiptune Battle.wav", Music.class);
-		assetload.load("music/Battlecry.wav", Music.class);
-		assetload.finishLoading();
-		if (Math.random() > .5) {
-			mus = assetload.get("music/Chiptune Battle.wav", Music.class);
-		}
-		else {
-			mus = assetload.get("music/Battlecry.wav", Music.class);
-		}
-		mus.setLooping(true);
-		mus.play();
+
 
 		Knight = new Texture("Knight.png");
 		Wizard = new Texture("Wizard.png");
@@ -135,8 +123,6 @@ public class BattleScreen extends AbstractScreen{
 	}
 
 	public void MapTransition() {
-		mus.stop();
-		mus.dispose();
 		apps.setCurrentScreen("Outside Map", returnX , returnY);
 	}
 
