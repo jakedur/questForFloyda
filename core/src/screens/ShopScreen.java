@@ -59,9 +59,7 @@ public class ShopScreen extends AbstractScreen{
 	private DialogueBox WeapondialogueBox;
 	private DialogueBox WeapondialogueBox2;
 	private DialogueBox WeapondialogueBox3;
-<<<<<<< HEAD
 	private DialogueBox WeaponNotEnoughdialogueBox;
-=======
 
 	//inn stuff
 	private DialogueBox InnDialogueBox1;
@@ -98,7 +96,6 @@ public class ShopScreen extends AbstractScreen{
 
 	//not enough mula cost
 	private DialogueBox NotEnoughdialogueBox;
->>>>>>> fc5c1638e6975098a4d7c0c4883e985b2b84c0f6
 
 	OrthographicCamera cam;
 
@@ -205,8 +202,7 @@ public class ShopScreen extends AbstractScreen{
 		}
 		
 		//Inn stuff
-<<<<<<< HEAD
-=======
+
 		InnDialogueBox1 = new DialogueBox(getApp().getSkin());
 		InnDialogueBox1.animateText("Would you like to rest here?");
 		InnDialogueBox1.setVisible(false);
@@ -318,7 +314,6 @@ public class ShopScreen extends AbstractScreen{
 		NotEnoughdialogueBox = new DialogueBox(getApp().getSkin());
 		NotEnoughdialogueBox.setVisible(false);
 		NotEnoughdialogueBox.animateText("You do not have\n enough mula");
->>>>>>> fc5c1638e6975098a4d7c0c4883e985b2b84c0f6
 	}
 
 	@Override
@@ -355,8 +350,6 @@ public class ShopScreen extends AbstractScreen{
 		WeapondialogueBox.act(delta);
 		WeapondialogueBox2.act(delta);
 		WeapondialogueBox3.act(delta);
-<<<<<<< HEAD
-=======
 		//Inn
 		InnDialogueBox1.act(delta);
 		InnDialogueBox2.act(delta);
@@ -367,7 +360,6 @@ public class ShopScreen extends AbstractScreen{
 		ArmorDialogueBox4.act(delta);
 		ArmorDialogueBox5.act(delta);
 		ArmorDialogueBox6.act(delta);
->>>>>>> fc5c1638e6975098a4d7c0c4883e985b2b84c0f6
 	}
 
 	@Override
@@ -422,12 +414,6 @@ public class ShopScreen extends AbstractScreen{
 		}
 	}
 
-<<<<<<< HEAD
-	public void InnOptions() {
-		//		dialogueBox.animateText("Would you like to\nrest here?");
-		//		optionBox.addOption("Yes");
-		//		optionBox.addOption("No");
-=======
 	public void InnOptions1() {
 		Gdx.input.setInputProcessor(InnOptionController1);
 
@@ -572,8 +558,6 @@ public class ShopScreen extends AbstractScreen{
 				Gdx.input.setInputProcessor(controller);
 			}
 		}
-
->>>>>>> fc5c1638e6975098a4d7c0c4883e985b2b84c0f6
 	}
 
 	public void WeaponOptions() {
@@ -910,13 +894,8 @@ public class ShopScreen extends AbstractScreen{
 						WeaponoptionController.enter = false;
 						WeaponoptionController2.enter = false;
 						WeaponoptionController3.enter = false;
-<<<<<<< HEAD
 						//set to player controller
 						Gdx.input.setInputProcessor(controller);
-=======
-
-						notEnoughMula();
->>>>>>> fc5c1638e6975098a4d7c0c4883e985b2b84c0f6
 					}
 				}
 			}else if(WeaponoptionBox3.getSelected() == 1) {
