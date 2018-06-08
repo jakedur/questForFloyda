@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import classes.Knight;
+import classes.Wizard;
 import screens.BattleScreen;
 import screens.ClassSelectScreen;
 import screens.OutsideMapScreen;
@@ -27,6 +29,9 @@ public class Quest extends Game {
 
 	public int tracker = 0;
 	public int ClassSelect;
+	
+	public Knight knightPlayer;
+	public Wizard wizardPlayer;
 
 	private AssetManager assetManager;
 
@@ -40,6 +45,8 @@ public class Quest extends Game {
 	
 	public Quest() {
 		game = this;
+		knightPlayer = new Knight("Knight");
+		wizardPlayer = new Wizard("Wizard");
 	}
 
 	public String randomImg() {
