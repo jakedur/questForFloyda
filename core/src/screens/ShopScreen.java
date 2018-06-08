@@ -109,6 +109,8 @@ public class ShopScreen extends AbstractScreen{
 	private ArmorItem Boots;
 	private ArmorItem Chest;
 	private ArmorItem Amulet;
+	
+	private Music mus;
 
 	public ShopScreen(Quest app, float x , float y) {
 		super(app);
@@ -135,8 +137,8 @@ public class ShopScreen extends AbstractScreen{
 		AssetManager assetload = new AssetManager();
 		assetload.load("music/Simplistic Wonderland.wav", Music.class);
 		assetload.finishLoading();
-		Music music = assetload.get("music/Simplistic Wonderland.wav", Music.class);
-		music.play();
+		mus = assetload.get("music/Simplistic Wonderland.wav", Music.class);
+		mus.play();
 		
 		Sword = new WeaponItem("Sword", 200, 3);
 		Staff = new WeaponItem("Staff", 200, 2);
@@ -1517,6 +1519,8 @@ public class ShopScreen extends AbstractScreen{
 	//
 	public void MapTansition() {
 		if(player.getX() == 112 && player.getY() == 0) {
+			mus.stop();
+			mus.dispose();
 			apps.setCurrentScreen("Game Start", X , Y);
 		}
 	}
