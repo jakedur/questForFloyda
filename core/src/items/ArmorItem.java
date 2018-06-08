@@ -19,6 +19,7 @@ public class ArmorItem extends Item{
 		super(name, cost);
 		Defense = defense;
 	}
+	@Override
 	public int getArmorDefense() {
 		return Defense;
 	}

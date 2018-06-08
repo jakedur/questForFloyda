@@ -8,7 +8,7 @@ import entities.Player;
 public class PlayerController extends InputAdapter {
 	
 	private Player player;
-	private boolean moveRight, moveLeft, moveUp, moveDown;
+	private boolean moveRight, moveLeft, moveUp, moveDown, SpaceBar;
 	
 	public PlayerController (Player p) {
 		this.player = p;
@@ -28,6 +28,9 @@ public class PlayerController extends InputAdapter {
 		if (keycode == Keys.A) {
 			moveLeft = true;
 		}
+		if (keycode == Keys.SPACE) {
+			SpaceBar = true;
+		}
 		return false;
 	}
 	
@@ -45,6 +48,13 @@ public class PlayerController extends InputAdapter {
 			moveLeft = false;
 		}
 		return false;
+	}
+	
+	public boolean getSpaceBar() {
+		return SpaceBar;
+	}
+	public void setSpaceBar(boolean spacebar) {
+		SpaceBar = spacebar;
 	}
 	
 	public void update(float delta) {

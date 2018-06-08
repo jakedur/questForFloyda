@@ -24,4 +24,10 @@ public class Item {
 	public int getItemCost() {
 		return Cost;
 	}
+	public int getArmorDefense() {
+		return 0;
+	}
+	public int getWeaponAttack() {
+		return 0;
+	}
 }
