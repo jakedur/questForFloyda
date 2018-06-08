@@ -11,12 +11,12 @@ public abstract class Entity {
 	protected EntityType type;
 	protected CommonMapFunctions map;
 	
-	private float worldX, worldY;
 	private int srcX, srcY;
 	private int destX, destY;
+	@SuppressWarnings("unused")
 	private int ClassNum;
 	private float animTimer;
-	private float ANIM_TIME = 0.5f;
+	private float ANIM_TIME = 0.3f;
 	
 	private ACTOR_STATE state;
 	
@@ -41,35 +41,28 @@ public abstract class Entity {
 				animTimer = 1;
 			if (animTimer < 0) 
 				animTimer = 0;
-			pos.x = Math.round(Interpolation.linear.apply(srcX, destX, animTimer/ANIM_TIME));
-			pos.y = Math.round(Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME));
-			if (animTimer > ANIM_TIME)
+			pos.x = Interpolation.linear.apply(srcX, destX, animTimer/ANIM_TIME);
+			pos.y = Interpolation.linear.apply(srcY, destY, animTimer/ANIM_TIME);
+			if (animTimer > ANIM_TIME) {
 				finishMove();
+			}
 		}
-	}
-
-	public float getWorldX() {
-		return worldX;
-	}
-
-	public float getWorldY() {
-		return worldY;
 	}
 
 	public abstract void render(SpriteBatch batch);
 	
 	public void moveOnX(int amount) {
-		float newX = pos.x + amount;
+		float newX =(pos.x + amount);
 		if (!map.doesRectCollideWithMap(newX, pos.y, getWidth(), getHeight()) && state == ACTOR_STATE.STANDING) {
-			//initializeMove((int) pos.x, (int) pos.y, amount, 0);
-			pos.x = newX;
+			initializeMove((int) pos.x, (int) pos.y, amount, 0);
+			//pos.x = newX;
 		}
 	}
 	public void moveOnY(int amount) {
-		float newY = pos.y + amount;
+		float newY = (pos.y + amount); 
 		if (!map.doesRectCollideWithMap(pos.x, newY, getWidth(), getHeight()) && state == ACTOR_STATE.STANDING) {
-			//initializeMove((int) pos.x, (int) pos.y, 0, amount);
-			pos.y = newY;
+			initializeMove((int) pos.x, (int) pos.y, 0, amount);
+			//pos.y = newY;
 		}
 	}
 	
@@ -78,8 +71,6 @@ public abstract class Entity {
 		this.srcY = oldY;
 		this.destX = oldX + newX;
 		this.destY = oldY + newY;
-		this.worldX = oldX;
-		this.worldY = oldY;
 		animTimer = 0f;
 		state = ACTOR_STATE.WALKING;
 	}
@@ -87,6 +78,8 @@ public abstract class Entity {
 	public void finishMove() {
 		state = ACTOR_STATE.STANDING;
 		animTimer = 0;
+		pos.x = destX;
+		pos.y = destY;
 	}
 	
 	public Vector2 getPos() {

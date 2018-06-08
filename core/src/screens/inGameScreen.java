@@ -78,12 +78,11 @@ public class inGameScreen extends AbstractScreen {
 	@Override
 	public void render(float delta) {
 		controller.update(delta);
-		cam.position.set(player.getX(), player.getY(), 0);
-		cam.update();
 		TiledGMap.getTiledGMapRender().setView(cam);
 		TiledGMap.getTiledGMapRender().render();
 		batch.setProjectionMatrix(cam.combined);
-
+		cam.position.set(player.getX(), player.getY(), 0);
+		cam.update();
 		batch.begin();
 		for(Entity entity : entities) {
 			entity.update(delta);
@@ -95,8 +94,8 @@ public class inGameScreen extends AbstractScreen {
 	
 	public void MapTransition() {
 		//black heart
-		System.out.println("X: " + player.getX());
-		System.out.println("Y: " + player.getY());
+		//System.out.println("X: " + player.getX());
+		//System.out.println("Y: " + player.getY());
 		if(player.getX() == 176 && player.getY() == 272) {
 			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}

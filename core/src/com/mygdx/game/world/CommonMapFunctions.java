@@ -56,7 +56,7 @@ public class CommonMapFunctions {
 	public int getPixelWidth() {
 		return getWidth() * TileType.TILE_SIZE;
 	}
-
+	
 	public int getPixelHeight() {
 		return getHeight() * TileType.TILE_SIZE;
 	}
