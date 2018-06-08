@@ -19,14 +19,14 @@ public class BattleSystem {
         double random = Math.random();
         if(random < .5){
             System.out.println("Goblin goes first");
-            return "Goblin";
+            return "Enemy";
         }
         else {
             System.out.println("Bat goes first");
-            return "Bat";
+            return "Player";
         }
     }
-    public Enemy attackEnemy(Enemy attacker, Enemy defender){
+    public Enemy attackEnemy(Classes attacker, Enemy defender){
         int attack = attacker.getAttack();
         int defense = defender.getDefense();
         int damage = attack - defense;

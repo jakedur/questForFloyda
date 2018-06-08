@@ -41,6 +41,7 @@ public class Classes {
 	private int Chest = 3;
 	private int Boots = 4;
 	private int Amulet = 5;
+	private boolean alive;
 
 	/**
 	 * What does the Equipment contain in what position?
@@ -61,6 +62,7 @@ public class Classes {
 		MagicLevel = 0;
 		Bag = new ArrayList<Item>();
 		Equipment = new Item[6];
+		setAlive(true);
 	}
 
 	public int getPlayerLevel() {
@@ -72,7 +74,7 @@ public class Classes {
 		LvLupHPGain();
 		LvLupManaGain();
 	}
-
+	
 	public void LvLupHPGain() {
 	}
 
@@ -256,5 +258,13 @@ public class Classes {
 			sum += Equipment[Amulet].getArmorDefense();
 		}
 		return sum;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 }
