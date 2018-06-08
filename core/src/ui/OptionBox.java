@@ -58,7 +58,9 @@ public class OptionBox extends Table{
 	public int getSelected() {
 		return selectedIndex;
 	}
-	
+	public void setSelected(int select) {
+		selectedIndex = select;
+	}
 	public void clearChoices() {
 		uiContainer.clearChildren();
 		arrows.clear();
