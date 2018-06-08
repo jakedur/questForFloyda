@@ -20,6 +20,7 @@ import controller.PlayerController;
 import entities.Entity;
 import entities.Player;
 import entities.ShopKeeperNPC;
+import items.ArmorItem;
 import items.WeaponItem;
 import ui.DialogueBox;
 import ui.OptionBox;
@@ -100,6 +101,12 @@ public class ShopScreen extends AbstractScreen{
 
 	private WeaponItem Sword;
 	private WeaponItem Staff;
+	
+	private ArmorItem Shield;
+	private ArmorItem Hat;
+	private ArmorItem Boots;
+	private ArmorItem Chest;
+	private ArmorItem Amulet;
 
 	public ShopScreen(Quest app, float x , float y) {
 		super(app);
@@ -125,6 +132,12 @@ public class ShopScreen extends AbstractScreen{
 
 		Sword = new WeaponItem("Sword", 200, 3);
 		Staff = new WeaponItem("Staff", 200, 2);
+		
+		Shield = new ArmorItem("Shiled", 400, 4);
+		Hat = new ArmorItem("Hat", 200, 2);
+		Chest = new ArmorItem("Chest", 300, 3);
+		Boots = new ArmorItem("Boots", 200, 3);
+		Amulet = new ArmorItem("Amulet", 200, 2);
 	}
 
 	private void initUI() {
@@ -233,7 +246,7 @@ public class ShopScreen extends AbstractScreen{
 		ArmorOptionController1 = new OptionBoxController(ArmorOptionBox1);
 
 		ArmorDialogueBox2 = new DialogueBox(getApp().getSkin());
-		ArmorDialogueBox2.animateText("Would you like to buy a \nshield for 300?");
+		ArmorDialogueBox2.animateText("Would you like to buy a \nshield for 400?");
 		ArmorDialogueBox2.setVisible(false);
 
 		ArmorOptionBox2 = new OptionBox(getApp().getSkin());
@@ -1018,9 +1031,9 @@ public class ShopScreen extends AbstractScreen{
 		if(ArmorOptionController2.getEnterStatus() == true) {
 			if(ArmorOptionBox2.getSelected() == 0) {
 				if(apps.ClassSelect == 0) {
-					if(apps.wizardPlayer.checkEnough(300)) {
-						apps.wizardPlayer.subtractMoeny(300);
-						apps.wizardPlayer.addItem(Staff);
+					if(apps.wizardPlayer.checkEnough(400)) {
+						apps.wizardPlayer.subtractMoeny(400);
+						apps.wizardPlayer.addItem(Shield);
 
 						ArmorDialogueBox2.setVisible(false);
 						ArmorOptionBox2.setVisible(false);
@@ -1054,9 +1067,9 @@ public class ShopScreen extends AbstractScreen{
 					}
 				}
 				else if(apps.ClassSelect == 1) {
-					if(apps.knightPlayer.checkEnough(300)) {
-						apps.knightPlayer.subtractMoeny(300);
-						apps.knightPlayer.addItem(Staff);
+					if(apps.knightPlayer.checkEnough(400)) {
+						apps.knightPlayer.subtractMoeny(400);
+						apps.knightPlayer.addItem(Shield);
 
 						ArmorDialogueBox2.setVisible(false);
 						ArmorOptionBox2.setVisible(false);
@@ -1112,9 +1125,9 @@ public class ShopScreen extends AbstractScreen{
 		if(ArmorOptionController3.getEnterStatus() == true) {
 			if(ArmorOptionBox3.getSelected() == 0) {
 				if(apps.ClassSelect == 0) {
-					if(apps.wizardPlayer.checkEnough(300)) {
-						apps.wizardPlayer.subtractMoeny(300);
-						apps.wizardPlayer.addItem(Staff);
+					if(apps.wizardPlayer.checkEnough(200)) {
+						apps.wizardPlayer.subtractMoeny(200);
+						apps.wizardPlayer.addItem(Hat);
 
 						ArmorDialogueBox3.setVisible(false);
 						ArmorOptionBox3.setVisible(false);
@@ -1148,9 +1161,9 @@ public class ShopScreen extends AbstractScreen{
 					}
 				}
 				else if(apps.ClassSelect == 1) {
-					if(apps.knightPlayer.checkEnough(300)) {
-						apps.knightPlayer.subtractMoeny(300);
-						apps.knightPlayer.addItem(Staff);
+					if(apps.knightPlayer.checkEnough(200)) {
+						apps.knightPlayer.subtractMoeny(200);
+						apps.knightPlayer.addItem(Hat);
 
 						ArmorDialogueBox3.setVisible(false);
 						ArmorOptionBox3.setVisible(false);
@@ -1209,7 +1222,7 @@ public class ShopScreen extends AbstractScreen{
 				if(apps.ClassSelect == 0) {
 					if(apps.wizardPlayer.checkEnough(300)) {
 						apps.wizardPlayer.subtractMoeny(300);
-						apps.wizardPlayer.addItem(Staff);
+						apps.wizardPlayer.addItem(Chest);
 
 						ArmorDialogueBox4.setVisible(false);
 						ArmorOptionBox4.setVisible(false);
@@ -1245,7 +1258,7 @@ public class ShopScreen extends AbstractScreen{
 				else if(apps.ClassSelect == 1) {
 					if(apps.knightPlayer.checkEnough(300)) {
 						apps.knightPlayer.subtractMoeny(300);
-						apps.knightPlayer.addItem(Staff);
+						apps.knightPlayer.addItem(Chest);
 
 						ArmorDialogueBox4.setVisible(false);
 						ArmorOptionBox4.setVisible(false);
@@ -1301,9 +1314,9 @@ public class ShopScreen extends AbstractScreen{
 		if(ArmorOptionController5.getEnterStatus() == true) {
 			if(ArmorOptionBox5.getSelected() == 0) {
 				if(apps.ClassSelect == 0) {
-					if(apps.wizardPlayer.checkEnough(300)) {
-						apps.wizardPlayer.subtractMoeny(300);
-						apps.wizardPlayer.addItem(Staff);
+					if(apps.wizardPlayer.checkEnough(200)) {
+						apps.wizardPlayer.subtractMoeny(200);
+						apps.wizardPlayer.addItem(Boots);
 
 						ArmorDialogueBox5.setVisible(false);
 						ArmorOptionBox5.setVisible(false);
@@ -1337,9 +1350,9 @@ public class ShopScreen extends AbstractScreen{
 					}
 				}
 				else if(apps.ClassSelect == 1) {
-					if(apps.knightPlayer.checkEnough(300)) {
-						apps.knightPlayer.subtractMoeny(300);
-						apps.knightPlayer.addItem(Staff);
+					if(apps.knightPlayer.checkEnough(200)) {
+						apps.knightPlayer.subtractMoeny(200);
+						apps.knightPlayer.addItem(Boots);
 
 						ArmorDialogueBox5.setVisible(false);
 						ArmorOptionBox5.setVisible(false);
@@ -1396,9 +1409,9 @@ public class ShopScreen extends AbstractScreen{
 		if(ArmorOptionController6.getEnterStatus() == true) {
 			if(ArmorOptionBox6.getSelected() == 0) {
 				if(apps.ClassSelect == 0) {
-					if(apps.wizardPlayer.checkEnough(300)) {
-						apps.wizardPlayer.subtractMoeny(300);
-						apps.wizardPlayer.addItem(Staff);
+					if(apps.wizardPlayer.checkEnough(200)) {
+						apps.wizardPlayer.subtractMoeny(200);
+						apps.wizardPlayer.addItem(Amulet);
 
 						ArmorDialogueBox6.setVisible(false);
 						ArmorOptionBox6.setVisible(false);
@@ -1432,9 +1445,9 @@ public class ShopScreen extends AbstractScreen{
 					}
 				}
 				else if(apps.ClassSelect == 1) {
-					if(apps.knightPlayer.checkEnough(300)) {
-						apps.knightPlayer.subtractMoeny(300);
-						apps.knightPlayer.addItem(Staff);
+					if(apps.knightPlayer.checkEnough(200)) {
+						apps.knightPlayer.subtractMoeny(200);
+						apps.knightPlayer.addItem(Amulet);
 
 						ArmorDialogueBox6.setVisible(false);
 						ArmorOptionBox6.setVisible(false);
