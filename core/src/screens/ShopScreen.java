@@ -402,8 +402,8 @@ public class ShopScreen extends AbstractScreen{
 					//					PotionShopOptions();
 				}
 				//Inn
-				else if(X == 192 && Y == 96) {
-					//					InnOptions();
+				else if(X == 192 && Y+16 == 96) {
+					InnOptions1();
 				}
 				//Armor Shop
 				else if(X == 96 && Y+16 == 384) {
