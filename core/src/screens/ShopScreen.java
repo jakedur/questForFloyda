@@ -143,7 +143,7 @@ public class ShopScreen extends AbstractScreen{
 		WeaponoptionBox3.addOption("Yes");
 		WeaponoptionBox3.addOption("No");
 
-		if(player.getX() == 112 && player.getY() == 96) {	
+		if(X == 176 && Y == 256) {	
 			//add the weapon box option 1 to the table
 			dialogTable.add(WeaponoptionBox).expand().align(Align.right).space(8f).row();
 
