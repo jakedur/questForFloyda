@@ -6,11 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.Quest;
 
-public class ItemManegmentScreen extends AbstractScreen{
+public class ItemManegementScreen extends AbstractScreen{
 	private Quest apps;
 	private Stage uiStage;
 	private Table root;
-	public ItemManegmentScreen(Quest app) {
+	public ItemManegementScreen(Quest app, float x, float y) {
 		super(app);
 		apps = app;
 	}
