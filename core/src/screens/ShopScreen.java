@@ -174,6 +174,10 @@ public class ShopScreen extends AbstractScreen{
 			}
 		}
 	}
+	
+	public void InnOptions() {
+		
+	}
 	public void MapTansition() {
 		if(player.getX() == 112 && player.getY() == 0) {
 			apps.setCurrentScreen("Game Start", X , Y);

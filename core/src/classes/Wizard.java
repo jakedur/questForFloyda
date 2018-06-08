@@ -1,6 +1,4 @@
-package classes;
-
-import items.Item;
+ package classes;
 
 /**
  * 
@@ -14,14 +12,12 @@ public class Wizard extends Classes{
 	private int curHP;
 	private int MaxMP;
 	private int curMP;
-	private int Level;
-	public Wizard(String name, int level, Item[] bag, Item[] equipment, int money, int exp) {
-		super(name, level, bag, equipment, money, exp);
+	public Wizard(String name) {
+		super(name);
 		MaxHP = 15;
 		curHP = MaxHP;
 		MaxMP = 20;
 		curMP = MaxMP;
-		Level = level;
 	}
 
 	/** 
@@ -32,16 +28,6 @@ public class Wizard extends Classes{
 	 * 	-low attack
 	 * 	-magic oriented 
 	 */
-
-	//Level player stuff
-	public int getPlayerLevel() {
-		return Level;
-	}
-	public void gainLevel(int gainedLevel) {
-		Level += gainedLevel;
-		//LvLupHPGain();
-		//LvLupManaGain();
-	}
 	
 	/**
 	 * TODO 
@@ -55,6 +41,7 @@ public class Wizard extends Classes{
 	 *  this will give you some health but not a lot of health
 	 *  about mid 600's at level 100 and about 300 at level 50
 	 */
+	@Override
 	public void LvLupHPGain() {
 		double RNG = Math.random();
 		 if(0 <= RNG && RNG < 0.2) {
@@ -77,6 +64,7 @@ public class Wizard extends Classes{
 	 *  
 	 *  this will give you about 1,000 at level 100 so pretty good amount of mana
 	 */
+	@Override
 	public void LvLupManaGain() {
         for(int level = 2; level <= 100; level++){
             double RNG = Math.random();
@@ -89,44 +77,4 @@ public class Wizard extends Classes{
             }
         }
 	}
-	
-	//HP PLayer stuff
-		public int getHP() {
-			return curHP;
-		}
-		public void loseHP(int damage) {
-			curHP -= damage;
-		}
-		public void gainHP(int heal) {
-			curHP += heal;
-		}
-		public void FullHP() {
-			curHP = MaxHP;
-		}
-		public boolean death(int damage) {
-			if(curHP - damage < 0) {
-				return true;
-			}
-			return false;
-		}
-		
-		//MP player stuff
-		public int getMP() {
-			return curMP;
-		}
-		public void useMP(int MPcost) {
-			curMP -= MPcost;
-		}
-		public void gainMp(int MPgained) {
-			curMP += MPgained;
-		}
-		public void FullMP() {
-			curMP = MaxMP;
-		}
-		public boolean enoughMP(int MPcost) {
-			if(curMP - MPcost < 0) {
-				return false;
-			}
-			return true;
-		}
 }

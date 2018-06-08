@@ -1,7 +1,5 @@
 package classes;
 
-import items.Item;
-
 /**
  * 
  * @author Ryan Adelman-Drummond
@@ -21,25 +19,12 @@ public class Knight extends Classes{
 	private int MaxMP;
 	private int curMP;
 	private int Level;
-	public Knight(String name, int level, Item[] bag, Item[] equipment, int money, int exp) {
-		super(name, level, bag, equipment, money, exp);
+	public Knight(String name) {
+		super(name);
 		MaxHP = 20;
 		curHP = MaxHP;
 		MaxMP = 10;
 		curMP = MaxMP;
-		Level = level;
-	}
-
-	//level up stuff
-
-	//Level player stuff
-	public int getPlayerLevel() {
-		return Level;
-	}
-	public void gainLevel(int gainedLevel) {
-		Level += gainedLevel;
-		LvLupHPGain();
-		LvLupManaGain();
 	}
 	
 	/**
@@ -53,6 +38,7 @@ public class Knight extends Classes{
 	 *  
 	 *  this will give you about your level time 10 and sometimes more or less
 	 */
+	@Override
 	public void LvLupHPGain() {
 		double RNG = Math.random();
 		if(0 <= RNG && RNG < 0.2) {
@@ -75,6 +61,7 @@ public class Knight extends Classes{
 	 *  
 	 *  this will give some mp but not a lot of it about 400 at level 100
 	 */
+	@Override
 	public void LvLupManaGain() {
         for(int level = 2; level <= 100; level++){
             double RNG = Math.random();
@@ -88,49 +75,5 @@ public class Knight extends Classes{
         }
 	}
 	
-	/**
-	 * TODO
-	 * figure out exp scaling to know when you level up
-	 */
-	
-	//HP PLayer stuff
-	public int getHP() {
-		return curHP;
-	}
-	public void loseHP(int damage) {
-		curHP -= damage;
-	}
-	public void gainHP(int heal) {
-		curHP += heal;
-	}
-	public void FullHP() {
-		curHP = MaxHP;
-	}
-	public boolean death(int damage) {
-		if(curHP - damage < 0) {
-			return true;
-		}
-		return false;
-	}
-	
-	//MP player stuff
-	public int getMP() {
-		return curMP;
-	}
-	public void useMP(int MPcost) {
-		curMP -= MPcost;
-	}
-	public void gainMp(int MPgained) {
-		curMP += MPgained;
-	}
-	public void FullMP() {
-		curMP = MaxMP;
-	}
-	public boolean enoughMP(int MPcost) {
-		if(curMP - MPcost < 0) {
-			return false;
-		}
-		return true;
-	}
 }
 

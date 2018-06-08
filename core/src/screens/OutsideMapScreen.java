@@ -49,12 +49,14 @@ public class OutsideMapScreen extends AbstractScreen{
 	@Override
 	public void render(float delta) {
 		controller.update(delta);
+		RNG = Math.random();
 		cam.position.set(player.getX(), player.getY(), 0);
 		cam.update();
 		TiledOutsideMap.getTiledGMapRender().setView(cam);
 		TiledOutsideMap.getTiledGMapRender().render();
 		batch.setProjectionMatrix(cam.combined);
-
+//		enmeyEncounter(RNG);
+		
 		batch.begin();
 		for(Entity entity : entities) {
 			entity.update(delta);
@@ -63,8 +65,10 @@ public class OutsideMapScreen extends AbstractScreen{
 		batch.end();
 	}
 
-	public void enmeyEncounter() {
-//		if()
+	public void enmeyEncounter(double RNG) {
+		if(RNG <= 0.001) {
+			apps.setCurrentScreen("Battle Screen", player.getX(), player.getY());
+		}
 	}
 	
 	@Override
