@@ -95,8 +95,8 @@ public class inGameScreen extends AbstractScreen {
 	
 	public void MapTransition() {
 		//black heart
-		//System.out.println("X: " + player.getX());
-		//System.out.println("Y: " + player.getY());
+		System.out.println("X: " + player.getX());
+		System.out.println("Y: " + player.getY());
 		if(player.getX() == 176 && player.getY() == 272) {
 			apps.setCurrentScreen("Shop Screen", player.getX(), player.getY()- 16);
 		}

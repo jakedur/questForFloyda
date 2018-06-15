@@ -9,11 +9,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Quest;
 
 import classes.Classes;
+import controller.OptionBoxController;
 import enemy.Enemy;
+import ui.DialogueBox;
+import ui.OptionBox;
 
 public class BattleScreen extends AbstractScreen{
 
@@ -21,10 +26,20 @@ public class BattleScreen extends AbstractScreen{
 	private SpriteBatch batch;
 	private Quest apps;
 	private OrthographicCamera cam;
-	
+
 	private Stage uiStage;
-	private Table root;
 	private Viewport gameViewport;
+	private int uiScale = 2;
+
+
+	private Table root;
+	private Table optionBox;
+	private DialogueBox afterText;
+	private DialogueBox display;
+	private DialogueBox damageText;
+	private OptionBox choice;
+	private OptionBoxController controller;
+
 
 	private Texture Knight;
 	private Texture Wizard;
@@ -42,8 +57,8 @@ public class BattleScreen extends AbstractScreen{
 
 	private Texture Bat;
 	private Texture Goblin;
-	
-//	.animateText("Gold: " + gold +"\nHP: " + curHp + "\\" + maxHp);
+
+	//	.animateText("Gold: " + gold +"\nHP: " + curHp + "\\" + maxHp);
 
 	public BattleScreen(Quest app, float x, float y) {
 		super(app);
@@ -70,6 +85,37 @@ public class BattleScreen extends AbstractScreen{
 
 		bat = new enemy.Bat();
 		goblin = new enemy.Goblin();
+		
+		intUI();
+		
+	}
+
+	public void intUI() {
+		uiStage = new Stage(new ScreenViewport());
+		uiStage.getViewport().update(Gdx.graphics.getWidth()/uiScale, Gdx.graphics.getHeight()/uiScale, true);
+		//uiStage.setDebugAll(true);
+
+		root = new Table();
+		optionBox = new Table();
+		root.setFillParent(true);
+		uiStage.addActor(root);
+		
+		display = new DialogueBox(getApp().getSkin());
+		display.animateText("Display Stuff");
+		
+		damageText = new DialogueBox(getApp().getSkin());
+		damageText.animateText("Take/Deal Damage");
+		
+		choice = new OptionBox(getApp().getSkin());
+		choice.addOption("Fight");
+		choice.addOption("Flee");
+		
+		optionBox.add(choice).expand().align(Align.right).space(8f);
+		
+		controller = new OptionBoxController(choice);
+		
+		root.add(display).expand().align(Align.bottom).space(8f);
+		root.add(optionBox).expand().align(Align.bottom).space(8f);
 	}
 
 	@Override
@@ -90,7 +136,7 @@ public class BattleScreen extends AbstractScreen{
 		drawEnemy();
 
 		batch.end();
-		
+
 		if(apps.wizardPlayer.isAlive() == false || apps.knightPlayer.isAlive() == false
 				|| bat.getAlive() == false || goblin.getAlive() == false) {
 			if(apps.ClassSelect == 0) {
@@ -107,21 +153,39 @@ public class BattleScreen extends AbstractScreen{
 				if(goblin.getAlive() == false) {
 					apps.knightPlayer.addMoney(goblin.getGoldGiven());
 					apps.knightPlayer.gainExp(goblin.getExp());
-					}
-					if(bat.getAlive() == false) {
-						apps.knightPlayer.addMoney(bat.getGoldGiven());
-						apps.knightPlayer.gainExp(bat.getExp());
-					}
+				}
+				if(bat.getAlive() == false) {
+					apps.knightPlayer.addMoney(bat.getGoldGiven());
+					apps.knightPlayer.gainExp(bat.getExp());
+				}
 			}
 			MapTransition();
 		}else {
-			Fight();
+			choices();
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			MapTransition();
 		}
+		display.act(delta);
 	}
 
+	public void choices() {
+		if(controller.getEnterStatus() == true) {
+			if(choice.getSelected() == 0) {
+				Fight();
+				choice.setSelected(0);
+				controller.enter = false;
+			}else if(choice.getSelected() == 1) {
+				double random = Math.random();
+				if(random < .5){
+					MapTransition();
+					choice.setSelected(0);
+					controller.enter = false;
+				}
+			}
+		}
+	}
+	
 	public void MapTransition() {
 		apps.setCurrentScreen("Outside Map", returnX , returnY);
 	}
@@ -256,7 +320,9 @@ public class BattleScreen extends AbstractScreen{
 
 	@Override
 	public void resize(int width, int height) {
-
+		batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
+		uiStage.getViewport().update(width/uiScale, height/uiScale, true);
+		gameViewport.update(width, height);
 	}
 
 	@Override

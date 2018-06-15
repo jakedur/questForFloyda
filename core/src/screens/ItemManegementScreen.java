@@ -1,5 +1,6 @@
 package screens;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -81,6 +82,8 @@ public class ItemManegementScreen extends AbstractScreen{
 		rightSide.addOption("Stats");
 		rightSide.addOption("Back");
 
+		Bag = new ArrayList<Item>();
+		
 		makeUIthings();
 
 		rightDialogTable.add(rightSide).expand();
@@ -89,7 +92,10 @@ public class ItemManegementScreen extends AbstractScreen{
 	}
 	public void makeUIthings() {
 		if(apps.ClassSelect == 0) {
-			Bag = apps.wizardPlayer.getBag();
+//			Bag = apps.wizardPlayer.getBag();
+			for(Item item: apps.wizardPlayer.getBag()) {
+				Bag.add(item);
+			}
 			if(Bag != null) {
 				for(Item item: Bag) {
 					if(item != null)
@@ -106,7 +112,12 @@ public class ItemManegementScreen extends AbstractScreen{
 			int gold = apps.wizardPlayer.getPlayerMoney();
 			int curHp = apps.wizardPlayer.getHP();
 			int maxHp = apps.wizardPlayer.getMaxHP();
-			stats.animateText("Gold: " + gold +"\nHP: " + curHp + "\\" + maxHp);
+			int exp = apps.wizardPlayer.getPlayerExp();
+			int level = apps.wizardPlayer.getPlayerLevel();
+			stats.animateText("Gold: " + gold +
+					"\nHP: " + curHp + "\\" + maxHp +
+					"\nEXP: " + exp +"\\" + 100*1.5*level + 
+					"\nLevel: " + level);
 		}
 		if(apps.ClassSelect == 1) {
 			Bag = apps.knightPlayer.getBag();
@@ -179,8 +190,12 @@ public class ItemManegementScreen extends AbstractScreen{
 		if(leftSideBagController.getEnterStatus() == true) {
 			if(Bag != null) {
 				if(apps.ClassSelect == 0) {
-					if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
-							Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
+					int sel = leftSideBag.getSelected();
+					String name = Bag.get(sel).getItemName();
+					if(name.equals("Sword")|| 
+					
+//					if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
+						Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
 						apps.wizardPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}

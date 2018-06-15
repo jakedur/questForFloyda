@@ -201,7 +201,11 @@ public class Classes {
 	}
 	
 	public void removeItem(Item item) {
-		Bag.remove(item);
+		int num = Bag.indexOf(item);
+		Bag.remove(num);
+		if(Bag.size() == 1) {
+			Bag.clear();
+		}
 	}
 	
 	public List<Item> getBag(){
