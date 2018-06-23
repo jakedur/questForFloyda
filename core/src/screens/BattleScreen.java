@@ -66,6 +66,8 @@ public class BattleScreen extends AbstractScreen{
 		this.returnX = x;
 		this.returnY = y;
 
+		gameViewport = new ScreenViewport();
+
 		img = new Texture("Screens/Battle Screen.png");
 		batch = app.batch;
 
@@ -85,9 +87,9 @@ public class BattleScreen extends AbstractScreen{
 
 		bat = new enemy.Bat();
 		goblin = new enemy.Goblin();
-		
+
 		intUI();
-		
+
 	}
 
 	public void intUI() {
@@ -99,21 +101,21 @@ public class BattleScreen extends AbstractScreen{
 		optionBox = new Table();
 		root.setFillParent(true);
 		uiStage.addActor(root);
-		
+
 		display = new DialogueBox(getApp().getSkin());
 		display.animateText("Display Stuff");
-		
+
 		damageText = new DialogueBox(getApp().getSkin());
 		damageText.animateText("Take/Deal Damage");
-		
+
 		choice = new OptionBox(getApp().getSkin());
 		choice.addOption("Fight");
 		choice.addOption("Flee");
-		
+
 		optionBox.add(choice).expand().align(Align.right).space(8f);
-		
+
 		controller = new OptionBoxController(choice);
-		
+
 		root.add(display).expand().align(Align.bottom).space(8f);
 		root.add(optionBox).expand().align(Align.bottom).space(8f);
 	}
@@ -137,29 +139,8 @@ public class BattleScreen extends AbstractScreen{
 
 		batch.end();
 
-		if(apps.wizardPlayer.isAlive() == false || apps.knightPlayer.isAlive() == false
-				|| bat.getAlive() == false || goblin.getAlive() == false) {
-			if(apps.ClassSelect == 0) {
-				if(goblin.getAlive() == false) {
-					apps.wizardPlayer.addMoney(goblin.getGoldGiven());
-					apps.wizardPlayer.gainExp(goblin.getExp());
-				}
-				if(bat.getAlive() == false) {
-					apps.wizardPlayer.addMoney(bat.getGoldGiven());
-					apps.wizardPlayer.gainExp(bat.getExp());
-				}
-			}
-			if(apps.ClassSelect == 1) {
-				if(goblin.getAlive() == false) {
-					apps.knightPlayer.addMoney(goblin.getGoldGiven());
-					apps.knightPlayer.gainExp(goblin.getExp());
-				}
-				if(bat.getAlive() == false) {
-					apps.knightPlayer.addMoney(bat.getGoldGiven());
-					apps.knightPlayer.gainExp(bat.getExp());
-				}
-			}
-			MapTransition();
+		if(checkDeath() == true) {
+			DeathStuff();
 		}else {
 			choices();
 		}
@@ -167,6 +148,47 @@ public class BattleScreen extends AbstractScreen{
 			MapTransition();
 		}
 		display.act(delta);
+	}
+	
+	public boolean checkDeath() {
+		boolean bool = false;
+		 if(apps.wizardPlayer.isAlive() == false){
+			bool = true; 
+		 }
+		 else if(apps.knightPlayer.isAlive() == false) {
+			 bool = true;
+		 }
+		 else if(bat.getAlive() == false) {
+			 bool = true;
+		 }
+		 else if(goblin.getAlive() == false) {
+			 bool = true;
+		 }
+		return bool;
+	}
+	
+	public void DeathStuff() {
+		if(apps.ClassSelect == 0) {
+			if(goblin.getAlive() == false) {
+				apps.wizardPlayer.addMoney(goblin.getGoldGiven());
+				apps.wizardPlayer.gainExp(goblin.getExp());
+			}
+			if(bat.getAlive() == false) {
+				apps.wizardPlayer.addMoney(bat.getGoldGiven());
+				apps.wizardPlayer.gainExp(bat.getExp());
+			}
+		}
+		if(apps.ClassSelect == 1) {
+			if(goblin.getAlive() == false) {
+				apps.knightPlayer.addMoney(goblin.getGoldGiven());
+				apps.knightPlayer.gainExp(goblin.getExp());
+			}
+			if(bat.getAlive() == false) {
+				apps.knightPlayer.addMoney(bat.getGoldGiven());
+				apps.knightPlayer.gainExp(bat.getExp());
+			}
+		}
+		MapTransition();
 	}
 
 	public void choices() {
@@ -185,7 +207,7 @@ public class BattleScreen extends AbstractScreen{
 			}
 		}
 	}
-	
+
 	public void MapTransition() {
 		apps.setCurrentScreen("Outside Map", returnX , returnY);
 	}
