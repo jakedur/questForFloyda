@@ -185,72 +185,87 @@ public class ItemManegementScreen extends AbstractScreen{
 			}
 		}
 	}
-
+//so how does it look
 	public void leftSideBag() {
+		
 		if(leftSideBagController.getEnterStatus() == true) {
+			
 			if(Bag != null) {
+				
+				int sel = leftSideBag.getSelected();
+				String name = Bag.get(sel).getItemName();
+				
 				if(apps.ClassSelect == 0) {
-					int sel = leftSideBag.getSelected();
-					String name = Bag.get(sel).getItemName();
-					if(name.equals("Sword")|| 
 					
-//					if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
-						Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
+					if(name.equals("Sword") || name.equals("Staff")){ 
 						apps.wizardPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Shield")){
+					
+					else if(name.equals("Shield")){
 						apps.wizardPlayer.EquipShield(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Hat")){
+					
+					else if(name.equals("Hat")){
 						apps.wizardPlayer.EquipHat(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Chest")){
+					
+					else if(name.equals("Chest")){
 						apps.wizardPlayer.EquipChest(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Boots")){
+					
+					else if(name.equals("Boots")){
 						apps.wizardPlayer.EquipBoots(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Amulet")){
+					
+					else if(name.equals("Amulet")){
 						apps.wizardPlayer.EquipAmulet(Bag.get(leftSideBag.getSelected()));
 						apps.wizardPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
+					
 					makeUIthings();
+					
 				}
 				if(apps.ClassSelect == 1) {
-
-					if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Sword")|| 
-							Bag.get(leftSideBag.getSelected()).getItemName().equals("Staff")) {
+					
+					if(name.equals("Sword") || name.equals("Staff")) {
 						apps.knightPlayer.EquipWeapon(Bag.get(leftSideBag.getSelected()));
 						apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Shield")){
+					
+					else if(name.equals("Shield")){
 						apps.knightPlayer.EquipShield(Bag.get(leftSideBag.getSelected()));					
 						apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Hat")){
+					
+					else if(name.equals("Hat")){
 						apps.knightPlayer.EquipHat(Bag.get(leftSideBag.getSelected()));
 						apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Chest")){
+					
+					else if(name.equals("Chest")){
 						apps.knightPlayer.EquipChest(Bag.get(leftSideBag.getSelected()));
 						apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Boots")){
+					
+					else if(name.equals("Boots")){
 						apps.knightPlayer.EquipBoots(Bag.get(leftSideBag.getSelected()));
 						apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
-					else if(Bag.get(leftSideBag.getSelected()).getItemName().equals("Amulet")){
+					
+					else if(name.equals("Amulet")){
 						apps.knightPlayer.EquipAmulet(Bag.get(leftSideBag.getSelected()));
 						apps.knightPlayer.removeItem(Bag.get(leftSideBag.getSelected()));
 					}
+					
 					makeUIthings();
+					
 				}
 			}
 
